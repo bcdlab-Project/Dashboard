@@ -1,8 +1,9 @@
 <?php
     $data['title'] = lang('Errors.pageNotFound');
+    $data['centerContent'] = true;
     echo view('templates/header', $data);
 ?>
-    <div class="max-w-4xl text-center mx-auto my-20 p-8 bg-opacity-50 bg-red-300 rounded-lg">
+    <div class="w-4/5 text-center mx-auto p-8 bg-opacity-50 bg-red-300 rounded-lg">
         <h1 class="text-5xl font-light mb-1">404</h1>
 
         <p>

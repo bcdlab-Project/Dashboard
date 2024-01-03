@@ -6,7 +6,7 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Pages extends BaseController
 {
-    public function index(): string
+    public function getIndex(): string
     {
         return view('welcome_message');
     }
@@ -18,6 +18,7 @@ class Pages extends BaseController
         }
 
         $data['title'] = ucfirst($page); // Capitalize the first letter
+        $data['centerContent'] = false;
 
         return view('templates/header', $data)
             . view('pages/' . $page)
