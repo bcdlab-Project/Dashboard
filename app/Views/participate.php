@@ -1,6 +1,6 @@
 <?php 
         $request = \Config\Services::request();
-        if (esc($error))  {
+        if (false)  { // esc($error)
             ?>
             <div class="w-4/5 flex items-center justify-center mx-auto my-8 p-8 bg-opacity-50 bg-red-300 rounded-lg animate-pulse">
             <span class="mr-2">

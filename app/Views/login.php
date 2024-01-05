@@ -18,16 +18,19 @@
         <h1 class="text-3xl font-light mb-2 text-center">Login</h1>
         <form action="" method="post">
             <div class="mb-4">
-                <label class="block font-semibold" for="username"><?= lang('Auth.username')?></label>
-                <input class="shadow appearance-none border dark:border-bg-dark-color-scheme rounded w-full py-2 px-3 leading-tight focus:outline-none" type="text" name="username" id="username" placeholder="Username" value="<?=$request->getPost('username')?>">
+                <label class="block font-semibold" for="username"><?=lang('Auth.username')?></label>
+                <input class="shadow appearance-none border dark:border-bg-dark-color-scheme rounded w-full py-2 px-3 leading-tight focus:outline-none" type="text" name="username" id="username" placeholder="<?=lang('Auth.username')?>" value="<?=$request->getPost('username')?>">
             </div>
-            <div class="mb-4">
-                <label class="block font-semibold" for="password"><?= lang('Auth.password')?></label>
+            <div class="mb-1">
+                <label class="block font-semibold" for="password"><?=lang('Auth.password')?></label>
                 <input class="shadow appearance-none border dark:border-bg-dark-color-scheme rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************">
             </div>
-            <div class="flex justify-between items-center">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><?= lang('Auth.login')?></button>
-                <a class="text-blue-500 hover:text-blue-800 font-medium align-baseline inline-block" href="Login/forgotpassword"><?= lang('Auth.forgotPassword')?></a>
+            <div class="mb-4">
+                <a class="text-blue-500 hover:text-blue-800 font-medium align-baseline inline-block" href="Login/forgotpassword"><?=lang('Auth.forgotPassword')?></a>
+            </div>
+            <div class="flex justify-between items-stretch ">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow"><?=lang('Auth.login')?></button>
+                <a href="" class="bg-github hover:bg-neutral-800 text-white font-bold py-2 px-4 rounded border border-stone-400 shadow"><span class="align-middle mr-1">Login with</span><img src="<?=base_url()?>images/github.png" class="h-6 inline-block" alt=""></a>
             </div>
         </form>
     </div>
