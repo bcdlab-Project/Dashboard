@@ -1,0 +1,1 @@
+php spark make:controller BB --suffix

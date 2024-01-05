@@ -12,4 +12,6 @@ use CodeIgniter\Router\RouteCollection;
 // use App\Controllers\Pages;
 // $routes->get('(:segment)', [Pages::class, 'view']);
 
+service('auth')->routes($routes);
+
 
