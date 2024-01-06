@@ -15,7 +15,17 @@ class Login extends BaseController
     }
 
     public function postIndex() {
-        return Login::getIndex($error=true);
+        $userModel = new \App\Models\UserModel();
+        if (!(empty($this->request->getPost('username')) && empty($this->request->getPost('password')))) {
+            $user = $userModel->find($this->request->getPost('username'));
+            if (!$user == null) {
+                if ($user->checkPassword($this->request->getPost('password'))) {
+                    unset($user);
+                    return redirect()->to('/');
+                }
+            }
+        }
+        unset($user);
+        return Login::getIndex(true);
     }
-
 }
