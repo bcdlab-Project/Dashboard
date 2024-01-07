@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class ProjectModel extends Model
 {
-    protected $table = 'users';
-    protected $primaryKey = 'username';
+    protected $table = 'projects';
+    protected $primaryKey = 'id';
 
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
 
-    protected $returnType = \App\Entities\User::class;
+    protected $returnType = \App\Entities\Project::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['username', 'participation_form_id', 'email', 'role', 'password'];
+    protected $allowedFields = ['ownerUser', 'name', 'objective','description','domainName','approved'];
 
     protected $useTimestamps = false;
 

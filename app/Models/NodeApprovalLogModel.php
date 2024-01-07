@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class NodeApprovalLogModel extends Model
 {
-    protected $table = 'users';
-    protected $primaryKey = 'username';
+    protected $table = 'node_approval_log';
+    protected $primaryKey = 'nodeId';
 
     protected $useAutoIncrement = false;
 
-    protected $returnType = \App\Entities\User::class;
+    protected $returnType = \App\Entities\NodeApprovalLog::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['username', 'participation_form_id', 'email', 'role', 'password'];
+    protected $allowedFields = ['nodeId', 'approvedAdmin'];
 
     protected $useTimestamps = false;
 

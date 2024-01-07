@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class NodeModel extends Model
 {
-    protected $table = 'users';
-    protected $primaryKey = 'username';
+    protected $table = 'nodes';
+    protected $primaryKey = 'id';
 
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
 
-    protected $returnType = \App\Entities\User::class;
+    protected $returnType = \App\Entities\Node::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['username', 'participation_form_id', 'email', 'role', 'password'];
+    protected $allowedFields = ['ownerUser', 'authenticationSecret', 'tunnelUUID','tunnelCredentials','alias','approved'];
 
     protected $useTimestamps = false;
 

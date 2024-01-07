@@ -16,14 +16,14 @@ class Utilities extends BaseController
 
     public function getTest() {
         
-        $userModel = new \App\Models\UserModel();
-        $user           = new \App\Entities\User();
-        $user->username = 'apascoa2';
-        $user->participation_form_id = '1';
-        $user->email    = 'foo@example.com';
-        $user->role = 'Administrator';
-        $user->password = password_hash('abc456',PASSWORD_DEFAULT);
-        echo $userModel->save($user);
-        unset($user);
+        // $userModel = new \App\Models\UserModel();
+        // $user           = new \App\Entities\User();
+        // $user->username = 'apascoa';
+        // $user->participation_form_id = '1';
+        // $user->email    = 'foo@example.com';
+        // $user->role = 'Administrator';
+        // $user->password = password_hash('abc456',PASSWORD_DEFAULT);
+        // echo $userModel->save($user);
+        // unset($user);
     }
 }

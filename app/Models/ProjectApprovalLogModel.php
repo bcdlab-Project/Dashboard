@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class ProjectApprovalLogModel extends Model
 {
-    protected $table = 'users';
-    protected $primaryKey = 'username';
+    protected $table = 'project_approval_log';
+    protected $primaryKey = 'projectId';
 
     protected $useAutoIncrement = false;
 
-    protected $returnType = \App\Entities\User::class;
+    protected $returnType = \App\Entities\ProjectApprovalLog::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['username', 'participation_form_id', 'email', 'role', 'password'];
+    protected $allowedFields = ['projectId', 'approvedAdmin'];
 
     protected $useTimestamps = false;
 

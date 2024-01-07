@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class ProjectGithubIntegrationModel extends Model
 {
-    protected $table = 'users';
-    protected $primaryKey = 'username';
+    protected $table = 'project_github_integration';
+    protected $primaryKey = 'projectId';
 
     protected $useAutoIncrement = false;
 
-    protected $returnType = \App\Entities\User::class;
+    protected $returnType = \App\Entities\ProjectGithubIntegration::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['username', 'participation_form_id', 'email', 'role', 'password'];
+    protected $allowedFields = ['projectId', 'instanceId', 'repositoryName','repositoryFullName'];
 
     protected $useTimestamps = false;
 

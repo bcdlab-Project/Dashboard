@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class NodeManagementLogModel extends Model
 {
-    protected $table = 'users';
-    protected $primaryKey = 'username';
+    protected $table = 'account_management_log';
+    protected $primaryKey = 'timeStamp';
 
     protected $useAutoIncrement = false;
 
-    protected $returnType = \App\Entities\User::class;
+    protected $returnType = \App\Entities\NodeManagementLog::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['username', 'participation_form_id', 'email', 'role', 'password'];
+    protected $allowedFields = ['changeAuthor', 'managedNode', 'action'];
 
     protected $useTimestamps = false;
 

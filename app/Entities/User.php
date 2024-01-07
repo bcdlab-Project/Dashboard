@@ -9,7 +9,5 @@ class User extends Entity
     public function checkPassword(string $pass)
     {
         return password_verify($pass, $this->attributes['password']);
-        // return $pass === $this->attributes['password'];
-        // return $this->attributes['password'];
     }
 }

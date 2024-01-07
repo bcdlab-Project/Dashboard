@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class ChatModel extends Model
 {
-    protected $table = 'users';
-    protected $primaryKey = 'username';
+    protected $table = 'chat';
+    protected $primaryKey = 'messageId';
 
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
 
-    protected $returnType = \App\Entities\User::class;
+    protected $returnType = \App\Entities\Chat::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['username', 'participation_form_id', 'email', 'role', 'password'];
+    protected $allowedFields = ['senderUser', 'specificChat', 'content','deleted'];
 
     protected $useTimestamps = false;
 
