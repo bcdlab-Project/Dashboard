@@ -49,9 +49,11 @@ return [
     'register'         => 'Register',
     'registerDisabled' => 'Registration is not currently allowed.',
     'registerSuccess'  => 'Welcome aboard!',
+    'requestRegistration' => 'Request Registration',
 
     // Login
     'login'              => 'Login',
+    'loginWith'          => 'Login with',
     'needAccount'        => 'Need an account?',
     'rememberMe'         => 'Remember me?',
     'forgotPassword'     => 'Forgot your password?',

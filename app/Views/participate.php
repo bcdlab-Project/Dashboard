@@ -14,8 +14,9 @@
         }
     ?>
 
-<div class="w-80 mx-auto p-6 bg-opacity-50 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950 rounded-lg">
-        <h1 class="text-3xl font-light mb-2 text-center">Login</h1>
+<div class="px-8 w-full lg:px-6 lg:w-3/5 mx-auto p-6 bg-opacity-50 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950 rounded-lg mt-16 mb-12">
+        <h1 class="text-3xl font-light mb-2 text-center"><?=lang('CustomTerms.participate')?></h1>
+        <p></p>
         <form action="" method="post">
             <div class="mb-4">
                 <label class="block font-semibold" for="username">Username</label>
@@ -25,9 +26,20 @@
                 <label class="block font-semibold" for="password">Password</label>
                 <input class="shadow appearance-none border dark:border-bg-dark-color-scheme rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************">
             </div>
+            <div class="mb-4">
+                <label class="block font-semibold" for="password">Password</label>
+                <input class="shadow appearance-none border dark:border-bg-dark-color-scheme rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************">
+            </div>
+            <div class="mb-4">
+                <label class="block font-semibold" for="password">Password</label>
+                <input class="shadow appearance-none border dark:border-bg-dark-color-scheme rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************">
+            </div>
+            <div class="mb-4">
+                <label class="block font-semibold" for="password">Password</label>
+                <input class="shadow appearance-none border dark:border-bg-dark-color-scheme rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************">
+            </div>
             <div class="flex justify-between items-center">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
-                <a class="text-blue-500 hover:text-blue-800 font-medium align-baseline inline-block" href="Login/forgotpassword">Forgot Password?</a>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><?=lang('Auth.requestRegistration')?></button>
             </div>
         </form>
     </div>

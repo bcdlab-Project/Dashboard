@@ -15,7 +15,7 @@
     ?>
 
     <div class="w-80 mx-auto p-6 bg-opacity-50 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950 rounded-lg">
-        <h1 class="text-3xl font-light mb-2 text-center">Login</h1>
+        <h1 class="text-3xl font-light mb-2 text-center"><?=lang('Auth.login')?></h1>
         <form action="" method="post">
             <div class="mb-4">
                 <label class="block font-semibold" for="username"><?=lang('Auth.username')?></label>
@@ -30,7 +30,7 @@
             </div>
             <div class="flex justify-between items-stretch ">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow"><?=lang('Auth.login')?></button>
-                <a href="" class="bg-github hover:bg-neutral-800 text-white font-bold py-2 px-4 rounded border border-stone-400 shadow"><span class="align-middle mr-1">Login with</span><img src="<?=base_url()?>images/github.png" class="h-6 inline-block" alt=""></a>
+                <a href="" class="bg-github hover:bg-neutral-800 text-white font-bold py-2 px-4 rounded border border-stone-400 shadow"><span class="align-middle mr-1"><?=lang('Auth.loginWith')?></span><img src="<?=base_url()?>images/github.png" class="h-6 inline-block" alt=""></a>
             </div>
         </form>
     </div>

@@ -46,12 +46,14 @@ return [
     'send'    => 'Enviar',
 
     // Registro
-    'register'         => 'Registar',
-    'registerDisabled' => 'O registo não é permitido no momento.',
-    'registerSuccess'  => 'Bem-vindo a bordo!',
+    'register'            => 'Registar',
+    'registerDisabled'    => 'O registo não é permitido no momento.',
+    'registerSuccess'     => 'Bem-vindo a bordo!',
+    'requestRegistration' => 'Requesitar Registo',
 
     // Login
     'login'              => 'Login',
+    'loginWith'          => 'Login com',
     'needAccount'        => 'Precisa de uma conta?',
     'rememberMe'         => 'Lembrar',
     'forgotPassword'     => 'Esqueceu a sua password?',

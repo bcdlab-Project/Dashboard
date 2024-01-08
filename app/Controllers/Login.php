@@ -28,4 +28,13 @@ class Login extends BaseController
         unset($user);
         return Login::getIndex(true);
     }
+
+    public function getForgotpassword() {
+        $data['title'] = 'Password Recovery';
+        $data['centerContent'] = true;
+        $data['error'] = false;
+
+        return view('templates/header', $data)
+        . view('templates/footer');
+    }
 }
