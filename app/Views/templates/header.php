@@ -23,9 +23,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="<?=base_url()?>css/styles.css">
-    <link rel="stylesheet" href="<?=base_url()?>css/flowbite.min.css">
+    <!-- <link rel="stylesheet" href="<?=base_url()?>css/flowbite.min.css"> -->
     <script src="<?=base_url()?>js/feather.min.js"></script>
-    <script src="<?=base_url()?>js/flowbite.min.js"></script>
+    <!-- <script src="<?=base_url()?>js/flowbite.min.js"></script> -->
 </head>
 <body class="bg-white dark:bg-zinc-800 dark:text-white text-black relative min-h-screen">
     <header class="p-2 px-8 md:px-24 xl:px-40 bg-zinc-200 dark:bg-zinc-900 flex justify-between items-center absolute top-0 w-full">
