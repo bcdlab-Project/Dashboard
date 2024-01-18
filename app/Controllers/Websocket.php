@@ -25,7 +25,7 @@ class Websocket extends Controller
         $this->config = config('CodeigniterWebsocket');
     }
 
-    public function start()
+    public function cliStart()
     {
         $ws = service('CodeigniterWebsocket');
         $ws->set_callback('auth', array($this, '_auth'));
@@ -33,7 +33,7 @@ class Websocket extends Controller
         $ws->run();
     }
 
-    public function user($user_id = null)
+    public function getUser($user_id = null)
     {
         return view('Websocket/websocket_message', array('user_id' => $user_id));
     }
@@ -47,7 +47,10 @@ class Websocket extends Controller
 
     public function _event($datas = null)
     {
+        
         // Here you can do everyting you want, each time message is received
         echo 'Hey ! I\'m an EVENT callback' . PHP_EOL;
+
+        return 'jkgjhgjhg';
     }
 }

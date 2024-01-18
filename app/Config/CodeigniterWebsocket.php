@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use CodeIgniter\Config\BaseConfig;
+
 /**
  * @package   CodeIgniter WebSocket Library: Config file
  * @category  Libraries
@@ -14,7 +16,7 @@ namespace Config;
 class CodeigniterWebsocket extends \Takielias\CodeigniterWebsocket\Config\CodeigniterWebsocket
 {
     public $host = "0.0.0.0";
-    public $port = 8282;
+    public $port = 8283;
     public $timer = false;
     public $interval = 1;
     public $auth = false;

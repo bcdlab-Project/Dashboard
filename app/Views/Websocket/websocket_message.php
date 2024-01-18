@@ -84,12 +84,12 @@
     <p class="footer">
         <span style="float: left;" id="token"></span>
         Page rendered in <strong>{elapsed_time}</strong>
-        seconds. <?php echo (ENVIRONMENT === 'development') ? 'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?>
+        seconds. <?php echo (ENVIRONMENT === 'development') ? 'CodeIgniter Version <strong>' . 'CI_VERSION' . '</strong>' : '' ?>
     </p>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    var conn = new WebSocket('ws://localhost:8282');
+    var conn = new WebSocket('ws://192.168.22.48:8283');
     var client = {
         user_id: <?php echo $user_id; ?>,
         recipient_id: null,
