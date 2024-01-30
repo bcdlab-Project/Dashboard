@@ -16,8 +16,7 @@
         "ext-mbstring": "*",
         "codeigniter4/translations": "^4.4",
         "laminas/laminas-escaper": "^2.9",
-        "psr/log": "^1.1",
-        "takielias/codeigniter4-websocket": "@dev"
+        "psr/log": "^1.1"
     },
     "require-dev": {
         "codeigniter/coding-standard": "^1.5",
