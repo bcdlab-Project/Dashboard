@@ -19,11 +19,11 @@
         <form action="" method="post">
             <div class="mb-4">
                 <label class="block font-semibold" for="username"><?=lang('Auth.username')?></label>
-                <input class="shadow appearance-none border dark:border-bg-dark-color-scheme rounded w-full py-2 px-3 leading-tight focus:outline-none" type="text" name="username" id="username" placeholder="<?=lang('Auth.username')?>" value="<?=$request->getPost('username')?>">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="text" name="username" id="username" placeholder="<?=lang('Auth.username')?>" value="<?=$request->getPost('username')?>">
             </div>
             <div class="mb-1">
                 <label class="block font-semibold" for="password"><?=lang('Auth.password')?></label>
-                <input class="shadow appearance-none border dark:border-bg-dark-color-scheme rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************">
             </div>
             <div class="mb-4">
                 <a class="text-blue-500 hover:text-blue-800 font-medium align-baseline inline-block" href="Login/forgotpassword"><?=lang('Auth.forgotPassword')?></a>

@@ -17,3 +17,11 @@
 .color-scheme-light {
     color-scheme: light;
 }
+
+
+@layer base{
+    .dark [type='text'],.dark [type='email'],.dark [type='url'],.dark [type='password'],.dark [type='number'],.dark [type='date'],.dark [type='datetime-local'],.dark [type='month'],.dark [type='search'],.dark [type='tel'],.dark [type='time'],.dark [type='week'],.dark [multiple],.dark textarea,.dark select {
+        background-color: #424343;
+        border-color: #696968;
+      }
+}

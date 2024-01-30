@@ -907,6 +907,11 @@ input:checked + .toggle-bg {
   border-color: #1C64F2;
 }
 
+.dark [type='text'],.dark [type='email'],.dark [type='url'],.dark [type='password'],.dark [type='number'],.dark [type='date'],.dark [type='datetime-local'],.dark [type='month'],.dark [type='search'],.dark [type='tel'],.dark [type='time'],.dark [type='week'],.dark [multiple],.dark textarea,.dark select {
+  background-color: #424343;
+  border-color: #696968;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -1880,11 +1885,6 @@ input:checked + .toggle-bg {
 :is(.dark .dark\:divide-gray-600) > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(75 85 99 / var(--tw-divide-opacity));
-}
-
-:is(.dark .dark\:border-bg-dark-color-scheme) {
-  --tw-border-opacity: 1;
-  border-color: rgb(59 59 59 / var(--tw-border-opacity));
 }
 
 :is(.dark .dark\:border-blue-500) {
