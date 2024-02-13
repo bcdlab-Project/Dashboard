@@ -70,6 +70,10 @@ class ComposerStaticInit3503fed78569bdd7f7c2b86d87c6dbf4
         array (
             'Faker\\' => 6,
         ),
+        'E' => 
+        array (
+            'ElephantIO\\' => 11,
+        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -200,6 +204,10 @@ class ComposerStaticInit3503fed78569bdd7f7c2b86d87c6dbf4
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
+        ),
+        'ElephantIO\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/elephantio/elephant.io/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -716,6 +724,37 @@ class ComposerStaticInit3503fed78569bdd7f7c2b86d87c6dbf4
         'Doctrine\\Instantiator\\Exception\\UnexpectedValueException' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/Exception/UnexpectedValueException.php',
         'Doctrine\\Instantiator\\Instantiator' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/Instantiator.php',
         'Doctrine\\Instantiator\\InstantiatorInterface' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/InstantiatorInterface.php',
+        'ElephantIO\\Client' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Client.php',
+        'ElephantIO\\EngineInterface' => __DIR__ . '/..' . '/elephantio/elephant.io/src/EngineInterface.php',
+        'ElephantIO\\Engine\\Option' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/Option.php',
+        'ElephantIO\\Engine\\Packet' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/Packet.php',
+        'ElephantIO\\Engine\\Session' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/Session.php',
+        'ElephantIO\\Engine\\SocketIO' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/SocketIO.php',
+        'ElephantIO\\Engine\\SocketIO\\Version0X' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/SocketIO/Version0X.php',
+        'ElephantIO\\Engine\\SocketIO\\Version1X' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/SocketIO/Version1X.php',
+        'ElephantIO\\Engine\\SocketIO\\Version2X' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/SocketIO/Version2X.php',
+        'ElephantIO\\Engine\\SocketIO\\Version3X' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/SocketIO/Version3X.php',
+        'ElephantIO\\Engine\\SocketIO\\Version4X' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/SocketIO/Version4X.php',
+        'ElephantIO\\Engine\\SocketInterface' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/SocketInterface.php',
+        'ElephantIO\\Engine\\Store' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/Store.php',
+        'ElephantIO\\Engine\\Transport' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/Transport.php',
+        'ElephantIO\\Engine\\Transport\\Polling' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/Transport/Polling.php',
+        'ElephantIO\\Engine\\Transport\\Websocket' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Engine/Transport/Websocket.php',
+        'ElephantIO\\Exception\\MalformedUrlException' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Exception/MalformedUrlException.php',
+        'ElephantIO\\Exception\\ServerConnectionFailureException' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Exception/ServerConnectionFailureException.php',
+        'ElephantIO\\Exception\\SocketException' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Exception/SocketException.php',
+        'ElephantIO\\Exception\\UnsuccessfulOperationException' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Exception/UnsuccessfulOperationException.php',
+        'ElephantIO\\Exception\\UnsupportedActionException' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Exception/UnsupportedActionException.php',
+        'ElephantIO\\Payload' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Payload.php',
+        'ElephantIO\\Payload\\Decoder' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Payload/Decoder.php',
+        'ElephantIO\\Payload\\Encoder' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Payload/Encoder.php',
+        'ElephantIO\\SequenceReader' => __DIR__ . '/..' . '/elephantio/elephant.io/src/SequenceReader.php',
+        'ElephantIO\\SocketUrl' => __DIR__ . '/..' . '/elephantio/elephant.io/src/SocketUrl.php',
+        'ElephantIO\\StreamInterface' => __DIR__ . '/..' . '/elephantio/elephant.io/src/StreamInterface.php',
+        'ElephantIO\\Stream\\SocketStream' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Stream/SocketStream.php',
+        'ElephantIO\\Stream\\Stream' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Stream/Stream.php',
+        'ElephantIO\\Util' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Util.php',
+        'ElephantIO\\Yeast' => __DIR__ . '/..' . '/elephantio/elephant.io/src/Yeast.php',
         'Faker\\Calculator\\Ean' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Ean.php',
         'Faker\\Calculator\\Iban' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Iban.php',
         'Faker\\Calculator\\Inn' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Inn.php',

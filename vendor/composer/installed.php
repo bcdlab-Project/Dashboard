@@ -3,7 +3,7 @@
         'name' => 'codeigniter4/framework',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'f1bb2e6b8ea8169e2c0a3326eb7d297d04a15499',
+        'reference' => 'fc13f6103c4aa959efcb5db2e2e51ccfd21505a8',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'codeigniter4/framework' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'f1bb2e6b8ea8169e2c0a3326eb7d297d04a15499',
+            'reference' => 'fc13f6103c4aa959efcb5db2e2e51ccfd21505a8',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -99,6 +99,15 @@
             'install_path' => __DIR__ . '/../doctrine/lexer',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'elephantio/elephant.io' => array(
+            'pretty_version' => 'v4.6.0',
+            'version' => '4.6.0.0',
+            'reference' => '3ab310a62e170a20b0c7f1b1147633c7cead8178',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../elephantio/elephant.io',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'fakerphp/faker' => array(
             'pretty_version' => 'v1.23.0',

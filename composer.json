@@ -15,6 +15,7 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "codeigniter4/translations": "^4.4",
+        "elephantio/elephant.io": "^4.6",
         "laminas/laminas-escaper": "^2.9",
         "psr/log": "^1.1"
     },
