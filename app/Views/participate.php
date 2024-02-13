@@ -19,25 +19,39 @@
         <p></p>
         <form action="" method="post">
             <div class="mb-4">
-                <label class="block font-semibold" for="username">Username</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="text" name="username" id="username" placeholder="Username" value="<?=$request->getPost('username')?>">
+                <label class="block font-semibold" for="username"><?=lang('Auth.username')?></label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="text" name="username" id="username" placeholder="..." value="<?=$request->getPost('username')?>">
             </div>
             <div class="mb-4">
-                <label class="block font-semibold" for="password">Password</label>
+                <label class="block font-semibold" for="email"><?=lang('Auth.email')?></label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="email" name="email" id="email" placeholder="...@email.com">
+            </div>
+            <div class="mb-4">
+                <label class="block font-semibold" for="password"><?=lang('Auth.password')?></label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************">
             </div>
             <div class="mb-4">
-                <label class="block font-semibold" for="password">Password</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************">
+                <label class="block font-semibold" for="confpassword"><?=lang('Auth.password')?></label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="confpassword" id="confpassword" placeholder="******************">
+            </div>
+
+
+            <div class="mb-4">
+                <label class="block font-semibold" for="whyParticipate"><?=lang('CustomTerms.whyParticipate')?></label>
+                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" name="whyParticipate" id="whyParticipate" placeholder="<?=lang('CustomTerms.placeHolder_whyParticipate')?>" rows="5"></textarea>
             </div>
             <div class="mb-4">
-                <label class="block font-semibold" for="password">Password</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************">
+                <label class="block font-semibold" for="workRole"><?=lang('CustomTerms.workRole')?></label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="text" name="workRole" id="workRole" placeholder="<?=lang('CustomTerms.placeHolder_workRole')?>">
             </div>
             <div class="mb-4">
-                <label class="block font-semibold" for="password">Password</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************">
+                <label class="block font-semibold" for="githubProfile"><?=lang('CustomTerms.githubProfile')?></label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="url" name="githubProfile" id="githubProfile" placeholder="https://github.com/...">
             </div>
+
+            
+
+
             <div class="flex justify-between items-center">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><?=lang('Auth.requestRegistration')?></button>
             </div>

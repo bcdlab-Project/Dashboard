@@ -15,22 +15,34 @@ use CodeIgniter\Controller;
  */
 class Websocket extends Controller
 {
-    /**
-     * @var Config
-     */
-    protected $config;
-
     public function __construct()
     {
-        $this->config = config('CodeigniterWebsocket');
+
     }
 
     public function cliStart()
     {
-        $ws = service('CodeigniterWebsocket');
-        $ws->set_callback('auth', array($this, '_auth'));
-        $ws->set_callback('event', array($this, '_event'));
-        $ws->run();
+        // $ws = service('CodeigniterWebsocket');
+        // $ws->set_callback('auth', array($this, '_auth'));
+        // $ws->set_callback('event', array($this, '_event'));
+        // $ws->run();
+        // $server = new OpenSwoole\Websocket\Server("127.0.0.1", 9502);
+
+        // $server->on('open', function($server, $req) {
+        //     echo "connection open: {$req->fd}\n";
+        // });
+
+        // $server->on('message', function($server, $frame) {
+        //     echo "received message: {$frame->data}\n";
+        //     $server->push($frame->fd, json_encode(["hello", "world"]));
+        // });
+
+        // $server->on('close', function($server, $fd) {
+        //     echo "connection close: {$fd}\n";
+        // });
+
+        // $server->start();
+        
     }
 
     public function getUser($user_id = null)
