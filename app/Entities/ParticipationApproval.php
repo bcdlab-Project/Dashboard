@@ -4,7 +4,7 @@ namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
 
-class ProjectGithubIntegration extends Entity
+class ParticipationApproval extends Entity
 {
     
 }

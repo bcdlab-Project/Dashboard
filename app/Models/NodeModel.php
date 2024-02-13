@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class NodeModel extends Model
 {
-    protected $table = 'nodes';
+    protected $table = 'Nodes';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
@@ -14,7 +14,7 @@ class NodeModel extends Model
     protected $returnType = \App\Entities\Node::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['ownerUser', 'authenticationSecret', 'tunnelUUID','tunnelCredentials','alias','approved'];
+    protected $allowedFields = ['owner', 'secret', 'tunnel_UUID','tunnel_Credentials','alias'];
 
     protected $useTimestamps = false;
 

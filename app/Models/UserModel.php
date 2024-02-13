@@ -6,15 +6,15 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    protected $table = 'users';
-    protected $primaryKey = 'username';
+    protected $table = 'Users';
+    protected $primaryKey = 'id';
 
     protected $useAutoIncrement = false;
 
     protected $returnType = \App\Entities\User::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['username', 'participation_form_id', 'email', 'role', 'password'];
+    protected $allowedFields = ['username', 'role', 'email', 'password', 'participation_form', 'banned', 'silenced', 'deleted'];
 
     protected $useTimestamps = false;
 

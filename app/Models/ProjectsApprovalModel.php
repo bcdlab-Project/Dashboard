@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ProjectApprovalLogModel extends Model
+class ProjectsApprovalModel extends Model
 {
-    protected $table = 'project_approval_log';
-    protected $primaryKey = 'projectId';
+    protected $table = 'ProjectsApprovals';
+    protected $primaryKey = 'project';
 
     protected $useAutoIncrement = false;
 
-    protected $returnType = \App\Entities\ProjectApprovalLog::class;
+    protected $returnType = \App\Entities\ProjectApproval::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['projectId', 'approvedAdmin'];
+    protected $allowedFields = ['project', 'approved_by'];
 
     protected $useTimestamps = false;
 

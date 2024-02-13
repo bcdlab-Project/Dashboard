@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class ProjectModel extends Model
 {
-    protected $table = 'projects';
+    protected $table = 'Projects';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
@@ -14,7 +14,7 @@ class ProjectModel extends Model
     protected $returnType = \App\Entities\Project::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['ownerUser', 'name', 'objective','description','domainName','approved'];
+    protected $allowedFields = ['ownerUser', 'name', 'objective','description','domainName','active'];
 
     protected $useTimestamps = false;
 

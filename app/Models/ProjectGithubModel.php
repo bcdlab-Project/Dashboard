@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ChatModel extends Model
+class ProjectGithubModel extends Model
 {
-    protected $table = 'chat';
-    protected $primaryKey = 'messageId';
+    protected $table = 'ProjectGithub';
+    protected $primaryKey = 'projectId';
 
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
 
-    protected $returnType = \App\Entities\Chat::class;
+    protected $returnType = \App\Entities\ProjectGithub::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['senderUser', 'specificChat', 'content','deleted'];
+    protected $allowedFields = ['project', 'instance_id', 'repository_name','repository_full_name'];
 
     protected $useTimestamps = false;
 

@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ProjectGithubIntegrationModel extends Model
+class ParticipationApprovalModel extends Model
 {
-    protected $table = 'project_github_integration';
-    protected $primaryKey = 'projectId';
+    protected $table = 'ParticipationApproval';
+    protected $primaryKey = 'participation_form';
 
     protected $useAutoIncrement = false;
 
-    protected $returnType = \App\Entities\ProjectGithubIntegration::class;
+    protected $returnType = \App\Entities\ParticipationApproval::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['projectId', 'instanceId', 'repositoryName','repositoryFullName'];
+    protected $allowedFields = ['participation_form', 'approved_by','new_user'];
 
     protected $useTimestamps = false;
 
