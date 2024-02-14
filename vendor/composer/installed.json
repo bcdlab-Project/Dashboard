@@ -59,17 +59,17 @@
         },
         {
             "name": "codeigniter4/translations",
-            "version": "v4.4.3",
-            "version_normalized": "4.4.3.0",
+            "version": "v4.4.4",
+            "version_normalized": "4.4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeigniter4/translations.git",
-                "reference": "dae92ca24b8bd67d6e63fd17e7107e2560f1a290"
+                "reference": "f29b66e75d589881a4957d93c385cc5a5149012e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeigniter4/translations/zipball/dae92ca24b8bd67d6e63fd17e7107e2560f1a290",
-                "reference": "dae92ca24b8bd67d6e63fd17e7107e2560f1a290",
+                "url": "https://api.github.com/repos/codeigniter4/translations/zipball/f29b66e75d589881a4957d93c385cc5a5149012e",
+                "reference": "f29b66e75d589881a4957d93c385cc5a5149012e",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "nexusphp/cs-config": "^3.3",
                 "phpunit/phpunit": "^9.5"
             },
-            "time": "2023-10-27T03:08:50+00:00",
+            "time": "2024-01-26T15:17:09+00:00",
             "type": "project",
             "extra": {
                 "branch-alias": {
