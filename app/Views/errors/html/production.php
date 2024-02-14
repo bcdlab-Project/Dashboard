@@ -1,25 +1,12 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="robots" content="noindex">
+<?php
+    $data['title'] = lang('Errors.whoops');
+    $data['centerContent'] = true;
+    echo view('templates/header', $data);
+?>
+    <div class="w-4/5 text-center mx-auto p-8 bg-opacity-50 bg-red-300 rounded-lg">
+        <h1 class="text-5xl font-light mb-1"><?=lang('Errors.whoops')?></h1>
 
-    <title><?= lang('Errors.whoops') ?></title>
-
-    <style>
-        <?= preg_replace('#[\r\n\t ]+#', ' ', file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'debug.css')) ?>
-    </style>
-</head>
-<body>
-
-    <div class="container text-center">
-
-        <h1 class="headline"><?= lang('Errors.whoops') ?></h1>
-
-        <p class="lead"><?= lang('Errors.weHitASnag') ?></p>
-
+        <p><?=lang('Errors.weHitASnag')?></p>
+        <p class="mt-4 underline underline-offset-2"><a href="/">Go Back to Home Page</a></p>
     </div>
-
-</body>
-
-</html>
+<?= view('templates/footer') ?>

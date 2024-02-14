@@ -21,6 +21,7 @@
     <title><?=esc($title)?></title>
     <!-- <meta name="description" content="The small framework with powerful features"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="<?=base_url()?>css/styles.css">
     <!-- <link rel="stylesheet" href="<?=base_url()?>css/flowbite.min.css"> -->
