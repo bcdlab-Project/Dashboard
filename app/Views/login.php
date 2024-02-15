@@ -30,7 +30,7 @@
             </div>
             <div class="flex justify-between items-stretch ">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow"><?=lang('Auth.login')?></button>
-                <a href="" class="bg-github hover:bg-neutral-800 text-white font-bold py-2 px-4 rounded border border-stone-400 shadow"><span class="align-middle mr-1"><?=lang('Auth.loginWith')?></span><img src="<?=base_url()?>images/github.png" class="h-6 inline-block" alt=""></a>
+                <a href="/github_integration/login" class="bg-github hover:bg-neutral-800 text-white font-bold py-2 px-4 rounded border border-stone-400 shadow"><span class="align-middle mr-1"><?=lang('Auth.loginWith')?></span><img src="<?=base_url()?>images/github.png" class="h-6 inline-block" alt=""></a>
             </div>
         </form>
     </div>

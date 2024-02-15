@@ -15,7 +15,7 @@ class Login extends BaseController
     }
 
     public function postIndex() {
-        $userModel = new \App\Models\UserModel();
+        $userModel = model('UserModel');
         if (!(empty($this->request->getPost('username')) && empty($this->request->getPost('password')))) {
             $user = $userModel->find($this->request->getPost('username'));
             if (!$user == null) {
@@ -36,5 +36,21 @@ class Login extends BaseController
 
         return view('templates/header', $data)
         . view('templates/footer');
+    }
+
+    public function getGithub() {
+        if ($this->session->get('GitHubCheck') != $this->request->getGet('key')) { return redirect()->to('/'); } //can also give error
+
+        // echo json_encode($this->session->get('GitHubUserData')['id']);
+
+        $userGithubModel = model('UserGithubModel');
+        $userModel = model('UserModel');
+
+        $github = $userGithubModel->where('github_id', $this->session->get('GitHubUserData')['id'])->first();
+
+        if ($github == null) { return Login::getIndex(true); }
+
+        $user = $userModel->find($github->user);
+        $user->login();  
     }
 }
