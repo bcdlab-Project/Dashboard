@@ -4,7 +4,16 @@ namespace App\Controllers;
 
 class Github_integration extends BaseController
 {
-    // Data removed
+    private $authorizeURL = "https://github.com/login/oauth/authorize"; 
+    private $tokenURL = "https://github.com/login/oauth/access_token";
+    private $apiURLBase = "https://api.github.com";
+
+    private $client_id = 'Iv1.b61d048cb4fec2c8';
+    private $client_secret = "165593399c84007f2f1eb610bbc42aab2a2ae38f";
+
+    private $redirect_url = 'http://192.168.22.48/github_integration/callback';
+
+    private $private_key = '';
 
 
 
