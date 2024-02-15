@@ -12,6 +12,7 @@ class Github_integration extends BaseController
     private $tokenURL;
     private $apiURLBase;
 
+    private $app_id;
     private $client_id;
     private $client_secret;
 
@@ -24,6 +25,7 @@ class Github_integration extends BaseController
         $this->authorizeURL = $config->authorizeURL;
         $this->tokenURL = $config->tokenURL;
         $this->apiURLBase = $config->apiURLBase;
+        $this->app_id = $config->app_id;
         $this->client_id = $config->client_id;
         $this->client_secret = $config->client_secret;
         $this->redirect_url = $config->redirect_url;
@@ -116,9 +118,9 @@ class Github_integration extends BaseController
 
     private function exchangeJwJ() {
         $payload = [
-            'iss' => $this->client_id,
+            'iss' => intval($this->app_id),
             'iat' => time() - 60,
-            'nbf' => time() + (3 * 60)
+            'exp' => time() + (3 * 60)
         ];
 
         $jwt = JWT::encode($payload, $this->private_key, 'RS256');
