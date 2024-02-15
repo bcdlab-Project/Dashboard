@@ -65,21 +65,24 @@ class Github_integration extends BaseController
     }
 
     private function extchangeToken($code) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,$this->tokenURL);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'bcdlab Project GitHub OAuth Login'); 
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query([ 
-            'client_id' => $this->client_id, 
-            'client_secret' => $this->client_secret, 
-            'code' => $code 
-        ]));
+        $client = \Config\Services::curlrequest();
 
-        $resp = curl_exec($ch); 
-        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
+        $response = $client->request('POST', $this->tokenURL, [
+            'headers' => [
+                'User-Agent' => 'bcdlab Project GitHub OAuth Login',
+                'Accept'     => 'application/json',
+            ],
+            'form_params' => [
+                'client_id' => $this->client_id, 
+                'client_secret' => $this->client_secret, 
+                'code' => $code,
+            ],
+        ]);
 
-        parse_str($resp, $resp);
+        $resp = $response->getBody(); 
+        $http_code = $response->getStatusCode();
+
+        $resp = json_decode($resp,true);
 
         if ($http_code != 200 || isset($resp['error'])) { return redirect()->to('/'); } //can also give error
 
@@ -88,17 +91,20 @@ class Github_integration extends BaseController
 
     public function extchangeUserdata() {
         $apiURL = $this->apiURLBase . '/user'; 
-         
-        $ch = curl_init(); 
-        curl_setopt($ch, CURLOPT_URL, $apiURL); 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);  
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization: token '. $this->session->get('GitHubToken')['access_token'])); 
-        curl_setopt($ch, CURLOPT_USERAGENT, 'bcdlab Project GitHub OAuth Login'); 
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET'); 
-        $resp = curl_exec($ch); 
-        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);          
-        
+
+        $client = \Config\Services::curlrequest();
+
+        $response = $client->request('GET', $apiURL, [
+            'headers' => [
+                'User-Agent' => 'bcdlab Project GitHub OAuth Login',
+                'Accept'     => 'application/json',
+                'Content-Type' => 'application/json', 
+                'Authorization' => 'token '. $this->session->get('GitHubToken')['access_token'],
+            ],
+        ]);
+
+        $resp = $response->getBody(); 
+        $http_code = $response->getStatusCode();          
         
         $resp = json_decode($resp,true);
 

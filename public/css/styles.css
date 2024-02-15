@@ -1805,6 +1805,18 @@ input:checked + .toggle-bg {
   color-scheme: light;
 }
 
+.form-error {
+  border-color: rgb(240 82 82) !important;
+}
+
+.valid\:hidden:valid {
+  display: none;
+}
+
+.invalid\:block:invalid {
+  display: block;
+}
+
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -2076,3 +2088,4 @@ input:checked + .toggle-bg {
 .rtl\:space-x-reverse:where([dir="rtl"], [dir="rtl"] *) > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 1;
 }
+

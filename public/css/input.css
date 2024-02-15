@@ -25,3 +25,8 @@
         border-color: #696968;
       }
 }
+
+.form-error {
+    border-color: rgb(240 82 82) !important;
+}
+

@@ -39,7 +39,7 @@ class Login extends BaseController
     }
 
     public function getGithub() {
-        if ($this->session->get('GitHubCheck') != $this->request->getGet('key')) { return redirect()->to('/'); } //can also give error
+        if ($this->session->get('GitHubCheck') != $this->request->getGet('key')) { return redirect()->to('/login'); } //can also give error
 
         
 
