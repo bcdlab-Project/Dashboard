@@ -2,11 +2,15 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\API\ResponseTrait;
+
 class Utilities extends BaseController
 {
+    use ResponseTrait;
+
     public function getChangetheme() {
         $this->session->set('theme', (($this->session->get('theme') === 'dark') ? 'light' : 'dark'));
-        return redirect()->to($_SERVER['HTTP_REFERER']);
+        return $this->setResponseFormat('json')->respond(['ok' => true, 'new_theme' => $this->session->get('theme')], 200);
     }
 
     public function getChangelanguage() {

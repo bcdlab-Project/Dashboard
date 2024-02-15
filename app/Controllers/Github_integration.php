@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use Firebase\JWT\JWT;
+
 class Github_integration extends BaseController
 {
 
@@ -110,5 +112,21 @@ class Github_integration extends BaseController
 
         if ($http_code != 200 || isset($resp['error'])) { return redirect()->to('/'); } //can also give error
         $this->session->set('GitHubUserData',$resp);
+    }
+
+    private function exchangeJwJ() {
+        $payload = [
+            'iss' => $this->client_id,
+            'iat' => time() - 60,
+            'nbf' => time() + (3 * 60)
+        ];
+
+        $jwt = JWT::encode($payload, $this->private_key, 'RS256');
+
+        return $jwt;
+    }
+
+    public function getTest() {
+        echo $this->exchangeJwJ();
     }
 }
