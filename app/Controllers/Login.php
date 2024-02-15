@@ -41,12 +41,18 @@ class Login extends BaseController
     public function getGithub() {
         if ($this->session->get('GitHubCheck') != $this->request->getGet('key')) { return redirect()->to('/'); } //can also give error
 
+        
+
         // echo json_encode($this->session->get('GitHubUserData')['id']);
 
         $userGithubModel = model('UserGithubModel');
         $userModel = model('UserModel');
 
         $github = $userGithubModel->where('github_id', $this->session->get('GitHubUserData')['id'])->first();
+
+        $this->session->remove('GitHubCheck');
+        $this->session->remove('GitHubUserData');
+        $this->session->remove('GitHubToken');
 
         if ($github == null) { return Login::getIndex(true); }
 
