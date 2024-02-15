@@ -17,4 +17,4 @@ phpmyadmin
 
 *.pem
 
-GithubIntegration.php
+app/Config/GithubIntegration.php
