@@ -16,3 +16,5 @@ writable
 phpmyadmin
 
 *.pem
+
+GithubIntegration.php

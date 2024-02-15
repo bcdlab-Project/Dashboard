@@ -4,18 +4,29 @@ namespace App\Controllers;
 
 class Github_integration extends BaseController
 {
-    private $authorizeURL = "https://github.com/login/oauth/authorize"; 
-    private $tokenURL = "https://github.com/login/oauth/access_token";
-    private $apiURLBase = "https://api.github.com";
 
-    private $client_id = 'Iv1.b61d048cb4fec2c8';
-    private $client_secret = "165593399c84007f2f1eb610bbc42aab2a2ae38f";
+    
+    private $authorizeURL; 
+    private $tokenURL;
+    private $apiURLBase;
 
-    private $redirect_url = 'http://192.168.22.48/github_integration/callback';
+    private $client_id;
+    private $client_secret;
 
-    private $private_key = '';
+    private $redirect_url;
 
+    private $private_key;
 
+    public function __construct() {
+        $config = config('GithubIntegration');
+        $this->authorizeURL = $config->authorizeURL;
+        $this->tokenURL = $config->tokenURL;
+        $this->apiURLBase = $config->apiURLBase;
+        $this->client_id = $config->client_id;
+        $this->client_secret = $config->client_secret;
+        $this->redirect_url = $config->redirect_url;
+        $this->private_key = $config->private_key;
+    }
 
     public function getIndex() {
         return redirect()->to('/');
