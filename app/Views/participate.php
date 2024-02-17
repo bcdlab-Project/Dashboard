@@ -19,22 +19,22 @@
         <p></p>
         <form id="form" method="post" novalidate>
             <div id="first">
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-semibold" for="username"><?=lang('Auth.username')?></label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="text" name="username" id="username" placeholder="..." required invalid>
                     <span class="text-red-500" id="username-error"></span>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-semibold" for="email"><?=lang('Auth.email')?></label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="email" name="email" id="email" placeholder="...@email.com" required>
                     <span class="text-red-500" id="email-error"></span>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-semibold" for="password"><?=lang('Auth.password')?></label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************" required>
                     <span class="text-red-500" id="password-error"></span>
                 </div>
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="block font-semibold" for="confpassword"><?=lang('Auth.passwordConfirm')?></label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="confpassword" id="confpassword" placeholder="******************" required>
                     <span class="text-red-500" id="confpassword-error"></span>
