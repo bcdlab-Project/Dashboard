@@ -20,23 +20,27 @@
         <form id="form" method="post" novalidate>
             <div id="first">
                 <div class="mb-2">
-                    <label class="block font-semibold" for="username"><?=lang('Auth.username')?></label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="text" name="username" id="username" placeholder="..." required invalid>
+                    <label id="username-label" class="input input-bordered flex items-center shadow">
+                        <input class="grow" type="text" name="username" id="username" placeholder="<?=lang('Auth.username')?>" required>
+                    </label>
                     <span class="text-red-500" id="username-error"></span>
                 </div>
                 <div class="mb-2">
-                    <label class="block font-semibold" for="email"><?=lang('Auth.email')?></label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="email" name="email" id="email" placeholder="...@email.com" required>
+                    <label id="email-label" class="input input-bordered flex items-center shadow">
+                        <input class="grow" type="email" name="email" id="email" placeholder="<?=lang('Auth.email')?>" required>
+                    </label>
                     <span class="text-red-500" id="email-error"></span>
                 </div>
                 <div class="mb-2">
-                    <label class="block font-semibold" for="password"><?=lang('Auth.password')?></label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="password" id="password" placeholder="******************" required>
+                    <label id="password-label" class="input input-bordered flex items-center shadow">
+                        <input class="grow" type="password" name="password" id="password" placeholder="<?=lang('Auth.password')?>" required>
+                    </label>
                     <span class="text-red-500" id="password-error"></span>
                 </div>
                 <div class="mb-2">
-                    <label class="block font-semibold" for="confpassword"><?=lang('Auth.passwordConfirm')?></label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="password" name="confpassword" id="confpassword" placeholder="******************" required>
+                    <label id="confpassword-label" class="input input-bordered flex items-center shadow">
+                        <input class="grow" type="password" name="confpassword" id="confpassword" placeholder="<?=lang('Auth.passwordConfirm')?>" required>
+                    </label>
                     <span class="text-red-500" id="confpassword-error"></span>
                 </div>
 
@@ -46,19 +50,20 @@
             </div>
 
             <div id="second" class="hidden">
-                <div class="mb-4">
-                    <label class="block font-semibold" for="whyParticipate"><?=lang('CustomTerms.whyParticipate')?></label>
-                    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none " name="whyParticipate" id="whyParticipate" placeholder="<?=lang('CustomTerms.placeHolder_whyParticipate')?>" rows="5" required></textarea>
+                <div class="mb-2">
+                    <textarea id="whyParticipate-label" class="textarea textarea-bordered shadow w-full" name="whyParticipate" id="whyParticipate" placeholder="<?=lang('CustomTerms.whyParticipate')?>" rows="5" required></textarea>
                     <span class="text-red-500" id="whyParticipate-error"></span>
                 </div>
-                <div class="mb-4">
-                    <label class="block font-semibold" for="workRole"><?=lang('CustomTerms.workRole')?></label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="text" name="workRole" id="workRole" placeholder="<?=lang('CustomTerms.placeHolder_workRole')?>">
+                <div class="mb-2">
+                    <label id="workRole-label" class="input input-bordered flex items-center shadow">
+                        <input class="grow" type="text" name="workRole" id="workRole" placeholder="<?=lang('CustomTerms.workRole')?>">
+                    </label>
                     <span class="text-red-500" id="workRole-error"></span>
                 </div>
-                <div class="mb-4">
-                    <label class="block font-semibold" for="githubProfile"><?=lang('CustomTerms.githubProfile')?></label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none" type="url" name="githubProfile" id="githubProfile" placeholder="https://github.com/...">
+                <div class="mb-2">
+                    <label id="githubProfile-label" class="input input-bordered flex items-center shadow">
+                        <input class="grow" type="url" name="githubProfile" id="githubProfile" placeholder="<?=lang('CustomTerms.githubProfile')?>">
+                    </label>
                     <span class="text-red-500" id="githubProfile-error"></span>
                 </div>
 
@@ -69,80 +74,3 @@
             </div>
         </form>
     </div>
-
-
-<script>
-    var form = document.getElementById("form");
-
-    const submitting = async () => {
-        if (document.getElementById("second").classList.contains('hidden')) {
-            await goNext();
-        } else if (await validate('second')) {
-            form.submit();
-        }
-    }
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        event.stopPropagation()
-        submitting();
-
-
-
-    })
-
-    document.getElementById("Next").onclick=async() => {
-        await goNext();
-    };
-
-    document.getElementById("Back").onclick=async() => {
-        await goBack();
-    };
-
-
-    async function goBack() {
-        var first = document.getElementById("first");
-        var second = document.getElementById("second");
-
-        first.classList.remove('hidden')
-        second.classList.add('hidden')
-    }
-
-    async function goNext() {
-        if (await validate('first')) {
-            var first = document.getElementById("first");
-            var second = document.getElementById("second");
-
-            first.classList.add('hidden')
-            second.classList.remove('hidden')
-        }
-    }
-
-
-
-    async function validate(part) {
-        var formDT = new FormData(document.getElementById("form"))
-        var response = await fetch('/participate/validate/' + part, {
-        method: 'POST',
-        body: formDT
-        })
-
-        var resp = await response.json()
-
-        var endResu = true;
-
-
-        for (const field of formDT.entries()) {
-            if (resp[field[0]] !== undefined && resp[field[0]] !== null) {
-                endResu = false;
-                document.getElementById(field[0] + "-error").innerHTML = resp[field[0]]
-                document.getElementById(field[0]).classList.add('form-error')
-            } else {
-                document.getElementById(field[0] + "-error").innerHTML = ""
-                document.getElementById(field[0]).classList.remove('form-error')
-            } 
-        }
-
-        return endResu;
-    }
-</script>

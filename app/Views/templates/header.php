@@ -32,10 +32,11 @@
         <a href="/"><span class="text-3xl text-bcdlab-b">b</span><span class="text-3xl">c</span><span class="text-3xl text-bcdlab-d">d</span><span class="text-3xl">lab</span><span> Project</span></a>
         <div class="flex ">
             <a class="align-middle me-2" href="/utilities/changelanguage"><img src="<?=base_url()?>images/<?=lang('Utilities.language')?>.png" class="h-6" alt=""></a>
-            <a class="align-middle me-2" href="/Participate"><?=lang('CustomTerms.participate')?></a>
-            <?php if ($loggedin) { ?>
-                
+            
+            <?php if ($session->get('isLoggedIn')) { ?>
+                <button onclick="changeTheme()" class="align-middle me-2 flex" href="/Login"><?=$session->get('user_data')['username']?><i data-feather="chevron-down"></i></button>
             <?php } else { ?>
+                <a class="align-middle me-2" href="/Participate"><?=lang('CustomTerms.participate')?></a>
                 <a class="align-middle me-2" href="/Login"><?=lang('Auth.login')?></a>
             <?php } ?>
             <button onclick="changeTheme()" class="align-middle me-2" href="/utilities/changetheme"><i id="changeTheme-icon-sun" class="<?=($theme === 'dark') ? '' : 'hidden'?>" data-feather="sun"></i><i id="changeTheme-icon-moon" class="<?=($theme === 'dark') ? 'hidden' : ''?>" data-feather="moon"></i></button>

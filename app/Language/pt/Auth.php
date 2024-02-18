@@ -53,6 +53,7 @@ return [
 
     // Login
     'login'              => 'Login',
+    'logout'              => 'Logout',
     'loginWith'          => 'Login com',
     'needAccount'        => 'Precisa de uma conta?',
     'rememberMe'         => 'Lembrar',

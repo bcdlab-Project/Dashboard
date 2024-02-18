@@ -19,15 +19,34 @@ class Utilities extends BaseController
     }
 
     public function getTest() {
-        
+        // $participationFormModel = new \App\Models\ParticipationFormModel();
+        // $participationForm = new \App\Entities\ParticipationForm();
+        // $participationForm->requested_username = 'nerexbcd';
+        // $participationForm->requested_password = password_hash('admin',PASSWORD_DEFAULT);
+        // $participationForm->requested_email = 'me@nerexbcd.xyz';
+        // $participationForm->why_participate = 'I want to participate';
+        // $participationForm->work_role = 'Developer';
+        // $participationForm->github_url = 'https://github.com/nerexbcd';
+
+        // echo $participationFormModel->insert($participationForm);
+        // unset($participationForm);
+
+
+
+
+
         // $userModel = new \App\Models\UserModel();
         // $user           = new \App\Entities\User();
-        // $user->username = 'apascoa';
-        // $user->participation_form_id = '1';
-        // $user->email    = 'foo@example.com';
-        // $user->role = 'Administrator';
-        // $user->password = password_hash('abc456',PASSWORD_DEFAULT);
-        // echo $userModel->save($user);
+        // $user->username = 'nerexbcd';
+        // $user->role = '1';
+        // $user->email    = 'me@nerexbcd.xyz';
+        // $user->password = password_hash('admin',PASSWORD_DEFAULT);
+        // $user->participation_form = '2';
+
+
+
+        // echo $userModel->insert($user);
         // unset($user);
+
     }
 }

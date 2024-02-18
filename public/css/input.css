@@ -20,10 +20,14 @@
 
 
 @layer base{
-    .dark [type='text'],.dark [type='email'],.dark [type='url'],.dark [type='password'],.dark [type='number'],.dark [type='date'],.dark [type='datetime-local'],.dark [type='month'],.dark [type='search'],.dark [type='tel'],.dark [type='time'],.dark [type='week'],.dark [multiple],.dark textarea,.dark select {
-        background-color: #424343;
+    .dark .input, .dark [type='text'],.dark [type='email'],.dark [type='url'],.dark [type='password'],.dark [type='number'],.dark [type='date'],.dark [type='datetime-local'],.dark [type='month'],.dark [type='search'],.dark [type='tel'],.dark [type='time'],.dark [type='week'],.dark [multiple],.dark textarea,.dark select {
+        background-color: #424343 !important;
         border-color: #696968;
-      }
+    }
+    .input, [type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select {
+        background-color: #ffffff !important;
+        border-color: #e5e7eb;
+    }
 }
 
 .form-error {

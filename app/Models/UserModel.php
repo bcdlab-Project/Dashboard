@@ -9,7 +9,7 @@ class UserModel extends Model
     protected $table = 'Users';
     protected $primaryKey = 'id';
 
-    protected $useAutoIncrement = false;
+    protected $useAutoIncrement = true;
 
     protected $returnType = \App\Entities\User::class;
     protected $useSoftDeletes = false;

@@ -2,12 +2,22 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\API\ResponseTrait;
+
 class Login extends BaseController
 {
-    public function getIndex($error=false) {
+    use ResponseTrait;
+
+    public function getIndex($error = false) {
+        if ($this->session->get('isLoggedIn')) { 
+            return redirect()->to('/'); 
+        }
+
         $data['title'] = 'Login';
         $data['centerContent'] = true;
         $data['error'] = $error;
+        $data['view'] = 'login';
+        // $data['scripts'] = ['views/login.js'];
 
         return view('templates/header', $data)
             . view('login')
@@ -17,16 +27,17 @@ class Login extends BaseController
     public function postIndex() {
         $userModel = model('UserModel');
         if (!(empty($this->request->getPost('username')) && empty($this->request->getPost('password')))) {
-            $user = $userModel->find($this->request->getPost('username'));
+            $user = $userModel->where('username', $this->request->getPost('username'))->first();
             if (!$user == null) {
                 if ($user->checkPassword($this->request->getPost('password'))) {
+                    $user->login();
                     unset($user);
-                    return redirect()->to('/');
+                    return $this->setResponseFormat('json')->respond(['ok' => true],200);
                 }
             }
         }
         unset($user);
-        return Login::getIndex(true);
+        return $this->setResponseFormat('json')->respond(['ok' => false],401);
     }
 
     public function getForgotpassword() {

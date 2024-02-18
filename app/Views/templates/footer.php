@@ -5,5 +5,17 @@
     <script>
         feather.replace();
     </script>
+    <?php
+        if (isset($scripts)) {
+            foreach (esc($scripts) as $script) {
+                echo '<script src="'.base_url().'js/'.$script.'"></script>';
+            }
+        }
+
+        if (isset($view)) {
+            echo '<script src="'.base_url().'js/views/'.esc($view).'.js"></script>';
+        }
+    ?>
+
 </body>
 </html>
