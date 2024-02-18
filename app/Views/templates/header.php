@@ -53,12 +53,3 @@
     <section class="px-2 md:px-24 xl:px-40 min-h-screen <?=(esc($centerContent)) ? 'flex flex-col justify-center' : 'pb-12 pt-16' ?>">
 
 
-    <div class="fixed bg-zinc-200 dark:bg-zinc-900 right-0 top-0 h-screen w-60 translate-x-full overflow-hidden  data-[sidemenu-hidden='true']:-translate-x-0" data-sidemenu-hidden="true">
-        jhgfkjgh
-    </div>
-
-<!-- Toggler -->
-<button data-target="#sidenav-7">
-    Toggle Sidenav
-</button>
-<!-- Toggler -->
