@@ -18,29 +18,25 @@
         <h1 class="text-3xl font-light mb-2 text-center"><?=lang('Pages.participate')?></h1>
         <p></p>
         <form id="form" method="post" novalidate>
-            <div id="first">
-                <div class="mb-2">
-                    <label id="username-label" class="input input-bordered flex items-center shadow">
-                        <input class="grow" type="text" name="username" id="username" placeholder="<?=lang('Auth.username')?>" required>
-                    </label>
+            <div id="first" class="space-y-5">
+                <div>
+                    <label class="font-medium"><?=lang('Auth.username')?></label>
+                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="text" name="username" id="username" required>
                     <span class="text-red-500" id="username-error"></span>
                 </div>
-                <div class="mb-2">
-                    <label id="email-label" class="input input-bordered flex items-center shadow">
-                        <input class="grow" type="email" name="email" id="email" placeholder="<?=lang('Auth.email')?>" required>
-                    </label>
+                <div>
+                    <label class="font-medium"><?=lang('Auth.email')?></label>
+                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="email" name="email" id="email" required>
                     <span class="text-red-500" id="email-error"></span>
                 </div>
-                <div class="mb-2">
-                    <label id="password-label" class="input input-bordered flex items-center shadow">
-                        <input class="grow" type="password" name="password" id="password" placeholder="<?=lang('Auth.password')?>" required>
-                    </label>
+                <div>
+                    <label class="font-medium"><?=lang('Auth.password')?></label>
+                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="password" name="password" id="password" required>
                     <span class="text-red-500" id="password-error"></span>
                 </div>
-                <div class="mb-2">
-                    <label id="confpassword-label" class="input input-bordered flex items-center shadow">
-                        <input class="grow" type="password" name="confpassword" id="confpassword" placeholder="<?=lang('Auth.passwordConfirm')?>" required>
-                    </label>
+                <div>
+                    <label class="font-medium"><?=lang('Auth.passwordConfirm')?></label>
+                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="password" name="confpassword" id="confpassword" required>
                     <span class="text-red-500" id="confpassword-error"></span>
                 </div>
 
@@ -49,21 +45,20 @@
                 </div>
             </div>
 
-            <div id="second" class="hidden">
-                <div class="mb-2">
-                    <textarea id="whyParticipate-label" class="textarea textarea-bordered shadow w-full" name="whyParticipate" id="whyParticipate" placeholder="<?=lang('CustomTerms.whyParticipate')?>" rows="5" required></textarea>
+            <div id="second" class="hidden space-y-5">
+                <div>
+                    <label class="font-medium"><?=lang('CustomTerms.whyParticipate')?></label>
+                    <textarea class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" name="whyParticipate" id="whyParticipate" rows="5" required></textarea>
                     <span class="text-red-500" id="whyParticipate-error"></span>
                 </div>
-                <div class="mb-2">
-                    <label id="workRole-label" class="input input-bordered flex items-center shadow">
-                        <input class="grow" type="text" name="workRole" id="workRole" placeholder="<?=lang('CustomTerms.workRole')?>">
-                    </label>
+                <div>
+                    <label class="font-medium"><?=lang('CustomTerms.workRole')?></label>
+                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="text" name="workRole" id="workRole">
                     <span class="text-red-500" id="workRole-error"></span>
                 </div>
-                <div class="mb-2">
-                    <label id="githubProfile-label" class="input input-bordered flex items-center shadow">
-                        <input class="grow" type="url" name="githubProfile" id="githubProfile" placeholder="<?=lang('CustomTerms.githubProfile')?>">
-                    </label>
+                <div>
+                    <label class="font-medium"><?=lang('CustomTerms.githubProfile')?></label>
+                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="url" name="githubProfile" id="githubProfile">
                     <span class="text-red-500" id="githubProfile-error"></span>
                 </div>
 

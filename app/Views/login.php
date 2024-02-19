@@ -6,28 +6,24 @@
             </svg>
         </span>
         <p><?= lang('Auth.badAttempt')?></p> 
-    </div>   
-
-
-    <div class="w-80 mx-auto p-6 bg-opacity-50 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950 rounded-lg">
+    </div>  
+    
+    <div class="px-8 w-full lg:px-6 lg:w-2/5 mx-auto p-6 bg-opacity-50 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950 rounded-lg">
         <h1 class="text-3xl font-light mb-2 text-center"><?=lang('Auth.login')?></h1>
-        <form id="form" method="post">
-            <div class="mb-2">
-                <label class="input input-bordered flex items-center shadow">
-                    <input class="grow" type="text" name="username" id="username" placeholder="<?=lang('Auth.username')?>">
-                </label>
+        <form id="form" method="post" class="space-y-5">
+            <div>      
+                <label class="font-medium"><?=lang('Auth.username')?></label>
+                <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="text" name="username" id="username">
             </div>
-            <div class="mb-1">
-                <label class="input input-bordered flex items-center shadow">
-                    <input class="grow" type="password" name="password" id="password" placeholder="<?=lang('Auth.password')?>">
-                </label>
+            <div>
+                <label class="font-medium"><?=lang('Auth.password')?></label>
+                <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="password" name="password" id="password">
             </div>
-            <div class="mb-2">
-                <a class="text-blue-500 hover:text-blue-800 font-medium align-baseline inline-block" href="/login/forgotpassword"><?=lang('Auth.forgotPassword')?></a>
-            </div>
-            <div class="flex justify-between items-stretch ">
-                <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 shadow"><?=lang('Auth.login')?></button>
-                <a href="/github_integration/login" class="btn bg-github hover:bg-neutral-800 text-white font-bold py-2 px-4 border border-stone-400 shadow"><?=lang('Auth.loginWith')?><i data-feather="github"></i></a>
+
+            <button type="submit" class=" btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 shadow w-full"><?=lang('Auth.login')?></button>
+            <a href="/github_integration/login" class="btn bg-github hover:bg-neutral-800 text-white font-bold py-2 px-4 border border-stone-400 shadow w-full"><?=lang('Auth.loginWith')?><i data-feather="github"></i></a>
+            <div class="text-sm text-center w-full">
+                <a class="text-blue-500 hover:text-blue-800" href="/login/forgotpassword"><?=lang('Auth.forgotPassword')?></a>
             </div>
         </form>
     </div>
