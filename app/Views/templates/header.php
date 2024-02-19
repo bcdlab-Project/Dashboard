@@ -32,24 +32,8 @@
         <a href="/" class="btn btn-ghost gap-0 px-0 "><span class="text-3xl text-bcdlab-b">b</span><span class="text-3xl">c</span><span class="text-3xl text-bcdlab-d">d</span><span class="text-3xl">lab</span><span> Project</span></a>
         <div class="float-right flex">
             <a class="btn btn-ghost btn-circle" href="/utilities/changelanguage"><img src="<?=base_url()?>images/<?=lang('Utilities.language')?>.png" class="h-6" alt=""></a>
-            
-            <?php if ($session->get('isLoggedIn') && FALSE) { ?>
-                <!-- <button onclick="changeTheme()" class="align-middle me-2 flex" href="/Login"><?=$session->get('user_data')['username']?><i data-feather="chevron-down"></i></button> -->
-                <button class="btn btn-ghost btn-circle">
-                    <div class="indicator">
-                        <i data-feather="bell"></i>
-                        <span class="badge badge-xs badge-primary indicator-item"></span>
-                    </div>
-                </button>
-            <?php } else { ?>
-                <a class="btn btn-ghost btn-circle" href="/Login"><i data-feather="user"></i></a> <!-- <?=lang('CustomTerms.login')?> -->
-            <?php } ?>
             <button onclick="changeTheme()" class="btn btn-ghost btn-circle" href="/utilities/changetheme"><i id="changeTheme-icon-sun" class="<?=($theme === 'dark') ? '' : 'hidden'?>" data-feather="sun"></i><i id="changeTheme-icon-moon" class="<?=($theme === 'dark') ? 'hidden' : ''?>" data-feather="moon"></i></button>
-            
-            <a class="btn btn-ghost btn-circle"><i data-feather="menu"></i></a> <!-- <?=lang('CustomTerms.participate')?> -->
-            <!-- <a class="align-middle me-2" href="/Participate"><?=lang('CustomTerms.participate')?></a> -->
+            <button class="btn btn-ghost btn-circle" onclick="openSidemenu()"><i data-feather="menu"></i></button>
         </div>
     </header>   
     <section class="px-2 md:px-24 xl:px-40 min-h-screen <?=(esc($centerContent)) ? 'flex flex-col justify-center' : 'pb-12 pt-16' ?>">
-
-

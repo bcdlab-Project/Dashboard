@@ -7,7 +7,8 @@ module.exports = {
       colors: {
         'bcdlab-b': '#3DFB81',
         'bcdlab-d': '#FF7245',
-        'github': '#171515'
+        'github': '#171515',
+        'overlay': 'rgba(0, 0, 0, 0.5)',
       },
     },
   },

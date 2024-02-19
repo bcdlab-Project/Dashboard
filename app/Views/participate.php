@@ -15,7 +15,7 @@
     ?>
 
 <div class="px-8 w-full lg:px-6 lg:w-3/5 mx-auto p-6 bg-opacity-50 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950 rounded-lg mt-16 mb-12">
-        <h1 class="text-3xl font-light mb-2 text-center"><?=lang('CustomTerms.participate')?></h1>
+        <h1 class="text-3xl font-light mb-2 text-center"><?=lang('Pages.participate')?></h1>
         <p></p>
         <form id="form" method="post" novalidate>
             <div id="first">

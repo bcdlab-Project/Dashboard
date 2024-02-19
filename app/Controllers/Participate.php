@@ -15,7 +15,8 @@ class Participate extends BaseController
 
         return view('templates/header', $data)
             . view('participate')
-            . view('templates/footer');
+            . view('templates/footer') 
+            . view('templates/sidemenu');
     }
 
     public function postValidate($part) {

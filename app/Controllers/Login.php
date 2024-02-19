@@ -21,7 +21,8 @@ class Login extends BaseController
 
         return view('templates/header', $data)
             . view('login')
-            . view('templates/footer');
+            . view('templates/footer') 
+            . view('templates/sidemenu');
     }
 
     public function postIndex() {
@@ -46,7 +47,8 @@ class Login extends BaseController
         $data['error'] = false;
 
         return view('templates/header', $data)
-        . view('templates/footer');
+        . view('templates/footer') 
+. view('templates/sidemenu');
     }
 
     public function getGithub() {
