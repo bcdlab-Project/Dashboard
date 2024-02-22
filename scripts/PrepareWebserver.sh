@@ -64,27 +64,118 @@ check_root() {
   fi
 }
 
-# Install Docker
-echo -e "${YW}Installing Dependencies ...${CL}"
+#Install Apache2
+echo -e "${YW}Installing Apache2...${CL}"
 apt-get update
-apt-get install -y curl
-apt-get install -y sudo
-apt-get install -y mc
-echo -e "${GN}Dependencies Installed${CL}"
-echo -e "${YW}Installing Docker ...${CL}"
-sh <(curl -sSL https://get.docker.com)
-echo -e "${GN}Docker Installed${CL}"
-echo -e "${YW}Starting Docker ...${CL}"
-systemctl start docker
-echo -e "${GN}Docker Started${CL}"
-echo -e "${YW}Enabling Docker ...${CL}"
-systemctl enable docker
-echo -e "${GN}Docker Enabled${CL}"
+apt-get install -y apache2
+echo -e "${CM} Apache2 installed${CL}"
+echo -e "${YW}Starting Apache2...${CL}"
+systemctl start apache2
+echo -e "${CM} Apache2 started${CL}"
+echo -e "${YW}Enabling Apache2...${CL}"
+systemctl enable apache2
+echo -e "${CM} Apache2 enabled${CL}"
 
-#Success
-echo -e "${GN}Docker Installed Successfully${CL}"
-echo -e "${YW}You can now use Docker${CL}"
-echo -e "${YW}Exiting...${CL}"
-sleep 2
-exit
-[0m
+#Install MariaDB
+echo -e "${YW}Installing MariaDB...${CL}"
+apt-get install -y mariadb-server
+echo -e "${CM} MariaDB installed${CL}"
+echo -e "${YW}Starting MariaDB...${CL}"
+systemctl start mariadb
+echo -e "${CM} MariaDB started${CL}"
+echo -e "${YW}Enabling MariaDB...${CL}"
+systemctl enable mariadb
+echo -e "${CM} MariaDB enabled${CL}"
+
+#Install PHP
+echo -e "${YW}Installing PHP...${CL}"
+apt-get install -y php libapache2-mod-php php-mysql
+echo -e "${CM} PHP installed${CL}"
+echo -e "${YW}Restarting Apache2...${CL}"
+systemctl restart apache2
+echo -e "${CM} Apache2 restarted${CL}"
+
+#Create WebMaster user
+echo -e "${YW}Creating WebMaster user...${CL}"
+read -p "${BL}Enter username: ${CL}" USER
+adduser $USER
+read -p "${BL}Enter password: ${CL}" PASS
+echo "$USER:$PASS" | chpasswd
+
+usermod -aG sudo $USER
+echo -e "${CM} WebMaster user created${CL}"
+
+#Secure MariaDB
+
+echo -e "${YM}Generating random MariaDB root password${CL}"
+RANPASS=$(pwgen -s 12 1)
+echo -e "${CM} Random password generated${CL}"
+
+echo -e "${YW}Obtaining LAN IP...${CL}"
+LAN_IP=$(ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+echo -e "${CM} LAN IP obtained${CL}"
+
+echo -e "${YW}Securing MariaDB...${CL}"
+mysql -u root <<-EOF
+UPDATE mysql.user SET Password=PASSWORD('$RANPASS') WHERE User='root';
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+DELETE FROM mysql.user WHERE User='';
+DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
+CREATE USER '$USER'@'$LAN_IP' IDENTIFIED BY '$PASS';
+GRANT ALL PRIVILEGES ON *.* TO '$USER'@'$LAN_IP' WITH GRANT OPTION
+FLUSH PRIVILEGES;
+EOF
+unset $PASS
+unset $RANPASS
+echo -e "${CM} MariaDB secured${CL}"
+
+
+#Create domain folder
+echo -e "${YW}Creating domain folder...${CL}"
+mkdir -p /var/www/bcdlab.xyz
+echo -e "${CM} Domain folder created${CL}"
+echo -e "${YW}Setting permissions...${CL}"
+chown -R $USER:$USER /var/www/bcdlab.xyz
+chmod -R 755 /var/www/bcdlab.xyz
+echo -e "${CM} Permissions set${CL}"
+
+#Create Virtual
+echo -e "${YW}Creating Virtual Host...${CL}"
+read -p "${BL}Enter webMaster Email: ${CL}" EMAIL
+cat <<EOF > /etc/apache2/sites-available/bcdlab.xyz.conf
+<VirtualHost *:80>
+    ServerAdmin $EMAIL
+    ServerName bcdlab.xyz
+    ServerAlias www.bcdlab.xyz
+    DocumentRoot /var/www/bcdlab.xyz
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+EOF
+echo -e "${CM} Virtual Host created${CL}"
+
+#Enable Virtual
+echo -e "${YW}Enabling Virtual Host...${CL}"
+a2ensite bcdlab.xyz
+echo -e "${CM} Virtual Host enabled${CL}"
+echo -e "${YW}Disabling default site...${CL}"
+a2dissite 000-default
+echo -e "${CM} Default site disabled${CL}"
+
+
+#Reload Apache2
+echo -e "${YW}Reloading Apache2...${CL}"
+systemctl reload apache2
+echo -e "${CM} Apache2 restarted${CL}"
+
+#Configure Apache2
+echo -e "${YW}Configuring Apache2...${CL}"
+cat <<EOF >> /etc/apache2/apache2.conf
+<Directory /var/www/bcdlab.xyz>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+EOF
+echo -e "${CM} Apache2 configured${CL}"
+
