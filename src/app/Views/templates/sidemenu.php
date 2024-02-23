@@ -38,16 +38,16 @@
                     <div>
                         <?php if ($session->get('isLoggedIn')) { ?>
                             <div class="dropdown dropdown-top w-full">
-                                <div role="button" tabindex="0" class="btn btn-ghost w-full justify-start text-lg" href="/Login"><i data-feather="chevron-up"></i> <?=$session->get('user_data')['username']?></div>
+                                <div role="button" tabindex="0" class="btn btn-ghost w-full justify-start text-lg"><i data-feather="chevron-up"></i> <?=$session->get('user_data')['username']?></div>
                                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box w-full bg-zinc-300 dark:bg-zinc-950">
                                     <li><a><?=lang('CustomTerms.updateProfile')?></a></li>
                                     <li class="dark:bg-white bg-black"></li>
-                                    <li><a><?=lang('Auth.logout')?></a></li>
+                                    <li><button type="button" onclick="logout_modal.showModal()"><?=lang('Auth.logout')?></button></li>
                                 </ul>
                             </div>
                             
                         <?php } else { ?>
-                            <a class="btn btn-ghost w-full justify-start text-lg" href="/Login"><i data-feather="user"></i> <?=lang('Auth.login')?></a>
+                            <a class="btn btn-ghost w-full justify-start text-lg" href="/authentication/login"><i data-feather="user"></i> <?=lang('Auth.login')?></a>
                         <?php } ?>
                     </div>
                 </div>
@@ -55,6 +55,18 @@
         </div>
     </div>
 </nav>
+
+<dialog id="logout_modal" class="modal">
+  <div class="modal-box bg-zinc-300 dark:bg-zinc-900">
+    <h3 class="font-bold text-lg"><?=lang('Auth.logout')?></h3>
+    <p class="py-4"><?=lang('Auth.confirmLogout')?></p>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 shadow" onclick="logout()">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
 
 <script src="<?=base_url()?>js/sidemenu.js"></script>
 <script>feather.replace();</script>

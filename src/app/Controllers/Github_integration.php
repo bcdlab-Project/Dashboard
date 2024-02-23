@@ -63,7 +63,7 @@ class Github_integration extends BaseController
         switch ($state[0]) {
             case 'login':
                 $this->extchangeUserdata();
-                return redirect()->to('/login/github?key=' . $state[1]);
+                return redirect()->to('/authentication/github?key=' . $state[1]);
                 break;
         }
     }

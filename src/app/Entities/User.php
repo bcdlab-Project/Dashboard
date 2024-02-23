@@ -23,4 +23,10 @@ class User extends Entity
         $session->set('user_data',$userData);
         $session->set('isLoggedIn', true);
     }
+
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+    }
 }

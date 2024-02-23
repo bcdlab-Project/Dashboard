@@ -1,5 +1,4 @@
 function changeTheme() {
-
     var sun = document.getElementById('changeTheme-icon-sun')
     var moon = document.getElementById('changeTheme-icon-moon')
     var body = document.getElementsByTagName('html')[0]

@@ -11,3 +11,8 @@ function closeSidemenu() {
     // document.getElementsByTagName('html')[0].classList.remove('scrollbar-hide');
     unlockScroll();
 }
+
+function logout() {
+    fetch('/authentication/logout');
+    window.location.href = '/';
+}

@@ -4,11 +4,11 @@ namespace App\Controllers;
 
 use CodeIgniter\API\ResponseTrait;
 
-class Login extends BaseController
+class Authentication extends BaseController
 {
     use ResponseTrait;
 
-    public function getIndex($error = false) {
+    public function getLogin($error = false) {
         if ($this->session->get('isLoggedIn')) { 
             return redirect()->to('/'); 
         }
@@ -25,7 +25,7 @@ class Login extends BaseController
             . view('templates/sidemenu');
     }
 
-    public function postIndex() {
+    public function postLogin() {
         $userModel = model('UserModel');
         if (!(empty($this->request->getPost('username')) && empty($this->request->getPost('password')))) {
             $user = $userModel->where('username', $this->request->getPost('username'))->first();
@@ -52,24 +52,35 @@ class Login extends BaseController
     }
 
     public function getGithub() {
-        if ($this->session->get('GitHubCheck') != $this->request->getGet('key')) { return redirect()->to('/login'); } //can also give error
+        if ($this->session->get('GitHubCheck') != $this->request->getGet('key')) { return redirect()->to('/authentication/login'); } //can also give error
 
         
 
         // echo json_encode($this->session->get('GitHubUserData')['id']);
 
         $userGithubModel = model('UserGithubModel');
-        $userModel = model('UserModel');
+        
 
         $github = $userGithubModel->where('github_id', $this->session->get('GitHubUserData')['id'])->first();
+
+        if ($github == null) { return Authentication::getLogin(true); } //Can give error
+        
+        $github->login();
+
 
         $this->session->remove('GitHubCheck');
         $this->session->remove('GitHubUserData');
         $this->session->remove('GitHubToken');
+    }
 
-        if ($github == null) { return Login::getIndex(true); }
+    public function getLogout() {
+        if ($this->session->get('isLoggedIn')) {
+            $user = model('UserModel')->find($this->session->get('user_data')['id']);
+            $user->logout();
+            return $this->setResponseFormat('json')->respond(['ok' => true],200);
+        }
+        return $this->setResponseFormat('json')->respond(['ok' => false],401);
 
-        $user = $userModel->find($github->user);
-        $user->login();  
+        
     }
 }

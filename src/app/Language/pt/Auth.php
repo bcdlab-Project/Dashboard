@@ -53,7 +53,7 @@ return [
 
     // Login
     'login'              => 'Login',
-    'logout'              => 'Encerrar sessão',
+    'logout'             => 'Encerrar sessão',
     'loginWith'          => 'Login com',
     'needAccount'        => 'Precisa de uma conta?',
     'rememberMe'         => 'Lembrar',
@@ -67,6 +67,7 @@ return [
     'magicLinkDisabled'  => '(To be translated) Use of MagicLink is currently not allowed.',
     'successLogout'      => 'Saiu com sucesso.',
     'backToLogin'        => 'Voltar ao login',
+    'confirmLogout'      => 'Tem a certeza de que deseja sair?',
 
     // Senhas
     'errorPasswordLength'       => 'As passwords devem ter pelo menos {0, number} caracteres.',

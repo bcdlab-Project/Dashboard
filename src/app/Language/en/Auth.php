@@ -67,6 +67,7 @@ return [
     'magicLinkDisabled'  => 'Use of MagicLink is currently not allowed.',
     'successLogout'      => 'You have successfully logged out.',
     'backToLogin'        => 'Back to Login',
+    'confirmLogout'      => 'Are you sure you want to log out?',
 
     // Passwords
     'errorPasswordLength'       => 'Passwords must be at least {0, number} characters long.',
