@@ -2,8 +2,13 @@
     $session = \Config\Services::session();
     $negotiate = \Config\Services::negotiator();
 
-    if (!$session->has('theme')) {
-        $session->set('theme', 'dark');
+    helper('cookie');
+
+    if (!get_cookie('theme')) {
+        set_cookie('theme', 'dark',path: '/', httpOnly: false, expire: 3600000*24*365);
+        $theme = 'dark';
+    } else {
+        $theme = get_cookie('theme');
     }
 
     if (!$session->has('language')) {
@@ -11,8 +16,6 @@
     }
 
     $loggedin = $session->has('loggedin');
-
-    $theme = $session->get('theme');
 ?>
 <!DOCTYPE html>
 <html lang="en" class="<?=$theme?> color-scheme-<?=$theme?>">
