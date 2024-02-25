@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserGithubModel extends Model
+class UserLoggInsModel extends Model
 {
-    protected $table = 'UserGithub';
-    protected $primaryKey = 'user';
+    protected $table = 'UserLoggIns';
+    protected $primaryKey = 'cookie';
 
     protected $useAutoIncrement = false;
 
-    // protected $returnType = \App\Entities\UserGithub::class;
+    // protected $returnType = \App\Entities\UserLoggInsModel::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['user', 'github_username', 'github_id','last_Logedin','access_token','acc_tk_expire','refresh_token','ref_tk_expire'];
+    protected $allowedFields = ['cookie','user', 'useragent', 'expire'];
 
     protected $useTimestamps = false;
 
@@ -34,6 +34,4 @@ class UserGithubModel extends Model
     protected $afterFind = [];
     protected $beforeDelete = [];
     protected $afterDelete = [];
-
-    
 }

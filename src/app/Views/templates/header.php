@@ -1,11 +1,13 @@
 <?php
     $session = \Config\Services::session();
     $negotiate = \Config\Services::negotiator();
+    $request = \Config\Services::request();
 
     helper('cookie');
+    helper('alternativeLogin');
 
     if (!get_cookie('theme')) {
-        set_cookie('theme', 'dark',path: '/', httpOnly: false, expire: 3600000*24*365);
+        set_cookie('theme', 'dark',path: '/', httpOnly: false, expire: 3600*24*365);
         $theme = 'dark';
     } else {
         $theme = get_cookie('theme');
@@ -15,7 +17,14 @@
         $session->set('language', $negotiate->language(['en','pt']));
     }
 
-    $loggedin = $session->has('loggedin');
+    if (get_cookie('loggedIn') && !$session->get('loggedIn')) {
+        $agent = $request->getUserAgent();
+        $userModel = model('UserModel');
+        $user = $userModel->getByCookie($agent->getAgentString());
+        if ($user) { 
+            $user->login();
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en" class="<?=$theme?> color-scheme-<?=$theme?>">
@@ -36,7 +45,14 @@
         <div class="float-right flex">
             <a class="btn btn-ghost btn-circle" href="/utilities/changelanguage"><img src="<?=base_url()?>images/<?=lang('Utilities.language')?>.png" class="h-6" alt=""></a>
             <button onclick="changeTheme()" class="btn btn-ghost btn-circle" href="/utilities/changetheme"><i id="changeTheme-icon-sun" class="<?=($theme === 'dark') ? '' : 'hidden'?>" data-feather="sun"></i><i id="changeTheme-icon-moon" class="<?=($theme === 'dark') ? 'hidden' : ''?>" data-feather="moon"></i></button>
-            <button class="btn btn-ghost btn-circle" onclick="openSidemenu()"><i data-feather="menu"></i></button>
+            <button class="btn btn-ghost btn-circle" onclick="openSidemenu()">
+                <div class="indicator">
+                    <i data-feather="menu"></i>
+                    <?php if ($session->get('loggedIn')) { ?>
+                        <span class="badge badge-xs badge-primary indicator-item"></span>
+                    <?php } ?>
+                </div>
+            </button>
         </div>
     </header>   
     <section class="px-2 md:px-24 xl:px-40 min-h-screen <?=(esc($centerContent)) ? 'flex flex-col justify-center' : 'pb-12 pt-16' ?>">

@@ -13,6 +13,7 @@ function closeSidemenu() {
 }
 
 function logout() {
-    fetch('/authentication/logout');
+    fetch('/authentication/logout', {credentials: "same-origin"});
     window.location.href = '/';
+    //give success message
 }
