@@ -30,7 +30,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en" class="<?=$theme?> color-scheme-<?=$theme?>">
+<html lang="<?=lang('Utilities.language')?>" class="<?=$theme?> color-scheme-<?=$theme?>">
 <head>
     <meta charset="UTF-8">
     <title><?=esc($title)?></title>
@@ -81,4 +81,4 @@
             </div>
         </div>
     </header>   
-    <section class="px-2 md:px-24 xl:px-40 min-h-screen <?=(esc($centerContent)) ? 'flex flex-col justify-center' : 'pb-12 pt-16' ?>">
+    <section class="px-2 md:px-24 xl:px-40 min-h-screen <?=(esc($pageMargin)) ? 'pb-12 pt-16' : 'flex' ?>">

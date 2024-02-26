@@ -17,7 +17,7 @@ class Authentication extends BaseController
         }
 
         $data['title'] = 'Login';
-        $data['centerContent'] = true;
+        $data['pageMargin'] = false;
         $data['error'] = $error;
         $data['view'] = 'login';
 

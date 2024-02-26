@@ -1,5 +1,5 @@
 
-    <div id="error" class="<?=esc($error?"":"hidden")?> w-4/5 flex items-center justify-center mx-auto my-8 p-8 bg-opacity-50 bg-red-300 rounded-lg animate-pulse">
+    <div id="error" class="<?=esc($error?"":"hidden")?> w-4/5 flex items-center justify-center mx-auto mt-24 my-8 p-8 bg-opacity-50 bg-red-300 rounded-lg animate-pulse absolute">
         <span class="mr-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
                 <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
@@ -7,8 +7,7 @@
         </span>
         <p><?= lang('Auth.badAttempt')?></p> 
     </div>  
-    
-    <div class="px-8 w-full lg:px-6 lg:w-2/5 mx-auto p-6 bg-opacity-50 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950 rounded-lg">
+    <div class="px-8 w-full lg:px-6 lg:w-2/5 mx-auto h-fit self-center p-6 bg-opacity-50 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950 rounded-lg">
         <h1 class="text-3xl font-light mb-2 text-center"><?=lang('Auth.login')?></h1>
         <form id="form" method="post" class="space-y-5">
             <div>      

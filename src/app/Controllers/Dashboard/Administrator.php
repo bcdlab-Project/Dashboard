@@ -2,9 +2,9 @@
 
 namespace App\Controllers\Dashboard;
 
-use CodeIgniter\Controller;
+use App\Controllers\BaseController;
 
-class Administrator extends Controller
+class Administrator extends BaseController
 {
     public function getIndex() {
         return 'Administrator';

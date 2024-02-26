@@ -10,7 +10,7 @@ class Participate extends BaseController
 
     public function getIndex() {
         $data['title'] = 'Participate';
-        $data['centerContent'] = true;
+        $data['pageMargin'] = false;
         $data['view'] = 'participate';
 
         return view('templates/header', $data)

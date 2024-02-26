@@ -2,9 +2,9 @@
 
 namespace App\Controllers\Dashboard;
 
-use CodeIgniter\Controller;
+use App\Controllers\BaseController;
 
-class Code_reviewer extends Controller
+class Code_reviewer extends BaseController
 {
     public function getIndex() {
         return 'Code_reviewer';

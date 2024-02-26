@@ -6,7 +6,7 @@ class Main extends BaseController
 {
     public function getIndex() {
         $data['title'] = 'bcdlab-Project';
-        $data['centerContent'] = false;
+        $data['pageMargin'] = true;
 
         return view('templates/header', $data)
             . view('main')

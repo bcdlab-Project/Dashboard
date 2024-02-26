@@ -2,9 +2,9 @@
 
 namespace App\Controllers\Dashboard;
 
-use CodeIgniter\Controller;
+use App\Controllers\BaseController;
 
-class Collaborator extends Controller
+class Collaborator extends BaseController
 {
     public function getIndex() {
         return 'Collaborator';
