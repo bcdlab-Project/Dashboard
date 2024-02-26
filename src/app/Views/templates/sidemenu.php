@@ -6,34 +6,22 @@
 
 </div>
 
-<nav id="sidemenu" class="z-10 fixed block transition duration-700 top-0 right-0 w-2/4 h-full bg-zinc-200 dark:bg-zinc-900 dark:text-white text-black sm:w-64 translate-x-full data-[sidemenuhidden='false']:-translate-x-0" data-sidemenuhidden="true">
+<nav id="sidemenu" class="z-10 fixed block transition duration-700 top-0 right-0 w-2/3 h-full bg-zinc-200 dark:bg-zinc-900 dark:text-white text-black sm:w-64 translate-x-full data-[sidemenuhidden='false']:-translate-x-0" data-sidemenuhidden="true">
     <div class="flex flex-col h-full">
         <div class="p-2 px-5 clear-right">
-            <?php if ($session->get('loggedIn')) { ?>
-                <button class="btn btn-ghost btn-circle">
-                    <div class="indicator">
-                        <i data-feather="bell"></i>
-                        <span class="badge badge-xs badge-primary indicator-item"></span>
-                    </div>
-                </button>
-            <?php } ?>
             <button class="btn btn-ghost btn-circle float-right" onclick="closeSidemenu()"> <i data-feather="x"></i> </button>
         </div>
         <div class="flex-1 flex flex-col h-full overflow-auto">
             <ul class="px-4 flex-1">
                 <li><a class="btn btn-ghost w-full justify-start text-lg" href="/"><i data-feather="home"></i> <?=lang('Pages.home')?></a></li>
                 <?php if ($session->get('loggedIn')) { ?>
+                    <li><a class="btn btn-ghost w-full justify-start text-lg" href="/dashboard"><i data-feather="activity"></i> <?=lang('Pages.dashboard')?></a></li>
                 <?php } else { ?>
                     <li><a class="btn btn-ghost w-full justify-start text-lg" href="/Participate"><i data-feather="edit-3"></i> <?=lang('Pages.participate')?></a></li>
                 <?php } ?>
                 
             </ul>
             <div>
-                <!-- <ul class="px-4 pb-4 ">
-                    <li>
-                        <a class="btn btn-ghost w-full" href="/Participate"><?=lang('Pages.participate')?></a>
-                    </li>
-                </ul> -->
                 <div class="py-4 px-4 border-t dark:border-white border-black">
                     <div>
                         <?php if ($session->get('loggedIn')) { ?>

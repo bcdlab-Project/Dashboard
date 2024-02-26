@@ -9,9 +9,10 @@ class Authentication extends BaseController
     use ResponseTrait;
 
     public function getLogin($error = false) {
+        $session = \Config\Services::session();
         helper('cookie');
 
-        if (get_cookie('loggedIn')) { 
+        if ($session->get('loggedIn')) { 
             return redirect()->to('/'); 
         }
 
