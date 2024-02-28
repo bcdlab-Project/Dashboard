@@ -1,4 +1,4 @@
-name: PHP Composer Cleaner
+name: Prepare to Production
 
 on: workflow_dispatch
 
@@ -25,6 +25,9 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-dev
+
+    - name: Save Changes
+      run: git commit -m "Workflow | Prepare to production"
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
