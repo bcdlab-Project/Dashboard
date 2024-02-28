@@ -5,4 +5,7 @@ return [
     'whyParticipate' => 'Porquê Participar',
     'githubProfile' => 'Perfil GitHub',
     'updateProfile' => 'Atualizar Perfil',
+    'update' => 'Atualizar',
+    'connect' => 'Conectar',
+    'disconnect' => 'Desconectar',
 ];

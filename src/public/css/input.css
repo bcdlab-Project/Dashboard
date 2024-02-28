@@ -30,6 +30,16 @@
     }
 }
 
+.dark .like-input {
+    background-color: #424343 !important;
+    border-color: #696968;
+}
+
+.like-input {
+    background-color: #ffffff !important;
+    border-color: #e5e7eb;
+}
+
 .form-error {
     border-color: rgb(240 82 82) !important;
 }

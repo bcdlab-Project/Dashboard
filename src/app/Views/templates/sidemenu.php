@@ -6,7 +6,7 @@
 
 </div>
 
-<nav id="sidemenu" class="z-10 fixed block transition duration-700 top-0 right-0 w-2/3 h-full bg-zinc-200 dark:bg-zinc-900 dark:text-white text-black sm:w-64 translate-x-full data-[sidemenuhidden='false']:-translate-x-0" data-sidemenuhidden="true">
+<nav id="sidemenu" class="z-10 fixed block transition duration-700 top-0 right-0 w-2/3 h-full bg-zinc-100 dark:bg-zinc-900 dark:text-white text-black sm:w-64 translate-x-full data-[sidemenuhidden='false']:-translate-x-0" data-sidemenuhidden="true">
     <div class="flex flex-col h-full">
         <div class="p-2 px-5 clear-right">
             <button class="btn btn-ghost btn-circle float-right" onclick="closeSidemenu()"> <i data-feather="x"></i> </button>
@@ -28,7 +28,7 @@
                             <div class="dropdown dropdown-top w-full">
                                 <div role="button" tabindex="0" class="btn btn-ghost w-full justify-start text-lg"><i data-feather="chevron-up"></i> <?=$session->get('user_data')['username']?></div>
                                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box w-full bg-zinc-300 dark:bg-zinc-950">
-                                    <li><a><?=lang('CustomTerms.updateProfile')?></a></li>
+                                    <li><a href="/profile"><?=lang('CustomTerms.updateProfile')?></a></li>
                                     <li class="dark:bg-white bg-black"></li>
                                     <li><button type="button" onclick="logout_modal.showModal()"><?=lang('Auth.logout')?></button></li>
                                 </ul>

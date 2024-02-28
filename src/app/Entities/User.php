@@ -57,5 +57,6 @@ class User extends Entity
         ];
         $session->set('loggedIn',true);
         $session->set('user_data',$userData);
+        // $session->get('user_data')['username']
     }
 }
