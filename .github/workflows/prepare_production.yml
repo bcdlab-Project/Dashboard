@@ -11,7 +11,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Validate src/composer.json and src/composer.lock
+    - name: Move to src Directory
+      run: cd src
+
+    - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
     - name: Cache Composer packages
