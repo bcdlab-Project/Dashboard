@@ -10,10 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-
-    - name: Move to src Directory
-      run: cd src
-
+    
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
