@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
@@ -27,10 +27,10 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-dev
 
     - name: Save Changes
-      run: git commit -m "Workflow | Prepare to production"
+      run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Workflow | Prepare to production"
+          git push
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    # - name: Run test suite
-    #   run: composer run-script test
