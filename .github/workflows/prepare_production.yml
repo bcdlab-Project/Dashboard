@@ -14,23 +14,13 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-dev
+    - name: Prepare dependencies
+      run: composer install --no-dev
 
     - name: Save Changes
       run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add .
           git commit -m "Workflow | Prepare to production"
           git push
 
