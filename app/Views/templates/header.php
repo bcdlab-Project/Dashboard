@@ -48,10 +48,7 @@
         <div class="flex-1 items-center flex ml-5">
             <ul class="justify-center items-center md:flex space-x-6 hidden">
                 <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a class="block" href="/"><?=lang('Pages.home')?></a></li>
-                <li class=" dark:hover:text-slate-400 hover:text-slate-600">
-                    <a href="javascript:void(0)" class="block" rel="nofollow">Customers</a>
-                </li>
-
+                <!-- <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a href="javascript:void(0)" class="block" rel="nofollow">Customers</a></li> -->
                 <?php if ($session->get('loggedIn')) { ?>
                     <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a class="block" href="/dashboard"><?=lang('Pages.dashboard')?></a></li>
                 <?php } else { ?>
@@ -79,7 +76,7 @@
                             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box bg-zinc-300 dark:bg-zinc-950">
                                 <li><a class="text-nowrap" href="/profile"><?=lang('CustomTerms.updateProfile')?></a></li>
                                 <li class="dark:bg-white bg-black"></li>
-                                <li><button type="button" onclick="logout_modal.showModal()"><?=lang('Auth.logout')?></button></li>
+                                <li><button class="text-nowrap" type="button" onclick="logout_modal.showModal()"><?=lang('Auth.logout')?></button></li>
                             </ul>
                         </div>
                     <?php } else { ?>

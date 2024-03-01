@@ -59,13 +59,18 @@ class Authentication extends BaseController
 
         $userModel = model('UserModel');
         $user = $userModel->getByGithub($this->session->get('GitHubUserData')['id']);
-        if ($user) { 
-            $user->login();
-        } else { return Authentication::getLogin(true); } //Can give error
-        
+
+        $tempToken = $this->session->get('GitHubToken');
+
         $this->session->remove('GitHubCheck');
         $this->session->remove('GitHubUserData');
         $this->session->remove('GitHubToken');
+
+        if ($user) { 
+            $user->login();
+            $user->setGithubToken($tempToken);
+            return redirect()->to('/dashboard');
+        } else { return Authentication::getLogin(true); } //Can give error
     }
 
     public function getLogout() {

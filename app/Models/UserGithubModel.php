@@ -14,7 +14,7 @@ class UserGithubModel extends Model
     // protected $returnType = \App\Entities\UserGithub::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['user', 'github_username', 'github_id','last_Logedin','access_token','acc_tk_expire','refresh_token','ref_tk_expire'];
+    protected $allowedFields = ['user', 'github_username', 'github_id','last_loggedin','access_token','acc_tk_expire','refresh_token','ref_tk_expire'];
 
     protected $useTimestamps = false;
 

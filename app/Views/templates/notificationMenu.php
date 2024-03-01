@@ -1,6 +1,6 @@
 <!-- WHEN ONPEN ADD TO HEADER CLASS: "mr-80 pr-4 md:pr-4 xl:pr-4" -->
 <nav id="notificationMenu" class="absolute block duration-700 right-0 top-0 pt-16 h-screen overflow-hidden w-0 data-[notificationhidden='false']:w-80 transition-all" data-notificationhidden="true">
-    <div class="flex flex-col h-3/5 w-80 rounded-bl-corner bg-zinc-100 dark:bg-zinc-950 overflow-hidden">
+    <div class="flex flex-col h-3/5 w-80 rounded-bl-corner bg-zinc-200 dark:bg-zinc-950 overflow-hidden">
         <div class="p-3 flex justify-between items-center">
             <h1 class="text-2xl font-bold mx-auto">Notifications</h1>
         </div>

@@ -50,8 +50,8 @@
     <p class="py-4"><?=lang('Auth.confirmLogout')?></p>
     <div class="modal-action">
       <form method="dialog">
-        <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 shadow">Cancel</button>
-        <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 shadow" onclick="logout()">Logout</button>
+        <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 shadow"><?=lang('CustomTerms.cancel')?></button>
+        <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 shadow" onclick="logout()"><?=lang('Auth.logout')?></button>
       </form>
     </div>
   </div>

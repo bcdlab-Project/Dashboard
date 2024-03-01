@@ -8,7 +8,7 @@ class Profile extends BaseController
         helper('permissions');
 
         if (!loggedIn_Permission()) {
-            return redirect()->to('/authentication/login');
+            return redirect()->to('/authentication/login'); //give error
         }
         
         $data['title'] = 'bcdlab-Project';

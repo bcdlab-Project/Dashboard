@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Api\Integration;
 
+use CodeIgniter\Controller;
+use CodeIgniter\API\ResponseTrait;
 use Firebase\JWT\JWT;
 
-class Github_integration extends BaseController
+class Github extends Controller
 {
+    use ResponseTrait;
+
     private $authorizeURL; 
     private $tokenURL;
     private $apiURLBase;
@@ -31,19 +35,20 @@ class Github_integration extends BaseController
     }
 
     public function getIndex() {
-        return redirect()->to('/');
+        return $this->fail("Error",400);
     }
 
     public function getGo($mode = false) {
         helper('permissions');
-        
-        if (!$mode) { return redirect()->to('/'); } // give error
-        if ($mode != 'login' && $mode != 'connect' && $mode != 'disconnect') { return redirect()->to('/'); } // give error
-        if ($mode == 'connect' && !loggedIn_Permission()) { return redirect()->to('/authentication/login'); } // give error
+        $session = session();
+
+        if (!$mode || ($mode != 'login' && $mode != 'connect' && $mode != 'disconnect')) { return $this->fail("Error",400); }
+
+        if ($mode == 'connect' && !loggedIn_Permission()) { return $this->fail("Error",401); } // give error
 
         $check = hash('sha256', microtime(TRUE) . rand() . $_SERVER['REMOTE_ADDR']);
 
-        $this->session->set('GitHubCheck',$check);
+        $session->set('GitHubCheck',$check);
 
         $url = $this->authorizeURL . '?' . http_build_query([ 
             'client_id' => $this->client_id, 
@@ -52,19 +57,24 @@ class Github_integration extends BaseController
             'scope' => 'user' 
         ]);
 
-        return redirect()->to($url);
+        return $this->setResponseFormat('json')->respond(['ok' => true, 'url' => $url],200);
     }
 
     public function getCallback() {
-        $code = $this->request->getGet('code');
-        $state = explode('|',strval($this->request->getGet('state')));
+        $request = service('request');
+        $session = session();
 
-        if (empty($code)) { return redirect()->to('/'); } // give error
-        if ($this->session->get('GitHubCheck') != $state[1]) { return redirect()->to('/'); } //can also give error
+        $code = $request->getGet('code');
+        $state = explode('|',strval($request->getGet('state')));
 
-        $this->extchangeToken($code);
+        if (empty($code)) { return $this->fail("Error",400); } // give error
+        if ($session->get('GitHubCheck') != $state[1]) { return $this->fail("Error",400); } //can also give error
 
-        $this->extchangeUserdata();
+        $tokenData =  $this->extchangeToken($code);
+
+        $githubUserData = $this->extchangeUserdata($tokenData['access_token']);
+
+
         switch ($state[0]) {
             case 'login':
                 return redirect()->to('/authentication/github?key=' . $state[1]);
@@ -77,11 +87,10 @@ class Github_integration extends BaseController
                 }
         
                 $userModel = model('UserModel');
-                $user = $userModel->find($this->session->get('user_data')['id']);
-                $user->setGithub($this->session->get('GitHubUserData'), $this->session->get('GitHubToken'));
+                $user = $userModel->find($session->get('user_data')['id']);
+                $user->setGithub($githubUserData, $tokenData);
          
                 $this->session->remove('GitHubCheck');
-                $this->session->remove('GitHubUserData');
                 $this->session->remove('GitHubToken');
         
                 return redirect()->to('/profile');
@@ -96,7 +105,7 @@ class Github_integration extends BaseController
                 if ($this->session->get('GitHubCheck') != $this->request->getGet('key')) {  } //give error
         
                 $userModel = model('UserModel');
-                $user = $userModel->find($this->session->get('user_data')['id']);
+                $user = $userModel->find($session->get('user_data')['id']);
                 $user->unsetGithub();
         
                 return redirect()->to('/profile');
@@ -126,12 +135,12 @@ class Github_integration extends BaseController
 
         $resp = json_decode($resp,true);
 
-        if ($http_code != 200 || isset($resp['error'])) { return redirect()->to('/'); } //can also give error
+        if ($http_code != 200 || isset($resp['error'])) { return false; } //can also give error
 
-        $this->session->set('GitHubToken',$resp);
+        return $resp;
     }
 
-    public function extchangeUserdata() {
+    private function extchangeUserdata($token) {
         $apiURL = $this->apiURLBase . '/user'; 
 
         $client = \Config\Services::curlrequest();
@@ -141,7 +150,7 @@ class Github_integration extends BaseController
                 'User-Agent' => 'bcdlab Project GitHub OAuth Login',
                 'Accept'     => 'application/json',
                 'Content-Type' => 'application/json', 
-                'Authorization' => 'token '. $this->session->get('GitHubToken')['access_token'],
+                'Authorization' => 'token '. $token,
             ],
         ]);
 
@@ -150,8 +159,8 @@ class Github_integration extends BaseController
         
         $resp = json_decode($resp,true);
 
-        if ($http_code != 200 || isset($resp['error'])) { return redirect()->to('/'); } //can also give error
-        $this->session->set('GitHubUserData',$resp);
+        if ($http_code != 200 || isset($resp['error'])) { return false; }
+        return $resp;
     }
 
     private function exchangeJwJ() {
