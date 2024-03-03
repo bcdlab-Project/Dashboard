@@ -18,7 +18,7 @@ window.addEventListener('storage', function(event) {
 });
 
 function loadGithubData() {
-    fetch('/api/users/' + userId + '/github')
+    fetch('/api/users/' + dataPass["userId"] + '/github')
     .then(response => response.json())
     .then(data => {
         if (data['ok']) {
@@ -33,7 +33,7 @@ function loadGithubData() {
 }
 
 function loadDiscordData() {
-    fetch('/api/users/' + userId + '/discord')
+    fetch('/api/users/' + dataPass["userId"] + '/discord')
     .then(response => response.json())
     .then(data => {
         if (data['ok']) {
@@ -91,7 +91,7 @@ function connectDiscord() {
 }
 
 function loadDisconnectModal(type) {
-    document.getElementById('disconnect_modal_name').innerHTML = "<?=lang('CustomTerms.disconnect')?> " + type;
+    document.getElementById('disconnect_modal_name').innerHTML = dataPass["disconnect"] + " " + type + "?";
     document.getElementById('disconnect_modal_button').setAttribute('onclick', 'disconnect' + type + '()');
     document.getElementById('disconnect_modal').showModal();
 }

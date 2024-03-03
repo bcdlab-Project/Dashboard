@@ -126,4 +126,8 @@
   </div>
 </dialog>
 
-<script>let userId = <?=$session->get('user_data')['id']?></script>
+<script>
+    var dataPass = {};
+    dataPass["disconnect"] = "<?=lang('CustomTerms.disconnect')?>";
+    dataPass["userId"]  = <?=$session->get('user_data')['id']?>;
+</script>
