@@ -38,26 +38,55 @@ class Github extends Controller
         return $this->fail("Error",400);
     }
 
-    public function getGo($mode = false) {
-        helper('permissions');
+    private function prepareURL($mode) {
         $session = session();
-
-        if (!$mode || ($mode != 'login' && $mode != 'connect' && $mode != 'disconnect')) { return $this->fail("Error",400); }
-
-        if ($mode == 'connect' && !loggedIn_Permission()) { return $this->fail("Error",401); } // give error
 
         $check = hash('sha256', microtime(TRUE) . rand() . $_SERVER['REMOTE_ADDR']);
 
         $session->set('GitHubCheck',$check);
 
-        $url = $this->authorizeURL . '?' . http_build_query([ 
+        return $this->authorizeURL . '?' . http_build_query([ 
             'client_id' => $this->client_id, 
             'redirect_uri' => $this->redirect_url, 
             'state' => $mode . '|' . $check, 
             'scope' => 'user' 
         ]);
+    }
 
-        return $this->setResponseFormat('json')->respond(['ok' => true, 'url' => $url],200);
+    public function getLogin() {
+        helper('permissions');
+
+        if (loggedIn_Permission()) { return $this->fail("Error",400); } // give error
+
+        return $this->setResponseFormat('json')->respond(['ok' => true, 'url' => $this->prepareURL("login")],200);
+    }
+
+    public function getConnect() {
+        $session = session();
+        helper('permissions');
+
+        if (!loggedIn_Permission()) { return $this->fail("Error",401); } // give error
+
+        $UserGithubModel = model('UserGithubModel');
+        if ($UserGithubModel->find($session->get('user_data')['id'])) { return $this->fail("Error",400); } // give error
+
+        return $this->setResponseFormat('json')->respond(['ok' => true, 'url' => $this->prepareURL("connect")],200);
+    }
+
+    public function getDisconnect() {
+        helper('permissions');
+        $session = session();
+
+        if (!loggedIn_Permission()) { return $this->fail("Error",401); } // give error
+
+        $UserGithubModel = model('UserGithubModel');
+        if (!$UserGithubModel->find($session->get('user_data')['id'])) { return $this->fail("Error",400); } // give error
+
+        $userModel = model('UserModel');
+        $user = $userModel->find($session->get('user_data')['id']);
+        $user->unsetGithub();
+
+        return $this->setResponseFormat('json')->respond(['ok' => true],200);
     }
 
     public function getCallback() {
@@ -68,16 +97,26 @@ class Github extends Controller
         $state = explode('|',strval($request->getGet('state')));
 
         if (empty($code)) { return $this->fail("Error",400); } // give error
-        if ($session->get('GitHubCheck') != $state[1]) { return $this->fail("Error",400); } //can also give error
+        if ($session->get('GitHubCheck') != $state[1]) { return $this->fail("Error",400); } //give error
 
         $tokenData =  $this->extchangeToken($code);
 
-        $githubUserData = $this->extchangeUserdata($tokenData['access_token']);
+        if (!$tokenData) { return $this->fail("Error",400); } //give error
 
+        $githubUserData = $this->extchangeUserdata($tokenData['access_token']);
 
         switch ($state[0]) {
             case 'login':
-                return redirect()->to('/authentication/github?key=' . $state[1]);
+                $userModel = model('UserModel');
+                $user = $userModel->getByGithub($githubUserData['id']);
+        
+                if ($user) { 
+                    $user->login();
+                    $user->setGithubToken($tokenData);
+                }
+
+                $session->remove('GitHubCheck');
+                return "<script>localStorage.setItem('loginSuccess', '" . boolval($user) . "'); localStorage.setItem('externalGithubPageDone', 'true'); window.close()</script>";
                 break;
             case 'connect':
                 helper('permissions');
@@ -90,27 +129,15 @@ class Github extends Controller
                 $user = $userModel->find($session->get('user_data')['id']);
                 $user->setGithub($githubUserData, $tokenData);
          
-                $this->session->remove('GitHubCheck');
-                $this->session->remove('GitHubToken');
+                $session->remove('GitHubCheck');
         
-                return redirect()->to('/profile');
+                return "<script>localStorage.setItem('externalGithubPageDone', 'true'); window.close()</script>";
                 break;
-            case 'disconnect':
-                helper('permissions');
 
-                if (!loggedIn_Permission()) {
-                    return redirect()->to('/authentication/login'); //give error
-                }
         
-                if ($this->session->get('GitHubCheck') != $this->request->getGet('key')) {  } //give error
-        
-                $userModel = model('UserModel');
-                $user = $userModel->find($session->get('user_data')['id']);
-                $user->unsetGithub();
-        
-                return redirect()->to('/profile');
+
             default:
-                return redirect()->to('/'); //give error
+                return redirect()->to('/profile'); //give error
                 break;
         }
     }

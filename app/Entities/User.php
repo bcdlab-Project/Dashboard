@@ -75,6 +75,20 @@ class User extends Entity
         return false;
     }
 
+    public function getDiscord() {
+        $UserDiscordModel = model('UserDiscordModel');
+        $data = $UserDiscordModel->where('user',$this->attributes['id'])->first();
+
+        if ($data) {
+            return [
+                'id' => $data['discord_id'],
+                'username' => $data['discord_username'],
+                'created_at' => $data['created_at'],
+            ];
+        }
+        return false;
+    }
+
     public function setGithub(array $data, array $token) {
         $UserGithubModel = model('UserGithubModel');
         $UserGithubModel->insert(['user' => $this->attributes['id'], 'github_id' => $data['id'], 'github_username' => $data['login'], 'access_token' => $token['access_token'], 'refresh_token' => $token['refresh_token'], 'acc_tk_expire' => date('Y-m-d H:i:s', strtotime('+'.$token['expires_in'].' seconds')), 'ref_tk_expire' => date('Y-m-d H:i:s', strtotime('+'.$token['refresh_token_expires_in'].' seconds'))]);
@@ -88,5 +102,15 @@ class User extends Entity
     public function setGithubToken(array $token) {
         $UserGithubModel = model('UserGithubModel');
         $UserGithubModel->update($this->attributes['id'],['access_token' => $token['access_token'], 'refresh_token' => $token['refresh_token'], 'acc_tk_expire' => date('Y-m-d H:i:s', strtotime('+'.$token['expires_in'].' seconds')), 'ref_tk_expire' => date('Y-m-d H:i:s', strtotime('+'.$token['refresh_token_expires_in'].' seconds')), 'last_loggedin' => date('Y-m-d H:i:s')]);
+    }
+
+    public function setDiscord(array $data) {
+        $UserDiscordModel = model('UserDiscordModel');
+        $UserDiscordModel->insert(['user' => $this->attributes['id'], 'discord_id' => $data['id'], 'discord_username' => $data['username']]);
+    }
+
+    public function unsetDiscord() {
+        $UserDiscordModel = model('UserDiscordModel');
+        $UserDiscordModel->delete($this->attributes['id']);
     }
 }

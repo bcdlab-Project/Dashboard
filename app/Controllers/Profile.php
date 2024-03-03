@@ -11,9 +11,10 @@ class Profile extends BaseController
             return redirect()->to('/authentication/login'); //give error
         }
         
-        $data['title'] = 'bcdlab-Project';
+        $data['title'] = 'Profile | bcdlab-Project';
         $data['pageMargin'] = true;
         $data['hasNotification'] = true;
+        $data['view'] = 'profile';
 
         return view('templates/header', $data)
             . view('templates/notificationMenu')

@@ -2691,6 +2691,11 @@ input.tab:checked + .tab-content,
   background-color: rgb(212 212 216 / var(--tw-bg-opacity));
 }
 
+.bg-discord {
+  --tw-bg-opacity: 1;
+  background-color: rgb(88 101 242 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
@@ -2988,6 +2993,21 @@ input.tab:checked + .tab-content,
   background-color: rgb(185 28 28 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-blue-950:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(23 37 84 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 58 138 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
+
 .hover\:text-blue-800:hover {
   --tw-text-opacity: 1;
   color: rgb(30 64 175 / var(--tw-text-opacity));
@@ -2998,12 +3018,32 @@ input.tab:checked + .tab-content,
   color: rgb(71 85 105 / var(--tw-text-opacity));
 }
 
+.data-\[discordconnected\=\'NotActivated\'\]\:block[data-discordconnected='NotActivated'] {
+  display: block;
+}
+
 .data-\[githubconnected\=\'NotActivated\'\]\:block[data-githubconnected='NotActivated'] {
   display: block;
 }
 
+.data-\[discordconnected\=\'NotActivated\'\]\:flex[data-discordconnected='NotActivated'] {
+  display: flex;
+}
+
 .data-\[githubconnected\=\'NotActivated\'\]\:flex[data-githubconnected='NotActivated'] {
   display: flex;
+}
+
+.data-\[discordconnected\=\'NotActivated\'\]\:hidden[data-discordconnected='NotActivated'] {
+  display: none;
+}
+
+.data-\[discordconnected\=\'false\'\]\:hidden[data-discordconnected='false'] {
+  display: none;
+}
+
+.data-\[discordconnected\=\'true\'\]\:hidden[data-discordconnected='true'] {
+  display: none;
 }
 
 .data-\[githubconnected\=\'NotActivated\'\]\:hidden[data-githubconnected='NotActivated'] {

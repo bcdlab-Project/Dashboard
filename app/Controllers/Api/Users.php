@@ -11,6 +11,7 @@ class Users extends Controller
     
     public function getIndex($id = false, $action = false) {
         helper('permissions');
+        $request = service('request');
 
         if (!loggedIn_Permission() || (!$id && !admin_Permission()) || (!own_Permission($id) && !admin_Permission())) {
             return $this->setResponseFormat('json')->respond(['ok'=>false], 401);
@@ -59,6 +60,22 @@ class Users extends Controller
             return $this->setResponseFormat('json')->respond(['ok'=>false], 404);
         }
 
+        if ($id && $action == 'discord') {
+            $user = $usermodel->where('id', $id)->first();
+            if ($user) {
+                $data = $user->getDiscord();
+                if (!$data) {
+                    $data = [
+                        'id' => false,
+                        'username' => '-- N/A --',
+                        'created_at' => '-- N/A --',
+                    ];
+                }
+                return $this->setResponseFormat('json')->respond(array_merge($data,['ok'=>true]), 200);
+            }
+            return $this->setResponseFormat('json')->respond(['ok'=>false], 404);
+        }
+
 
         // if ($id && $action == 'delete') {
         //     $user = $usermodel->where('id', $id)->first();
@@ -70,14 +87,14 @@ class Users extends Controller
         // if ($id && $action == 'update') {
         //     $user = $usermodel->where('id', $id)->first();
         //     if ($user) {
-        //         $user->fill($this->request->getPost());
+        //         $user->fill($request->getPost());
         //         $user->save();
         //         return $this->setResponseFormat('json')->respond(['ok'=>true], 200);
         //     }
         // }
         // if (!$id && $action == 'create') {
         //     $user = new \App\Entities\User();
-        //     $user->fill($this->request->getPost());
+        //     $user->fill($request->getPost());
         //     $user->save();
         //     return $this->setResponseFormat('json')->respond(['ok'=>true], 200);
         // }

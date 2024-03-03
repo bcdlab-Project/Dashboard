@@ -11,6 +11,7 @@ module.exports = {
         'bcdlab-b': '#3DFB81',
         'bcdlab-d': '#FF7245',
         'github': '#171515',
+        'discord': '#5865F2',
         'overlay': 'rgba(0, 0, 0, 0.5)',
       },
     },

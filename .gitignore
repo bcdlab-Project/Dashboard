@@ -18,4 +18,6 @@ phpmyadmin
 *.pem
 
 app/Config/GithubIntegration.php
+app/Config/DiscordIntegration.php
+
 node_modules

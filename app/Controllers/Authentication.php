@@ -58,12 +58,11 @@ class Authentication extends BaseController
         if ($this->session->get('GitHubCheck') != $this->request->getGet('key')) { return redirect()->to('/authentication/login'); } //can also give error
 
         $userModel = model('UserModel');
-        $user = $userModel->getByGithub($this->session->get('GitHubUserData')['id']);
+        $user = $userModel->getByGithub($this->session->get('GitHubUserId'));
 
         $tempToken = $this->session->get('GitHubToken');
 
-        $this->session->remove('GitHubCheck');
-        $this->session->remove('GitHubUserData');
+        $this->session->remove('GitHubUserId');
         $this->session->remove('GitHubToken');
 
         if ($user) { 
@@ -80,7 +79,5 @@ class Authentication extends BaseController
             return $this->setResponseFormat('json')->respond(['ok' => true],200);
         }
         return $this->setResponseFormat('json')->respond(['ok' => false],401);
-
-        
     }
 }
