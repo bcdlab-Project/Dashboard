@@ -16,7 +16,7 @@ class Main extends BaseController
         $UserRolesModel = model('UserRolesModel');
         $role = $UserRolesModel->where('id', session()->get('user_data')['role'])->first()['name'];
 
-        $data['title'] = $role . ' Dashboard';
+        $data['title'] = lang('Pages.dashboard');
         $data['pageMargin'] = true;
         $data['view'] = 'dashboard';
         $data['hasNotification'] = true;
