@@ -1,5 +1,5 @@
     </section> 
-    <footer class="p-2 bg-zinc-100 dark:bg-zinc-900 text-center absolute bottom-0 w-full">
+    <footer class="absolute bottom-0 w-full p-2 text-center text-white bg-zinc-900">
         <a href="https://github.com/bcdlab-Project" target="_blank">Copyright &copy; <?= date('Y')?> bcdlab Project</a>
     </footer>
     <?php
@@ -19,4 +19,4 @@
 </body>
 </html>
 
-<script>feather.replace();</script>
+<script>feather.replace(); lucide.createIcons();</script>

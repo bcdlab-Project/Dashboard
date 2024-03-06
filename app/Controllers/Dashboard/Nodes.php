@@ -4,18 +4,18 @@ namespace App\Controllers\Dashboard;
 
 use App\Controllers\BaseController;
 
-class Projects extends BaseController
+class Nodes extends BaseController
 {
     public function getIndex() {
-        $data['title'] = 'Projects';
+        $data['title'] = 'Nodes';
         $data['pageMargin'] = true;
-        $data['view'] = 'projects';
+        $data['view'] = 'nodes';
         $data['hasNotification'] = true;
 
         return view('templates/header', $data)
             . view('templates/notificationMenu')
             . view('dashboard/header')
-            //. view('dashboard/projects')
+            //. view('dashboard/nodes')
             . view('templates/footer') 
             . view('templates/sidemenu');
     }

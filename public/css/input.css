@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* html {
+html {
     -ms-overflow-style: none; 
-} */
+}
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
     display: none;
-} */
+}
 
 .color-scheme-dark {
     color-scheme: dark;

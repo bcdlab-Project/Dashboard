@@ -2,9 +2,9 @@
         $request = \Config\Services::request();
         if (false)  { // esc($error)
             ?>
-            <div class="w-4/5 flex items-center justify-center mx-auto my-8 p-8 bg-opacity-50 bg-red-300 rounded-lg animate-pulse">
+            <div class="flex items-center justify-center w-4/5 p-8 mx-auto my-8 bg-red-300 bg-opacity-50 rounded-lg animate-pulse">
             <span class="mr-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
                     <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
                 </svg>
             </span>
@@ -14,57 +14,62 @@
         }
     ?>
 
-<div class="px-8 w-full lg:px-6 lg:w-3/5 xl:w-2/5 mx-auto p-6 bg-opacity-50 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950 rounded-lg h-fit self-center">
-        <h1 class="text-3xl font-light mb-2 text-center"><?=lang('Pages.participate')?></h1>
+<div class="self-center w-full p-6 px-8 mx-auto bg-opacity-50 rounded-lg lg:px-6 lg:w-3/5 xl:w-2/5 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950 h-fit">
+        <h1 class="mb-2 text-3xl font-light text-center"><?=lang('Pages.participate')?></h1>
         <p></p>
         <form id="form" method="post" novalidate>
             <div id="first" class="space-y-5">
                 <div>
                     <label class="font-medium"><?=lang('Auth.username')?></label>
-                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="text" name="username" id="username" required>
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="text" name="username" id="username" required>
                     <span class="text-red-500" id="username-error"></span>
                 </div>
                 <div>
                     <label class="font-medium"><?=lang('Auth.email')?></label>
-                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="email" name="email" id="email" required>
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="email" name="email" id="email" required>
                     <span class="text-red-500" id="email-error"></span>
                 </div>
                 <div>
                     <label class="font-medium"><?=lang('Auth.password')?></label>
-                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="password" name="password" id="password" required>
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="password" name="password" id="password" required>
                     <span class="text-red-500" id="password-error"></span>
                 </div>
                 <div>
                     <label class="font-medium"><?=lang('Auth.passwordConfirm')?></label>
-                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="password" name="confpassword" id="confpassword" required>
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="password" name="confpassword" id="confpassword" required>
                     <span class="text-red-500" id="confpassword-error"></span>
                 </div>
 
-                <div class="flex justify-end items-center">
-                    <button id="Next" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><?=lang('Pager.next')?></button>
+                <div class="flex items-center justify-end">
+                    <button id="Next" type="button" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"><?=lang('Pager.next')?></button>
                 </div>
             </div>
 
             <div id="second" class="hidden space-y-5">
                 <div>
                     <label class="font-medium"><?=lang('CustomTerms.whyParticipate')?></label>
-                    <textarea class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" name="whyParticipate" id="whyParticipate" rows="5" required></textarea>
+                    <textarea class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" name="whyParticipate" id="whyParticipate" rows="5" required></textarea>
                     <span class="text-red-500" id="whyParticipate-error"></span>
                 </div>
                 <div>
                     <label class="font-medium"><?=lang('CustomTerms.workRole')?></label>
-                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="text" name="workRole" id="workRole">
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="text" name="workRole" id="workRole">
                     <span class="text-red-500" id="workRole-error"></span>
                 </div>
                 <div>
                     <label class="font-medium"><?=lang('CustomTerms.githubProfile')?></label>
-                    <input class="w-full mt-2 px-3 py-2 outline-none border shadow-sm rounded-lg" type="url" name="githubProfile" id="githubProfile">
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="url" name="githubProfile" id="githubProfile">
+                    <span class="text-red-500" id="githubProfile-error"></span>
+                </div>
+                <div class="hidden">
+                    <label class="font-medium"></label>
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" name="honey" id="honey">
                     <span class="text-red-500" id="githubProfile-error"></span>
                 </div>
 
-                <div class="flex justify-between items-center">
-                    <button id="Back" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><?=lang('Pager.previous')?></button>
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><?=lang('Auth.requestRegistration')?></button>
+                <div class="flex items-center justify-between">
+                    <button id="Back" type="button" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"><?=lang('Pager.previous')?></button>
+                    <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"><?=lang('Auth.requestRegistration')?></button>
                 </div>
             </div>
         </form>

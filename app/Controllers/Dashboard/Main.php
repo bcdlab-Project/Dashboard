@@ -18,11 +18,12 @@ class Main extends BaseController
 
         $data['title'] = $role . ' Dashboard';
         $data['pageMargin'] = true;
-        $data['view'] = 'Dashboard';
+        $data['view'] = 'dashboard';
         $data['hasNotification'] = true;
 
         return view('templates/header', $data)
             . view('templates/notificationMenu')
+            . view('dashboard/header')
             . view('dashboard/' . $role)
             . view('templates/footer') 
             . view('templates/sidemenu');
