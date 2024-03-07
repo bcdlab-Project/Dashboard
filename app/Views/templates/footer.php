@@ -19,4 +19,4 @@
 </body>
 </html>
 
-<script>feather.replace(); lucide.createIcons();</script>
+<script>lucide.createIcons();</script>

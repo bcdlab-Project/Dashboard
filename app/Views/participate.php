@@ -61,12 +61,6 @@
                     <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="url" name="githubProfile" id="githubProfile">
                     <span class="text-red-500" id="githubProfile-error"></span>
                 </div>
-                <div class="hidden">
-                    <label class="font-medium"></label>
-                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" name="honey" id="honey">
-                    <span class="text-red-500" id="githubProfile-error"></span>
-                </div>
-
                 <div class="flex items-center justify-between">
                     <button id="Back" type="button" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"><?=lang('Pager.previous')?></button>
                     <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"><?=lang('Auth.requestRegistration')?></button>

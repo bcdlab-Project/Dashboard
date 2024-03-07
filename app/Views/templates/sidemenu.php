@@ -58,4 +58,4 @@
 </dialog>
 
 <script src="<?=base_url()?>js/sidemenu.js"></script>
-<script>feather.replace();</script>
+<script>lucide.createIcons();</script>

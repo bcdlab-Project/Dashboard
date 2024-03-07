@@ -39,7 +39,6 @@
     <meta name="robots" content="noindex">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="<?=base_url()?>css/styles.css">
-    <script src="<?=base_url()?>js/feather.min.js"></script>
     <script src="<?=base_url()?>js/header.js"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>

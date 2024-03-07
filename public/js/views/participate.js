@@ -51,21 +51,15 @@ async function validate(part) {
 
     var endResu = true;
 
-    console.log(formDT.entries()["honey"])
-
-
     for (const field of formDT.entries()) {
-        if (field[0] != "honey"){
-            if (resp[field[0]] !== undefined && resp[field[0]] !== null) {
-                endResu = false;
-                document.getElementById(field[0] + "-error").innerHTML = resp[field[0]]
-                document.getElementById(field[0]).classList.add('form-error')
-            } else {
-                document.getElementById(field[0] + "-error").innerHTML = " "
-                document.getElementById(field[0]).classList.remove('form-error')
-            } 
-        }
-
+        if (resp[field[0]] !== undefined && resp[field[0]] !== null) {
+            endResu = false;
+            document.getElementById(field[0] + "-error").innerHTML = resp[field[0]]
+            document.getElementById(field[0]).classList.add('form-error')
+        } else {
+            document.getElementById(field[0] + "-error").innerHTML = " "
+            document.getElementById(field[0]).classList.remove('form-error')
+        } 
     }
 
     return endResu;

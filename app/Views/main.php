@@ -122,7 +122,7 @@
               <h3><?=lang('Roles.DiscordModShortPhrase')?></h3>
           </div>
         </div>
-        <p class="mx-2 mt-2 sm:text-sm">When it comes to Discord Moderators, they're the ones making sure our online space stays positive. They enforce rules, sort out conflicts, and keep things welcoming.</p>
+        <p class="mx-2 mt-2 sm:text-sm"><?=lang('Roles.DiscordDescription')?></p>
       </li>
 
       <li class="px-4 py-5 duration-150 bg-opacity-50 rounded-xl hover:!bg-opacity-25 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950">
@@ -135,7 +135,7 @@
               <h3><?=lang('Roles.AdminShortPhrase')?></h3>
           </div>
         </div>
-        <p class="mx-2 mt-2 sm:text-sm">Administrators? They're the ones steering the ship. Making decisions, handling security, and keeping the project running smooth day in, day out.</p>
+        <p class="mx-2 mt-2 sm:text-sm"><?=lang('Roles.AdminDescription')?></p>
       </li>
 
       <li class="px-4 py-5 duration-150 bg-opacity-50 rounded-xl hover:!bg-opacity-25 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950">
