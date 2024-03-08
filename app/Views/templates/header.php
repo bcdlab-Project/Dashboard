@@ -30,7 +30,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="<?=lang('Utilities.language')?>" class="<?=$theme?> color-scheme-<?=$theme?>">
+<html lang="<?=lang('Utilities.language')?>" class="<?=$theme?> color-scheme-<?=$theme?> scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <title><?=esc($title)?></title>

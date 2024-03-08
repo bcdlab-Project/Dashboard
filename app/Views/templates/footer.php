@@ -1,5 +1,5 @@
     </section> 
-    <footer class="absolute bottom-0 w-full p-2 text-center text-white bg-zinc-900">
+    <footer class="absolute bottom-0 w-full p-2 py-4 text-center text-white bg-zinc-900">
         <a href="https://github.com/bcdlab-Project" target="_blank">Copyright &copy; <?= date('Y')?> bcdlab Project</a>
     </footer>
     <?php

@@ -30,37 +30,38 @@
 </div>
 
 
-<div class="sticky top-0 bg-white dark:bg-zinc-800">
+<div class="sticky top-0 z-20">
   <div class="relative flex items-center justify-center w-full mt-8">
-    <div class="absolute top-0 w-screen border-t border-zinc-200 gap-x-3 dark:border-zinc-600"></div>
-    <div role="tablist" aria-orientation="horizontal" class="flex items-center w-full overflow-x-auto text-sm" style="outline: none;">
-      <a href="#about" data-state="active" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
+    <div class="absolute top-0 w-screen h-full bg-white dark:bg-zinc-800"></div>
+    <div class="absolute top-0 z-30 w-screen border-t border-zinc-200 gap-x-3 dark:border-zinc-600"></div>
+    <div role="tablist" class="z-20 flex items-center w-full overflow-x-auto text-sm" style="outline: none;">
+      <a id="about-nav" href="#about" data-state="active" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
         <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium">
             <i data-lucide="info"></i><?=lang('MainPage.AboutUs')?>
         </div>
       </a>
-      <a href="#join" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
+      <a id="join-nav" href="#join" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
         <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium">
             <i data-lucide="users"></i><?=lang('MainPage.JoinUs')?>
         </div>
       </a>
-      <a href="#projects" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
+      <a id="projects-nav" href="#projects" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
         <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium">
             <i data-lucide="folder-kanban"></i><?=lang('MainPage.SomeProjects')?>
         </div>
       </a>
-      <a href="#colaborators" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
+      <a id="collaborators-nav" href="#collaborators" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
         <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium">
             <i data-lucide="hand-helping"></i><?=lang('MainPage.OurColaborators')?>
         </div>
       </a>
-      <a href="#contact" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
+      <a id="contact-nav" href="#contact" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
         <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium">
             <i data-lucide="mail"></i><?=lang('MainPage.ContactUs')?>
         </div>
       </a>
     </div>
-    <div class="absolute bottom-0 w-screen border-b border-zinc-200 gap-x-3 dark:border-zinc-600"></div>
+    <div class="absolute bottom-0 z-30 w-screen border-b border-zinc-200 gap-x-3 dark:border-zinc-600"></div>
   </div>
 </div>
 
@@ -69,15 +70,14 @@
 
 <!-- About Us -->
 
-  <div class="flex flex-col gap-4 mt-4">
-    <h1 class="text-3xl font-semibold sm:text-4xl">About Us</h1>
+  <div id="about" class="flex flex-col gap-4 mt-4">
+    <h1 class="text-3xl font-semibold sm:text-4xl pt-14">About Us</h1>
     <div class="flex justify-start">
       <div class="lg:w-1/2">
         <h1 class="mb-1 text-2xl">The Project</h1>
         <p>Welcome to our unique community-driven platform, where collaboration is at the core of everything we do. Our project is not just about hosting; it's about creating a network of tech enthusiasts who believe in the power of collaboration and sharing resources.</p>
       </div>
     </div>
-
     <div class="flex justify-end">
       <div class="lg:w-1/2">
         <h1 class="mb-1 text-2xl">Key Focus Areas</h1>
@@ -103,10 +103,8 @@
 
   <!-- Join Us -->
 
-
-
-  <div class="flex flex-col mt-4">
-    <h1 class="mb-2 text-3xl font-semibold sm:text-4xl">Join Us in Building Something Great!</h1>
+  <div id="join" class="flex flex-col">
+    <h1 class="mb-2 text-3xl font-semibold sm:text-4xl pt-14">Join Us in Building Something Great!</h1>
     <p class="w-4/5">Our project thrives on community collaboration, and we're excited to invite you to be a part of it. Your involvement can make a significant impact, and together, we can achieve something extraordinary. We currently have various roles available, each offering a unique opportunity for you to contribute to the growth and success of our community. Explore the available roles below and find the perfect fit for your skills and interests:</p>
     <h2 class="mt-4 mb-2 text-3xl">Available Roles:</h2>
     <ul class="grid gap-3 lg:grid-cols-2 2xl:grid-cols-3">
@@ -163,18 +161,27 @@
         </div>
         <p class="mx-2 mt-2 sm:text-sm">Code Reviewers are like the watchful eyes on all code. They confirm user code, offer feedback, and help keep our tech strong and secure, in a chill and easygoing way.</p>
       </li>
-
-      
     </ul>
   </div>
+
+
+
+
+  <!-- Some Projects -->
+  <div id="projects" class="h-[1000px]">
+    
+  </div>
+
+  <!-- Our collaborator -->
+  <div id="collaborators" class="h-[1000px]"></div>
 
 </div>
 
 <!-- Contact Us -->
 
-<div class="relative flex items-center justify-center w-full py-6">
-  <div class="absolute w-screen h-full bg-gradient-to-t from-[#004AAD] "></div>
-  <div class="z-10 text-gray-900 dark:text-gray-300 py-14 pb-7">
+<div id="contact" class="relative flex items-center justify-center w-full pb-8 pt-28 md:pb-12">
+  <div class="absolute w-screen h-full bg-gradient-to-t from-[#004AAD]"></div>
+  <div class="z-10 text-gray-900 dark:text-gray-300">
     <div class="gap-12 lg:flex">
       <div class="max-w-md">
           <h3 class="text-3xl font-semibold sm:text-4xl">Contact Us</h3>
@@ -229,4 +236,28 @@
 
 
 
+<script>
+window.onscroll = () => {
+  const sections = ['about', 'join', 'projects', 'collaborators', 'contact'].map((id) => document.getElementById(id));
 
+  sections.forEach((section) => {
+      const navItem = document.getElementById(section.getAttribute("id") + "-nav");
+      navItem.setAttribute("data-state", "inactive"); 
+    });
+
+  if ((sections[4].offsetTop - 1)+sections[4].offsetHeight <= pageYOffset + window.innerHeight) {
+    document.getElementById("contact-nav").setAttribute("data-state", "active");
+  } else if (pageYOffset < sections[0].offsetTop) {
+    document.getElementById("about-nav").setAttribute("data-state", "active");
+  } else {
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 1;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      const navItem = document.getElementById(section.getAttribute("id") + "-nav");
+      if (pageYOffset >= sectionTop && pageYOffset < sectionBottom) {
+        navItem.setAttribute("data-state", "active");
+      }
+    });
+  }
+};
+</script>
