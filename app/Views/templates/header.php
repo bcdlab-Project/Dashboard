@@ -37,6 +37,7 @@
     <!-- <meta name="description" content="The small framework with powerful features"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
+    <meta name="google-site-verification" content="2LEKDXtQ04UFdiegGRymQBRk6PHqbNhDA98WhLdJb9g">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="<?=base_url()?>css/styles.css">
     <script src="<?=base_url()?>js/header.js"></script>

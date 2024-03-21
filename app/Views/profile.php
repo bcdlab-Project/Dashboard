@@ -8,7 +8,7 @@
     </div>
     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <!-- Username -->
-        <form id="updateUsernameForm" class="col-span-1 p-4 bg-opacity-50 rounded-2xl bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950" novalidate>
+        <form id="updateUsernameForm" class="col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50" novalidate>
             <h1 class="text-2xl font-medium"><?=lang('CustomTerms.update')?> <?=lang('Auth.username')?></h1>
             <div>
                 <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="text" name="username" id="username" required value="<?=$session->get('user_data')['username']?>">
@@ -19,7 +19,7 @@
             </div>
         </form>
         <!-- Email -->
-        <form id="updateEmailForm" class="col-span-1 p-4 bg-opacity-50 rounded-2xl bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950" novalidate>
+        <form id="updateEmailForm" class="col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50" novalidate>
             <h1 class="text-2xl font-medium"><?=lang('CustomTerms.update')?> <?=lang('Auth.email')?></h1>
             <div>
                 <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="email" name="email" id="email" required value="<?=$session->get('user_data')['email']?>">
@@ -30,7 +30,7 @@
             </div>
         </form>
         <!-- Password -->
-        <form id="updatePasswordForm" class="col-span-1 p-4 bg-opacity-50 rounded-2xl bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950" novalidate>
+        <form id="updatePasswordForm" class="col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50" novalidate>
             <h1 class="text-2xl font-medium"><?=lang('CustomTerms.update')?> <?=lang('Auth.password')?></h1>
             <div class="space-y-2">
                 <div>
@@ -47,7 +47,7 @@
             </div>
         </form>
         <!-- Github -->
-        <div class="col-span-1 p-4 bg-opacity-50 rounded-2xl bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950">
+        <div class="col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50">
             <h1 class="text-2xl font-medium"><?=lang('CustomTerms.connect')?> Github</h1>
             <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 gap-x-4">
                 <div class="relative px-3 py-2 mt-2 overflow-hidden border rounded-lg shadow-sm outline-none like-input">
@@ -82,7 +82,7 @@
             </div>
         </div>
         <!-- Discord -->
-        <div class="col-span-1 p-4 bg-opacity-50 rounded-2xl bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950">
+        <div class="col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50">
             <h1 class="text-2xl font-medium"><?=lang('CustomTerms.connect')?> Discord</h1>
             <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 gap-x-4">
                 <div class="relative px-3 py-2 mt-2 overflow-hidden border rounded-lg shadow-sm outline-none like-input">

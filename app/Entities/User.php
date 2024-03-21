@@ -113,4 +113,14 @@ class User extends Entity
         $UserDiscordModel = model('UserDiscordModel');
         $UserDiscordModel->delete($this->attributes['id']);
     }
+
+    public function hasGithub() : bool {
+        $UserGithubModel = model('UserGithubModel');
+        return boolval($UserGithubModel->where('user',$this->attributes['id'])->first());
+    }
+
+    public function hasDiscord() : bool {
+        $UserDiscordModel = model('UserDiscordModel');
+        return boolval($UserDiscordModel->where('user',$this->attributes['id'])->first());
+    }
 }

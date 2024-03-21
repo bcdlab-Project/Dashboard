@@ -7,6 +7,12 @@ use App\Controllers\BaseController;
 class Users extends BaseController
 {
     public function getIndex() {
+        helper('permissions');
+
+        if (!admin_Permission()) {
+            return redirect()->to('/authentication/login');
+        }
+
         $data['title'] = 'Users';
         $data['pageMargin'] = true;
         $data['view'] = 'users';
@@ -15,7 +21,7 @@ class Users extends BaseController
         return view('templates/header', $data)
             . view('templates/notificationMenu')
             . view('dashboard/header')
-            //. view('dashboard/users')
+            . view('dashboard/users')
             . view('templates/footer') 
             . view('templates/sidemenu');
     }

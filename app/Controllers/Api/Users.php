@@ -11,6 +11,7 @@ class Users extends Controller
     
     public function getIndex($id = false, $action = false) {
         helper('permissions');
+        helper('roles');
         $request = service('request');
 
         if (!loggedIn_Permission() || (!$id && !admin_Permission()) || (!own_Permission($id) && !admin_Permission())) {
@@ -19,21 +20,44 @@ class Users extends Controller
 
         $usermodel = model('UserModel');
 
+        if (!$id && !$action) {
+            $users = $usermodel->findAll();
+            $data['users'] = [];
+            foreach ($users as $user) {
+                $data['users'][] = [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'role' => getRoleInfo($user->role),
+                    'email' => $user->email,
+                    'participation_form' => $user->participation_form,
+                    'created_at' => $user->created_at,
+                    'last_updated' => $user->last_updated,
+                    'banned' => $user->banned,
+                    'deleted' => $user->deleted,
+                    'has_github' => $user->hasGithub(),
+                    'has_discord' => $user->hasDiscord()
+                ];
+            }
+            return $this->setResponseFormat('json')->respond(array_merge($data,['ok'=>true]), 200);
+        }
+
         if ($id && !$action) {
             $user = $usermodel->where('id', $id)->first();
             if ($user) {
                 $data = [
                     'id' => $user->id,
                     'username' => $user->username,
-                    'role' => $user->role,
+                    'role' => getRoleInfo($user->role),
                     'email' => $user->email,
                     'participation_form' => $user->participation_form,
                     'created_at' => $user->created_at,
                     'last_updated' => $user->last_updated,
                     'banned' => $user->banned,
-                    'deleted' => $user->deleted
+                    'deleted' => $user->deleted,
+                    'has_github' => $user->hasGithub(),
+                    'has_discord' => $user->hasDiscord()
                 ];
-                return $this->setResponseFormat('json')->respond($data, 200);
+                return $this->setResponseFormat('json')->respond(array_merge($data,['ok'=>true]), 200);
             }
             return $this->setResponseFormat('json')->respond(['ok'=>false], 404);
         }

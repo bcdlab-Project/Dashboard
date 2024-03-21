@@ -11,7 +11,9 @@ return [
 
     'Collaborator' => 'Colaborador',
     'CollaboratorShortPhrase' => 'Os nossos companheiros que nos dão força',
+    'CollaboratorDescription' => "Os colaboradores desempenham um papel fundamental, contribuindo com self-hosted nodes, aumentando a capacidades do projeto e promovendo o crescimento coletivo.",
 
     'CodeReviewer' => 'Inspetor de Código',
     'CodeReviewerShortPhrase' => 'Os magicos do código que garantem a nossa segurança',
+    'CodeReviewerDescription' => "Cuidado!! Que os inspetores de código são os olhos atentos em todo o código. Eles confirmam o código do utilizador, oferecem feedback e ajudam a manter a nossa tecnologia funcional e segura.",
 ];

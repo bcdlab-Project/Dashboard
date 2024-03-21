@@ -12,8 +12,10 @@ return [
 
     'Collaborator' => 'Collaborator',
     'CollaboratorShortPhrase' => 'The Project buddies powering up the game',
+    'CollaboratorDescription' => "Collaborators play a key role, contributing with self-hosted nodes, boosting our project capabilities, and fostering collective growth.",
 
     'CodeReviewer' => 'Code Reviewer',
     'CodeReviewerShortPhrase' => 'The code wizards ensuring our codes are top-notch',
+    'CodeReviewerDescription' => "Carefull!! That the Code Reviewers are like the watchful eyes on all code. They confirm user code, offer feedback, and help keep our tech stay functional and secure.",
 
 ];

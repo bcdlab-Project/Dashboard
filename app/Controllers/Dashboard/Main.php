@@ -8,13 +8,11 @@ class Main extends BaseController
 {
     public function getIndex() {
         helper('permissions');
+        helper('roles');
 
         if (!loggedIn_Permission()) {
             return redirect()->to('/authentication/login');
         }
-
-        $UserRolesModel = model('UserRolesModel');
-        $role = $UserRolesModel->where('id', session()->get('user_data')['role'])->first()['name'];
 
         $data['title'] = lang('Pages.dashboard');
         $data['pageMargin'] = true;
@@ -24,7 +22,7 @@ class Main extends BaseController
         return view('templates/header', $data)
             . view('templates/notificationMenu')
             . view('dashboard/header')
-            . view('dashboard/' . $role)
+            . view('dashboard/' . getRoleInfo()['name_en'])
             . view('templates/footer') 
             . view('templates/sidemenu');
     }

@@ -2,61 +2,68 @@
   <div class="absolute w-screen h-full bg-gradient-to-b from-[#5DE0E6] "></div>
   <div class="relative flex items-center justify-center w-full pt-1 pb-6 md:py-6">
     <div class="absolute flex w-full h-full py-14">
-      <div id="slide1" class="aspect-video">
-        <img src="/gg.png" class="rounded-lg" />
+      <div class="relative aspect-video">
+        <div id="slide1-load" class="absolute w-full h-full rounded-lg bg-gray-700/50"></div>
+        <img id="slide1" src="" class="rounded-lg"/>
       </div>
     </div>
-    <div id="slide2" class="z-10 w-full 2xl:w-1/2 md:w-2/3 sm:w-10/12 aspect-video">
-      <a href="https://poico.bcdlab.xyz" target="_blank">
-        <img src="/images/exmples-host/poico.png" class="rounded-lg" />
+    <div class="relative z-10 w-full 2xl:w-1/2 md:w-2/3 sm:w-10/12 aspect-video">
+      <div id="slide2-load" class="absolute w-full h-full rounded-lg bg-gray-700/50"></div>
+      <a id="carousel-link" href="#" target="_blank">
+        <img id="slide2" src="" class="rounded-lg"/>
       </a>
     </div>
     <div class="absolute flex justify-end w-full h-full py-14">
-      <div id="slide2" class="float-right aspect-video">
-        <img src="/gg.png" class="rounded-lg" />
+      <div class="relative float-right aspect-video">
+        <div id="slide3-load" class="absolute w-full h-full rounded-lg bg-gray-700/50"></div>
+        <img id="slide3" src="" class="rounded-lg"/>
       </div>
     </div>
   </div>
     <div class="absolute z-10 flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-        <a href="#slide4" class="btn btn-circle"><i data-lucide="chevron-left"></i></a>
-        <a href="#slide2" class="btn btn-circle"><i data-lucide="chevron-right"></i></a>
+        <button class="btn btn-circle" onclick="prev_carousel()"><i data-lucide="chevron-left"></i></button>
+        <button class="btn btn-circle" onclick="next_carousel()"><i data-lucide="chevron-right"></i></button>
     </div>
 </div>
-<div class="flex items-center justify-center w-full">
-<p class="w-full px-0 text-center text-gray-400 md:px-4 2xl:w-1/2 md:w-2/3 sm:w-10/12">
-  This is one of the projects that is currently being hosted on the project! It is a personal portfolio made by <a class="link" href="https://github.com/Poico">Rodrigo Damasceno</a> and it was the first project being run on our infrastructure!<br>
-  If you want to check it out <a class="link" href="https://poico.bcdlab.xyz">Click Here</a>!
-</p>
+<div class="relative flex items-center justify-center w-full">
+  <p id="carousel-text" class="w-full px-0 text-center text-gray-400 md:px-4 2xl:w-1/2 md:w-2/3 sm:w-10/12 transition-[height] duration-500 ease-in-out h-min "></p> 
+  <p id="carousel-text-imaginary" class="absolute w-full px-0 text-center text-sky-400/0 md:px-4 2xl:w-1/2 md:w-2/3 sm:w-10/12"></p> <!-- Imaginary text to calculate height -->
+  <i id="carousel-loading" class="absolute px-0 text-gray-400 animate-spin" data-lucide="loader-circle"></i> <!-- Loading icon -->
 </div>
+
 
 
 <div class="sticky top-0 z-20">
   <div class="relative flex items-center justify-center w-full mt-8">
     <div class="absolute top-0 w-screen h-full bg-white dark:bg-zinc-800"></div>
     <div class="absolute top-0 z-30 w-screen border-t border-zinc-200 gap-x-3 dark:border-zinc-600"></div>
-    <div role="tablist" class="z-20 flex items-center w-full overflow-x-auto text-sm" style="outline: none;">
+    <div role="tablist" class="z-20 flex items-center w-full overflow-x-scroll text-sm fliped" style="outline: none;">
+
+    <div class="w-32 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-slate-700 scrollbar-track-slate-300">
+      <div class="w-64 bg-slate-400"></div>
+    </div>
       <a id="about-nav" href="#about" data-state="active" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
-        <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium">
+        <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium text-nowrap">
             <i data-lucide="info"></i><?=lang('MainPage.AboutUs')?>
         </div>
       </a>
       <a id="join-nav" href="#join" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
-        <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium">
+        <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium text-nowrap">
             <i data-lucide="users"></i><?=lang('MainPage.JoinUs')?>
         </div>
       </a>
       <a id="projects-nav" href="#projects" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
-        <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium">
+        <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium text-nowrap">
             <i data-lucide="folder-kanban"></i><?=lang('MainPage.SomeProjects')?>
         </div>
       </a>
       <a id="collaborators-nav" href="#collaborators" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
-        <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium">
+        <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium text-nowrap">
             <i data-lucide="hand-helping"></i><?=lang('MainPage.OurColaborators')?>
         </div>
       </a>
       <a id="contact-nav" href="#contact" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
-        <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium">
+        <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium text-nowrap">
             <i data-lucide="mail"></i><?=lang('MainPage.ContactUs')?>
         </div>
       </a>
@@ -70,30 +77,30 @@
 
 <!-- About Us -->
 
-  <div id="about" class="flex flex-col gap-4 mt-4">
-    <h1 class="text-3xl font-semibold sm:text-4xl pt-14">About Us</h1>
+  <div id="about" class="flex flex-col gap-6">
+    <h1 class="text-3xl font-semibold sm:text-4xl pt-14"><?=lang('MainPage.AboutUs')?></h1>
     <div class="flex justify-start">
       <div class="lg:w-1/2">
-        <h1 class="mb-1 text-2xl">The Project</h1>
+        <h1 class="mb-3 text-2xl">The Project</h1>
         <p>Welcome to our unique community-driven platform, where collaboration is at the core of everything we do. Our project is not just about hosting; it's about creating a network of tech enthusiasts who believe in the power of collaboration and sharing resources.</p>
       </div>
     </div>
     <div class="flex justify-end">
       <div class="lg:w-1/2">
-        <h1 class="mb-1 text-2xl">Key Focus Areas</h1>
+        <h1 class="mb-3 text-2xl">Key Focus Areas</h1>
         <ul class="pl-6 list-disc">
-          <li><span class="font-bold">Shared Resources:</span>  Our community shares the hosting responsibility, ensuring that every project finds a home. This collaborative effort allows us to collectively support each other's endeavors.</li>
+          <li class="mb-2"><span class="font-bold">Shared Resources:</span>  Our community shares the hosting responsibility, ensuring that every project finds a home. This collaborative effort allows us to collectively support each other's endeavors.</li>
           <li><span class="font-bold">Collaboration in Action:</span> Our community thrives on active collaboration, a shared space where members engage, share resources, and contribute to the flourishing growth of our interconnected IT ecosystem.</li>
         </ul>
       </div>
     </div>
     <div class="flex justify-start">
       <div class="lg:w-1/2">
-        <h1 class="mb-1 text-2xl">How It Works</h1>
+        <h1 class="mb-3 text-2xl">How It Works</h1>
         <ul class="pl-6 list-disc">
-          <li><span class="font-bold">Collaboration Nodes:</span> Unlike traditional hosting services, our platform operates on the principle of collaboration nodes. Tech-savvy individuals, developers, and freelancers from around the world collaborate by providing hosting resources from their homelabs and servers.</li>
-          <li><span class="font-bold">Code Reviewers:</span> To ensure the safety of our collaborators and users, all code slated for hosting undergoes a thorough safety check, confirming its integrity and absence of potential harm in the tech world.</li>
-          <li><span class="font-bold">Host Your Projects:</span> Once your participation request is confirmed, you gain access to the user Dashboard. On this Dashboard, you can request a new project or manage the ones you already have.</li>
+          <li class="mb-2"><span class="font-bold">Collaboration Nodes:</span> Unlike traditional hosting services, our platform operates on the principle of collaboration nodes. Tech-savvy individuals, developers, and freelancers from around the world collaborate by providing hosting resources from their homelabs and servers.</li>
+          <li class="mb-2"><span class="font-bold">Code Reviewers:</span> To ensure the safety of our collaborators and users, all code slated for hosting undergoes a thorough safety check, confirming its integrity and absence of potential harm in the tech world.</li>
+          <li class="mb-2"><span class="font-bold">Host Your Projects:</span> Once your participation request is confirmed, you gain access to the user Dashboard. On this Dashboard, you can request a new project or manage the ones you already have.</li>
           <li><span class="font-bold">Connect GitHub:</span> Streamline your code upload process by connecting GitHub directly to our platform. No need to manually upload code; just commit changes to GitHub.</li>
         </ul>
       </div>
@@ -104,9 +111,9 @@
   <!-- Join Us -->
 
   <div id="join" class="flex flex-col">
-    <h1 class="mb-2 text-3xl font-semibold sm:text-4xl pt-14">Join Us in Building Something Great!</h1>
-    <p class="w-4/5">Our project thrives on community collaboration, and we're excited to invite you to be a part of it. Your involvement can make a significant impact, and together, we can achieve something extraordinary. We currently have various roles available, each offering a unique opportunity for you to contribute to the growth and success of our community. Explore the available roles below and find the perfect fit for your skills and interests:</p>
-    <h2 class="mt-4 mb-2 text-3xl">Available Roles:</h2>
+    <h1 class="mb-6 text-3xl font-semibold sm:text-4xl pt-14"><?=lang('MainPage.JoinUsComplete')?></h1>
+    <p class="text-justify"><?=lang('MainPage.JoinUsIntro')?>:</p>
+    <h2 class="mt-6 mb-4 text-3xl"><?=lang('MainPage.AvailableRoles')?>:</h2>
     <ul class="grid gap-3 lg:grid-cols-2 2xl:grid-cols-3">
       <li class="px-4 py-5 duration-150 bg-opacity-50 rounded-xl hover:!bg-opacity-25 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950">
         <div class="flex items-center gap-x-3">
@@ -146,7 +153,7 @@
               <h3><?=lang('Roles.CollaboratorShortPhrase')?></h3>
           </div>
         </div>
-        <p class="mx-2 mt-2 sm:text-sm">Collaborators play a key role, contributing with self-hosted nodes, boosting our project capabilities, and fostering collective growth</p>
+        <p class="mx-2 mt-2 sm:text-sm"><?=lang('Roles.CollaboratorDescription')?></p>
       </li>
 
       <li class="px-4 py-5 duration-150 bg-opacity-50 rounded-xl hover:!bg-opacity-25 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950">
@@ -159,7 +166,7 @@
               <h3><?=lang('Roles.CodeReviewerShortPhrase')?></h3>
           </div>
         </div>
-        <p class="mx-2 mt-2 sm:text-sm">Code Reviewers are like the watchful eyes on all code. They confirm user code, offer feedback, and help keep our tech strong and secure, in a chill and easygoing way.</p>
+        <p class="mx-2 mt-2 sm:text-sm"><?=lang('Roles.CodeReviewerDescription')?></p>
       </li>
     </ul>
   </div>
@@ -184,8 +191,8 @@
   <div class="z-10 text-gray-900 dark:text-gray-300">
     <div class="gap-12 lg:flex">
       <div class="max-w-md">
-          <h3 class="text-3xl font-semibold sm:text-4xl">Contact Us</h3>
-          <p class="mt-3">We're here to help and answer any question you might have, We look forward to hearing from you .</p>
+          <h3 class="text-3xl font-semibold sm:text-4xl"><?=lang('MainPage.ContactUs')?></h3>
+          <p class="mt-3"><?=lang('MainPage.contactDescription')?></p>
       </div>
       <div>
         <ul class="items-stretch mt-12 gap-y-6 gap-x-12 md:flex lg:gap-x-0 lg:mt-0">
@@ -207,11 +214,11 @@
               </svg>
             </div>
             <h4 class="text-lg font-medium xl:text-xl">Join our community</h4>
-            <p>Here you can get the latest news and talk with other developers!</p>
-            <a href="" target="_blank" class="flex items-center gap-1 text-sm font-medium duration-150 text-bcdlab-d hover:opacity-75">
+            <p>Here you can get the latest news and talk with other developers! (In Develoment)</p>
+            <p class="flex items-center gap-1 text-sm font-medium duration-150 text-bcdlab-d hover:opacity-75"> <!-- a href="" target="_blank" -->
               Join our Discord
               <i data-lucide="arrow-right"></i>
-            </a>
+            </p>
           </li>
           <li class="py-6 space-y-3 border-t border-gray-900 md:max-w-sm md:py-0 md:border-t-0 lg:border-l lg:px-8 lg:max-w-none dark:border-gray-300">
             <div class="flex items-center justify-center w-12 h-12 border border-gray-900 rounded-full dark:border-gray-300">
@@ -232,7 +239,6 @@
     </div>
   </div>
 </div>
-
 
 
 
@@ -260,4 +266,71 @@ window.onscroll = () => {
     });
   }
 };
+
+var currentId = 1;
+
+fetch("/api/content/mainpage/carousel?currentId=" + currentId + "&action=get")
+.then(response => response.json())
+.then(data => {
+  loadCaroucel(data.slides);
+});
+
+function loadCaroucel(slides) {
+  const slide1 = slides[0];
+  const slide2 = slides[1];
+  const slide3 = slides[2];
+  const text = slide2.text_html_<?=lang('Utilities.language')?>;
+  
+  currentId = slide2.id;
+
+  const carouselLink = document.getElementById("carousel-link");
+  const carouselText = document.getElementById("carousel-text");
+  const carouselTextImaginary = document.getElementById("carousel-text-imaginary");
+  const carouselLoading = document.getElementById("carousel-loading");
+  const slide1Load = document.getElementById("slide1-load");
+  const slide2Load = document.getElementById("slide2-load");
+  const slide3Load = document.getElementById("slide3-load");
+
+  slide1Load.classList.remove("hidden");
+  slide2Load.classList.remove("hidden");
+  slide3Load.classList.remove("hidden");
+
+  carouselLink.href = (slide2.url_link != null) ? slide2.url_link : "#";
+  carouselLink.setAttribute("target", ((slide2.url_link != null) ? "_blank" : ""));
+
+  carouselText.innerHTML = "";
+  carouselLoading.classList.remove("hidden");
+  carouselTextImaginary.innerHTML = text;
+  carouselText.style.height = carouselTextImaginary.offsetHeight + "px";
+
+  setTimeout(() => {
+    carouselLoading.classList.add("hidden");
+    carouselText.innerHTML = text;
+    document.getElementById("slide1").src = slide1.image;
+    slide1Load.classList.add("hidden");
+    document.getElementById("slide2").src = slide2.image;
+    slide2Load.classList.add("hidden");
+    document.getElementById("slide3").src = slide3.image;
+    slide3Load.classList.add("hidden");
+  }, 500);
+  
+}
+
+function next_carousel() {
+  fetch("/api/content/mainpage/carousel?currentId=" + currentId + "&action=next")
+  .then(response => response.json())
+  .then(data => {
+    loadCaroucel(data.slides);
+  });
+}
+
+function prev_carousel() {
+  fetch("/api/content/mainpage/carousel?currentId=" + currentId + "&action=prev")
+  .then(response => response.json())
+  .then(data => {
+    loadCaroucel(data.slides);
+  });
+}
+
+
 </script>
