@@ -21,6 +21,7 @@ class Users extends Controller
         $usermodel = model('UserModel');
 
         if (!$id && !$action) {
+            if (!admin_Permission()) { return $this->setResponseFormat('json')->respond(['ok'=>false], 401); }
             $users = $usermodel->findAll();
             $data['users'] = [];
             foreach ($users as $user) {
