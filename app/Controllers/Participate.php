@@ -70,4 +70,39 @@ class Participate extends BaseController
             return $this->setResponseFormat('json')->respond(['ok' => true], 200);
         }
     }
+
+    public function postIndex() {
+        $data = $this->request->getPost(['username','email','password','confpassword','whyParticipate','workRole','githubProfile']);
+        $rules = [
+            'username' => 'required|max_length[30]',
+            'email'    => 'required|max_length[254]|valid_email',
+            'password' => 'required|max_length[255]|min_length[10]',
+            'confpassword' => 'required|max_length[255]|matches[password]',
+            'whyParticipate' => 'required',
+            'workRole' => 'max_length[25]',
+            'githubProfile' => 'max_length[25]'
+        ];
+
+        echo json_encode($data);
+
+        if (! $this->validateData($data, $rules)) {
+            $errors = $this->validator->getErrors();
+            foreach ($errors as $key => $value) {
+                $errors[$key] =  str_replace($key,lang('CustomTerms.'.$key),$value);
+            }
+
+            return $this->setResponseFormat('json')->respond($errors, 200);
+        } else {
+            foreach ($data as $key => $value) {
+                if ($value == null) {
+                    $data  $key;
+                }
+            }
+
+            $participationForm = model('ParticipationForm');
+            echo json_encode($participationForm->insert());
+
+            
+        }
+    }
 }

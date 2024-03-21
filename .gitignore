@@ -19,5 +19,7 @@ phpmyadmin
 
 app/Config/GithubIntegration.php
 app/Config/DiscordIntegration.php
+app/Config/Email.php
+app/Config/Database.php
 
 node_modules

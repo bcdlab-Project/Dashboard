@@ -38,10 +38,6 @@
     <div class="absolute top-0 w-screen h-full bg-white dark:bg-zinc-800"></div>
     <div class="absolute top-0 z-30 w-screen border-t border-zinc-200 gap-x-3 dark:border-zinc-600"></div>
     <div role="tablist" class="z-20 flex items-center w-full overflow-x-scroll text-sm fliped" style="outline: none;">
-
-    <div class="w-32 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-slate-700 scrollbar-track-slate-300">
-      <div class="w-64 bg-slate-400"></div>
-    </div>
       <a id="about-nav" href="#about" data-state="active" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
         <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium text-nowrap">
             <i data-lucide="info"></i><?=lang('MainPage.AboutUs')?>

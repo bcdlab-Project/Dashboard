@@ -4,7 +4,19 @@ const submitting = async () => {
     if (document.getElementById("second").classList.contains('hidden')) {
         await goNext();
     } else if (await validate('second')) {
-        form.submit();
+        var formDT = new FormData(document.getElementById("form"))
+        var response = await fetch('/participate', {
+            method: 'POST',
+            body: formDT
+        })
+
+        console.log(response)
+
+        if (response.status == 200) {
+            // window.location.href = '/'
+        } else {
+            console.log(response)
+        }
     }
 }
 
@@ -52,6 +64,7 @@ async function validate(part) {
     var endResu = true;
 
     for (const field of formDT.entries()) {
+        if (field[0] == "honeypot") { break;};
         if (resp[field[0]] !== undefined && resp[field[0]] !== null) {
             endResu = false;
             document.getElementById(field[0] + "-error").innerHTML = resp[field[0]]
