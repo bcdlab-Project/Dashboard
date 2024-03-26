@@ -22,4 +22,14 @@ class Profile extends BaseController
             . view('templates/footer') 
             . view('templates/sidemenu');
     }
+
+    public function getTest() {
+        $email = \Config\Services::email();
+
+        $email->setTo('rafaelmoreira151020@gmail.com');
+        $email->setSubject('This email is a test for the filter ');
+        $email->setMessage('Testing the email filter.');
+
+        echo json_encode($email->send());
+    }
 }

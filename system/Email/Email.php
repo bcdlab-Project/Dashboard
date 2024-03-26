@@ -1906,11 +1906,14 @@ class Email
             $crypto = stream_socket_enable_crypto(
                 $this->SMTPConnect,
                 true,
-                STREAM_CRYPTO_METHOD_TLSv1_0_CLIENT
-                | STREAM_CRYPTO_METHOD_TLSv1_1_CLIENT
-                | STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT
-                | STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT
+                STREAM_CRYPTO_METHOD_TLS_CLIENT
+                //STREAM_CRYPTO_METHOD_TLSv1_0_CLIENT
+                //| STREAM_CRYPTO_METHOD_TLSv1_1_CLIENT
+                //| STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT
+                //| STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT
             );
+
+
 
             if ($crypto !== true) {
                 $this->setErrorMessage(lang('Email.SMTPError', [$this->getSMTPData()]));
@@ -2012,7 +2015,7 @@ class Email
             return false;
         }
 
-        $this->sendData('AUTH LOGIN');
+        $this->sendData('AUTH PLAIN'); // AUTH LOGIN
         $reply = $this->getSMTPData();
 
         if (strpos($reply, '503') === 0) {    // Already authenticated
@@ -2025,23 +2028,23 @@ class Email
             return false;
         }
 
-        $this->sendData(base64_encode($this->SMTPUser));
+        $this->sendData(base64_encode("\0" . $this->SMTPUser . "\0" . $this->SMTPPass)); // base64_encode($this->SMTPUser)
         $reply = $this->getSMTPData();
 
-        if (strpos($reply, '334') !== 0) {
+        if (strpos($reply, '235') !== 0) { // strpos($reply, '334') !== 0
             $this->setErrorMessage(lang('Email.SMTPAuthUsername', [$reply]));
 
             return false;
         }
 
-        $this->sendData(base64_encode($this->SMTPPass));
-        $reply = $this->getSMTPData();
+        // $this->sendData(base64_encode());
+        // $reply = $this->getSMTPData();
 
-        if (strpos($reply, '235') !== 0) {
-            $this->setErrorMessage(lang('Email.SMTPAuthPassword', [$reply]));
+        // if (strpos($reply, '235') !== 0) {
+        //     $this->setErrorMessage(lang('Email.SMTPAuthPassword', [$reply]));
 
-            return false;
-        }
+        //     return false;
+        // }
 
         if ($this->SMTPKeepAlive) {
             $this->SMTPAuth = false;
