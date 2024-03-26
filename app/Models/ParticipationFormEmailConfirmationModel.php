@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ContentCarouselMainPageModel extends Model
+class ParticipationFormEmailConfirmationModel extends Model
 {
-    protected $table = 'ContentCarouselMainPage';
-    protected $primaryKey = 'id';
+    protected $table = 'ParticipationFormEmailConfirmation';
+    protected $primaryKey = 'participation_form';
 
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
 
-    // protected $returnType = \App\Entities\ContentCarouselMainPage::class;
+    // protected $returnType = \App\Entities\Node::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['image', 'text_html', 'url_link'];
+    protected $allowedFields = ['participation_form', 'token'];
 
     protected $useTimestamps = false;
 

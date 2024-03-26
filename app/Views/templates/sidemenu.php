@@ -13,11 +13,11 @@
         </div>
         <div class="flex flex-col flex-1 h-full overflow-auto">
             <ul class="flex-1 px-4">
-                <li><a class="justify-start w-full text-lg btn btn-ghost" href="/"><i data-lucide="home"></i> <?=lang('Pages.home')?></a></li>
+                <li><a class="justify-start w-full text-lg btn btn-ghost" href="/"><i data-lucide="home"></i> Home</a></li>
                 <?php if ($session->get('loggedIn')) { ?>
-                    <li><a class="justify-start w-full text-lg btn btn-ghost" href="/dashboard"><i data-lucide="activity"></i> <?=lang('Pages.dashboard')?></a></li>
+                    <li><a class="justify-start w-full text-lg btn btn-ghost" href="/dashboard"><i data-lucide="activity"></i> Dashboard</a></li>
                 <?php } else { ?>
-                    <li><a class="justify-start w-full text-lg btn btn-ghost" href="/Participate"><i data-lucide="pen-line"></i> <?=lang('Pages.participate')?></a></li>
+                    <li><a class="justify-start w-full text-lg btn btn-ghost" href="/Participate"><i data-lucide="pen-line"></i> Participate</a></li>
                 <?php } ?>
                 
             </ul>
@@ -28,14 +28,14 @@
                             <div class="w-full dropdown dropdown-top">
                                 <div role="button" tabindex="0" class="justify-start w-full text-lg btn btn-ghost"><i data-lucide="chevron-up"></i> <?=$session->get('user_data')['username']?></div>
                                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box w-full bg-zinc-300 dark:bg-zinc-950">
-                                    <li><a href="/profile"><?=lang('CustomTerms.updateProfile')?></a></li>
+                                    <li><a href="/profile">Update Profile</a></li>
                                     <li class="bg-black dark:bg-white"></li>
-                                    <li><button type="button" onclick="logout_modal.showModal()"><?=lang('Auth.logout')?></button></li>
+                                    <li><button type="button" onclick="logout_modal.showModal()">Logout</button></li>
                                 </ul>
                             </div>
                             
                         <?php } else { ?>
-                            <a class="justify-start w-full text-lg btn btn-ghost" href="/authentication/login"><i data-lucide="user"></i> <?=lang('Auth.login')?></a>
+                            <a class="justify-start w-full text-lg btn btn-ghost" href="/authentication/login"><i data-lucide="user"></i> Login</a>
                         <?php } ?>
                     </div>
                 </div>
@@ -46,12 +46,12 @@
 
 <dialog id="logout_modal" class="modal">
   <div class="modal-box bg-zinc-300 dark:bg-zinc-900">
-    <h3 class="text-lg font-bold"><?=lang('Auth.logout')?></h3>
-    <p class="py-4"><?=lang('Auth.confirmLogout')?></p>
+    <h3 class="text-lg font-bold">Logout</h3>
+    <p class="py-4">Are you sure you want to log out?</p>
     <div class="modal-action">
       <form method="dialog">
-        <button class="px-4 py-2 font-bold text-white bg-blue-500 shadow btn hover:bg-blue-700"><?=lang('CustomTerms.cancel')?></button>
-        <button class="px-4 py-2 font-bold text-white bg-blue-500 shadow btn hover:bg-blue-700" onclick="logout()"><?=lang('Auth.logout')?></button>
+        <button class="px-4 py-2 font-bold text-white bg-blue-500 shadow btn hover:bg-blue-700">Cancel</button>
+        <button class="px-4 py-2 font-bold text-white bg-blue-500 shadow btn hover:bg-blue-700" onclick="logout()">Logout</button>
       </form>
     </div>
   </div>

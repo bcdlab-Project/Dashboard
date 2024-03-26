@@ -15,55 +15,55 @@
     ?>
 
 <div class="self-center w-full p-6 px-8 mx-auto bg-opacity-50 rounded-lg lg:px-6 lg:w-3/5 xl:w-2/5 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950 h-fit">
-        <h1 class="mb-2 text-3xl font-light text-center"><?=lang('Pages.participate')?></h1>
+        <h1 class="mb-2 text-3xl font-light text-center">Participate</h1>
         <p></p>
         <form id="form" method="post" novalidate>
             <div id="first" class="space-y-5">
                 <div>
-                    <label class="font-medium"><?=lang('Auth.username')?></label>
-                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="text" name="username" id="username" required>
-                    <span class="text-red-500" id="username-error"></span>
+                    <label class="font-medium">Username</label>
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="text" name="requested_username" id="requested_username" required>
+                    <span class="text-red-500" id="requested_username-error"></span>
                 </div>
                 <div>
-                    <label class="font-medium"><?=lang('Auth.email')?></label>
-                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="email" name="email" id="email" required>
-                    <span class="text-red-500" id="email-error"></span>
+                    <label class="font-medium">Email Address</label>
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="email" name="requested_email" id="requested_email" required>
+                    <span class="text-red-500" id="requested_email-error"></span>
                 </div>
                 <div>
-                    <label class="font-medium"><?=lang('Auth.password')?></label>
-                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="password" name="password" id="password" required>
-                    <span class="text-red-500" id="password-error"></span>
+                    <label class="font-medium">Password</label>
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="password" name="requested_password" id="requested_password" required>
+                    <span class="text-red-500" id="requested_password-error"></span>
                 </div>
                 <div>
-                    <label class="font-medium"><?=lang('Auth.passwordConfirm')?></label>
+                    <label class="font-medium">Password (again)</label>
                     <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="password" name="confpassword" id="confpassword" required>
                     <span class="text-red-500" id="confpassword-error"></span>
                 </div>
 
                 <div class="flex items-center justify-end">
-                    <button id="Next" type="button" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"><?=lang('Pager.next')?></button>
+                    <button id="Next" type="button" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Next</button>
                 </div>
             </div>
 
             <div id="second" class="hidden space-y-5">
                 <div>
-                    <label class="font-medium"><?=lang('CustomTerms.whyParticipate')?></label>
-                    <textarea class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" name="whyParticipate" id="whyParticipate" rows="5" required></textarea>
-                    <span class="text-red-500" id="whyParticipate-error"></span>
+                    <label class="font-medium">Why Participate</label>
+                    <textarea class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" name="why_participate" id="why_participate" rows="5" required></textarea>
+                    <span class="text-red-500" id="why_participate-error"></span>
                 </div>
                 <div>
-                    <label class="font-medium"><?=lang('CustomTerms.workRole')?></label>
-                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="text" name="workRole" id="workRole">
-                    <span class="text-red-500" id="workRole-error"></span>
+                    <label class="font-medium">Work Role</label>
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="text" name="work_role" id="work_role">
+                    <span class="text-red-500" id="work_role-error"></span>
                 </div>
                 <div>
-                    <label class="font-medium"><?=lang('CustomTerms.githubProfile')?></label>
-                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="url" name="githubProfile" id="githubProfile">
-                    <span class="text-red-500" id="githubProfile-error"></span>
+                    <label class="font-medium">GitHub Profile</label>
+                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="url" name="github_profile" id="github_profile">
+                    <span class="text-red-500" id="github_profile-error"></span>
                 </div>
                 <div class="flex items-center justify-between">
-                    <button id="Back" type="button" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"><?=lang('Pager.previous')?></button>
-                    <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"><?=lang('Auth.requestRegistration')?></button>
+                    <button id="Back" type="button" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Previous</button>
+                    <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Request Registration</button>
                 </div>
             </div>
         </form>

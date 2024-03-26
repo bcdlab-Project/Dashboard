@@ -30,7 +30,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="<?=lang('Utilities.language')?>" class="<?=$theme?> color-scheme-<?=$theme?> scroll-smooth">
+<html lang="en" class="<?=$theme?> color-scheme-<?=$theme?> scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <title><?=esc($title)?></title>
@@ -48,18 +48,17 @@
         <a href="/" class="gap-0 px-1 btn btn-ghost"><span class="text-3xl text-bcdlab-b">b</span><span class="text-3xl">c</span><span class="text-3xl text-bcdlab-d">d</span><span class="text-3xl">lab</span><span> Project</span></a>
         <div class="flex items-center flex-1 ml-5">
             <ul class="items-center justify-center hidden space-x-6 md:flex">
-                <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a class="block" href="/"><?=lang('Pages.home')?></a></li>
+                <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a class="block" href="/">Home</a></li>
                 <!-- <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a href="javascript:void(0)" class="block" rel="nofollow">Customers</a></li> -->
                 <?php if ($session->get('loggedIn')) { ?>
-                    <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a class="block" href="/dashboard"><?=lang('Pages.dashboard')?></a></li>
+                    <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a class="block" href="/dashboard">Dashboard</a></li>
                 <?php } else { ?>
-                    <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a class="block" href="/Participate"><?=lang('Pages.participate')?></a></li>
+                    <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a class="block" href="/Participate">Participate</a></li>
                 <?php } ?>
                 
 
             </ul>
             <div class="flex items-center justify-end flex-1">
-                <a class="btn btn-ghost btn-circle" href="/utilities/changelanguage"><img src="<?=base_url()?>images/<?=lang('Utilities.language')?>.png" class="h-6" alt=""></a>
                 <button onclick="changeTheme()" class="btn btn-ghost btn-circle" href="/utilities/changetheme"><i id="changeTheme-icon-sun" class="<?=($theme === 'dark') ? '' : 'hidden'?>" data-lucide="sun"></i><i id="changeTheme-icon-moon" class="<?=($theme === 'dark') ? 'hidden' : ''?>" data-lucide="moon"></i></button>
                 <?php if (isset($hasNotification) && esc($hasNotification)) {?>
                     <button class="btn btn-ghost btn-circle" onclick="toggleNotificationmenu()">
@@ -75,13 +74,13 @@
                         <div class="w-full dropdown">
                             <div role="button" tabindex="0" class="btn btn-ghost btn-circle"><i data-lucide="circle-user-round"></i></div>
                             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box bg-zinc-300 dark:bg-zinc-950">
-                                <li><a class="text-nowrap" href="/profile"><?=lang('CustomTerms.updateProfile')?></a></li>
+                                <li><a class="text-nowrap" href="/profile">Update Profile</a></li>
                                 <li class="bg-black dark:bg-white"></li>
-                                <li><button class="text-nowrap" type="button" onclick="logout_modal.showModal()"><?=lang('Auth.logout')?></button></li>
+                                <li><button class="text-nowrap" type="button" onclick="logout_modal.showModal()">Logout</button></li>
                             </ul>
                         </div>
                     <?php } else { ?>
-                        <a class="px-1 text-base btn btn-ghost" href="/authentication/login"><?=lang('Auth.login')?></a>
+                        <a class="px-1 text-base btn btn-ghost" href="/authentication/login">Login</a>
                     <?php } ?>
                 </div>
             </div>

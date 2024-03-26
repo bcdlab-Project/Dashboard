@@ -14,7 +14,7 @@ class Main extends BaseController
             return redirect()->to('/authentication/login');
         }
 
-        $data['title'] = lang('Pages.dashboard');
+        $data['title'] = 'Dashboard';
         $data['pageMargin'] = true;
         $data['view'] = 'dashboard';
         $data['hasNotification'] = true;
@@ -22,7 +22,7 @@ class Main extends BaseController
         return view('templates/header', $data)
             . view('templates/notificationMenu')
             . view('dashboard/header')
-            . view('dashboard/' . getRoleInfo()['name_en'])
+            . view('dashboard/' . getRoleInfo()['name'])
             . view('templates/footer') 
             . view('templates/sidemenu');
     }

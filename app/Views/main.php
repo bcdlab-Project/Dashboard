@@ -40,27 +40,27 @@
     <div role="tablist" class="z-20 flex items-center w-full overflow-x-scroll text-sm fliped" style="outline: none;">
       <a id="about-nav" href="#about" data-state="active" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
         <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium text-nowrap">
-            <i data-lucide="info"></i><?=lang('MainPage.AboutUs')?>
+            <i data-lucide="info"></i>About Us
         </div>
       </a>
       <a id="join-nav" href="#join" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
         <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium text-nowrap">
-            <i data-lucide="users"></i><?=lang('MainPage.JoinUs')?>
+            <i data-lucide="users"></i>Join Us
         </div>
       </a>
       <a id="projects-nav" href="#projects" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
         <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium text-nowrap">
-            <i data-lucide="folder-kanban"></i><?=lang('MainPage.SomeProjects')?>
+            <i data-lucide="folder-kanban"></i>Some Projects
         </div>
       </a>
       <a id="collaborators-nav" href="#collaborators" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
         <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium text-nowrap">
-            <i data-lucide="hand-helping"></i><?=lang('MainPage.OurColaborators')?>
+            <i data-lucide="hand-helping"></i>Our Colaborators
         </div>
       </a>
       <a id="contact-nav" href="#contact" data-state="inactive" class="group outline-none py-1.5 border-b-2 border-white dark:border-zinc-800 text-gray-500 data-[state=active]:!border-bcdlab-d data-[state=active]:text-bcdlab-d">
         <div class="flex items-center gap-x-2 py-1.5 px-3 rounded-lg duration-150 group-hover:text-bcdlab-d group-hover:bg-gray-50 dark:group-hover:bg-zinc-900 font-medium text-nowrap">
-            <i data-lucide="mail"></i><?=lang('MainPage.ContactUs')?>
+            <i data-lucide="mail"></i>Contact Us
         </div>
       </a>
     </div>
@@ -74,7 +74,7 @@
 <!-- About Us -->
 
   <div id="about" class="flex flex-col gap-6">
-    <h1 class="text-3xl font-semibold sm:text-4xl pt-14"><?=lang('MainPage.AboutUs')?></h1>
+    <h1 class="text-3xl font-semibold sm:text-4xl pt-14">About Us</h1>
     <div class="flex justify-start">
       <div class="lg:w-1/2">
         <h1 class="mb-3 text-2xl">The Project</h1>
@@ -107,9 +107,9 @@
   <!-- Join Us -->
 
   <div id="join" class="flex flex-col">
-    <h1 class="mb-6 text-3xl font-semibold sm:text-4xl pt-14"><?=lang('MainPage.JoinUsComplete')?></h1>
-    <p class="text-justify"><?=lang('MainPage.JoinUsIntro')?>:</p>
-    <h2 class="mt-6 mb-4 text-3xl"><?=lang('MainPage.AvailableRoles')?>:</h2>
+    <h1 class="mb-6 text-3xl font-semibold sm:text-4xl pt-14">Join Us in Building Something Great!</h1>
+    <p class="text-justify">Our project thrives on community collaboration, and we're excited to invite you to be a part of it. Your involvement can make a significant impact, and together, we can achieve something extraordinary. We currently have various roles available, each offering a unique opportunity for you to contribute to the growth and success of our community. Explore the available roles below and find the perfect fit for your skills and interests:</p>
+    <h2 class="mt-6 mb-4 text-3xl">Available Roles:</h2>
     <ul class="grid gap-3 lg:grid-cols-2 2xl:grid-cols-3">
       <li class="px-4 py-5 duration-150 bg-opacity-50 rounded-xl hover:!bg-opacity-25 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950">
         <div class="flex items-center gap-x-3">
@@ -119,11 +119,11 @@
             </svg>
           </div>
           <div>
-              <span class="text-lg font-medium text-bcdlab-d"><?=lang('Roles.DiscordModerator')?></span>
-              <h3><?=lang('Roles.DiscordModShortPhrase')?></h3>
+              <span class="text-lg font-medium text-bcdlab-d">Discord Moderator</span>
+              <h3>The keepers of the peace in our digital hangout</h3>
           </div>
         </div>
-        <p class="mx-2 mt-2 sm:text-sm"><?=lang('Roles.DiscordDescription')?></p>
+        <p class="mx-2 mt-2 sm:text-sm">When it comes to Discord Moderators, they're the ones making sure our online space stays positive. They enforce rules, sort out conflicts, and keep things welcoming.</p>
       </li>
 
       <li class="px-4 py-5 duration-150 bg-opacity-50 rounded-xl hover:!bg-opacity-25 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950">
@@ -132,11 +132,11 @@
               <i data-lucide="shield"></i>
           </div>
           <div>
-              <span class="text-lg font-medium text-bcdlab-d"><?=lang('Roles.Administrator')?></span>
-              <h3><?=lang('Roles.AdminShortPhrase')?></h3>
+              <span class="text-lg font-medium text-bcdlab-d">Administrator</span>
+              <h3>The big shots making sure things run smoothly</h3>
           </div>
         </div>
-        <p class="mx-2 mt-2 sm:text-sm"><?=lang('Roles.AdminDescription')?></p>
+        <p class="mx-2 mt-2 sm:text-sm">Administrators? They're the ones steering the ship. Making decisions, handling security, and keeping the project running smooth day in, day out.</p>
       </li>
 
       <li class="px-4 py-5 duration-150 bg-opacity-50 rounded-xl hover:!bg-opacity-25 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950">
@@ -145,11 +145,11 @@
               <i data-lucide="users"></i>
           </div>
           <div>
-              <span class="text-lg font-medium text-bcdlab-d"><?=lang('Roles.Collaborator')?></span>
-              <h3><?=lang('Roles.CollaboratorShortPhrase')?></h3>
+              <span class="text-lg font-medium text-bcdlab-d">Collaborator</span>
+              <h3>The Project buddies powering up the game</h3>
           </div>
         </div>
-        <p class="mx-2 mt-2 sm:text-sm"><?=lang('Roles.CollaboratorDescription')?></p>
+        <p class="mx-2 mt-2 sm:text-sm">Collaborators play a key role, contributing with self-hosted nodes, boosting our project capabilities, and fostering collective growth.</p>
       </li>
 
       <li class="px-4 py-5 duration-150 bg-opacity-50 rounded-xl hover:!bg-opacity-25 bg-zinc-300 dark:bg-opacity-50 dark:bg-zinc-950">
@@ -158,11 +158,11 @@
               <i data-lucide="code"></i>
           </div>
           <div>
-              <span class="text-lg font-medium text-bcdlab-d"><?=lang('Roles.CodeReviewer')?></span>
-              <h3><?=lang('Roles.CodeReviewerShortPhrase')?></h3>
+              <span class="text-lg font-medium text-bcdlab-d">Code Reviewer</span>
+              <h3>The code wizards ensuring our codes are top-notch</h3>
           </div>
         </div>
-        <p class="mx-2 mt-2 sm:text-sm"><?=lang('Roles.CodeReviewerDescription')?></p>
+        <p class="mx-2 mt-2 sm:text-sm">Carefull!! That the Code Reviewers are like the watchful eyes on all code. They confirm user code, offer feedback, and help keep our tech stay functional and secure.</p>
       </li>
     </ul>
   </div>
@@ -187,8 +187,8 @@
   <div class="z-10 text-gray-900 dark:text-gray-300">
     <div class="gap-12 lg:flex">
       <div class="max-w-md">
-          <h3 class="text-3xl font-semibold sm:text-4xl"><?=lang('MainPage.ContactUs')?></h3>
-          <p class="mt-3"><?=lang('MainPage.contactDescription')?></p>
+          <h3 class="text-3xl font-semibold sm:text-4xl">Contact Us</h3>
+          <p class="mt-3">If you have any questions or would like to get in touch, please feel free to contact us. We are always looking for new opportunities to collaborate and grow our community. We look forward to hearing from you!</p>
       </div>
       <div>
         <ul class="items-stretch mt-12 gap-y-6 gap-x-12 md:flex lg:gap-x-0 lg:mt-0">
@@ -275,7 +275,7 @@ function loadCaroucel(slides) {
   const slide1 = slides[0];
   const slide2 = slides[1];
   const slide3 = slides[2];
-  const text = slide2.text_html_<?=lang('Utilities.language')?>;
+  const text = slide2.text_html;
   
   currentId = slide2.id;
 

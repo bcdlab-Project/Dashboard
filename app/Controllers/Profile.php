@@ -24,12 +24,14 @@ class Profile extends BaseController
     }
 
     public function getTest() {
-        $email = \Config\Services::email();
+        // $gg = model('ParticipationFormModel');
+        // $gg->find(7)->initializeEmailConfirmation();
+        // $email = \Config\Services::email();
 
-        $email->setTo('rafaelmoreira151020@gmail.com');
-        $email->setSubject('This email is a test for the filter ');
-        $email->setMessage('Testing the email filter.');
+        // $email->setTo('gabriel_silva_66@hotmail.com');
+        // $email->setSubject('This email is a test email');
+        // $email->setMessage('Testing the email service.');
 
-        echo json_encode($email->send());
+        // echo json_encode($email->send());
     }
 }

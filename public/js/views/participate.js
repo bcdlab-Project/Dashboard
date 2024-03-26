@@ -10,10 +10,8 @@ const submitting = async () => {
             body: formDT
         })
 
-        console.log(response)
-
         if (response.status == 200) {
-            // window.location.href = '/'
+            window.location.href = '/'
         } else {
             console.log(response)
         }
