@@ -32,9 +32,10 @@ class Participate extends BaseController
         $data['title'] = 'Participate';
         $data['pageMargin'] = false;
         $data['view'] = 'participate';
+        $data['scripts'] = ['forms.js'];
 
         return view('templates/header', $data)
-            . view('participate')
+            . view('participate/main')
             . view('templates/footer') 
             . view('templates/sidemenu');
     }
@@ -84,8 +85,8 @@ class Participate extends BaseController
 
             $result = model('ParticipationFormModel')->insert($data);
             if ($result) {
+                model('ParticipationFormModel')->find($result)->initializeEmailConfirmation();
                 return $this->setResponseFormat('json')->respond(['ok' => true], 200);
-
             } else {
                 return $this->setResponseFormat('json')->respond(['ok' => false], 200);
             }
@@ -94,16 +95,37 @@ class Participate extends BaseController
     }
 
     public function getConfirmEmail() {
-        $inputs = $this->request->getGet(['id','email','token']);
-
+        $inputs = $this->request->getGet(['id','token']);
 
         $data['title'] = 'Confirm Email';
-        $data['pageMargin'] = true;
+        $data['pageMargin'] = false;
         $data['view'] = 'confirmEmail';
 
+        $data['messageok'] = false;
+
+        if (!isset($inputs['id']) || !isset($inputs['token'])) {
+            $data['message'] = 'Something went wrong. Please try again later.';
+        } else {
+            $model = model('ParticipationFormModel');
+            $form = $model->find($inputs['id']);
+    
+            if ($form == null) {
+                $data['message'] = 'Something went wrong. Please try again later.';
+            } else if ($form->hasEmailConfirmed()) {
+                $data['messageok'] = true;
+                $data['message'] = 'Email already confirmed';
+            } else if ($form->hasExpiredEmailConfirmation()) {
+                $data['message'] = 'Email confirmation has expired. Please try to make a new Participation Request.';
+            } else if ($form->confirmEmail($inputs['token'])) {
+                $data['messageok'] = true;
+                $data['message'] = 'Email confirmed successfully';
+            } else {
+                $data['message'] = 'Something went wrong. Please try again later.';
+            }
+        }
+
         return view('templates/header', $data)
-            .json_encode($inputs)
-            // . view('confirmEmail')
+            . view('participate/confirmEmail')
             . view('templates/footer') 
             . view('templates/sidemenu');
     }

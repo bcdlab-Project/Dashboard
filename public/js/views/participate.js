@@ -4,6 +4,8 @@ const submitting = async () => {
     if (document.getElementById("second").classList.contains('hidden')) {
         await goNext();
     } else if (await validate('second')) {
+        forms.startWaiting();
+
         var formDT = new FormData(document.getElementById("form"))
         var response = await fetch('/participate', {
             method: 'POST',
@@ -11,7 +13,7 @@ const submitting = async () => {
         })
 
         if (response.status == 200) {
-            window.location.href = '/'
+            forms.showMessage();
         } else {
             console.log(response)
         }

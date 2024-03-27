@@ -123,4 +123,65 @@ class User extends Entity
         $UserDiscordModel = model('UserDiscordModel');
         return boolval($UserDiscordModel->where('user',$this->attributes['id'])->first());
     }
+
+    public function sendPasswordRecovery() {
+        helper('text');
+        $token = random_string('alnum',32);
+
+        $RecovPassModel = model('UserPasswordRecoveryModel');
+
+        if ($RecovPassModel->find($this->attributes['id']) != null) {
+            return false;
+        }
+
+        $RecovPassModel->insert(['user' => $this->attributes['id'], 'token' => password_hash($token, PASSWORD_DEFAULT)]);
+
+        $email = \Config\Services::email();
+
+        $email->setTo($this->attributes['email']);
+        $email->setSubject('Recover your password');
+        $email->setMessage("To Recover your password, please click on the following link: <a href='".site_url('authentication/recoverpassword?id='.$this->attributes['id'].'&token='.$token)."'>Recover Password</a> <br> If you did not request this, please ignore this email.");
+
+        return $email->send();
+    }
+
+    public function recoverPassword($token, $newpass) {
+        $RecovPassModel = model('UserPasswordRecoveryModel');
+
+        if (! $this->validatePasswordRecovery($token)) {
+            return false;
+        }
+        
+        model('UserModel')->update($this->attributes['id'], ['password' => password_hash($newpass, PASSWORD_DEFAULT)]);
+        $RecovPassModel->delete($this->attributes['id']);
+
+        $email = \Config\Services::email();
+
+        $email->setTo($this->attributes['email']);
+        $email->setSubject('Security Alert');
+        $email->setMessage("Your password has been changed. If you did not request this, please contact us. <br> If you did, please ignore this email.");
+
+        return $email->send();
+
+        return true;
+    }
+
+    public function validatePasswordRecovery($token) {
+        $RecovPassModel = model('UserPasswordRecoveryModel');
+
+        $recovPass = $RecovPassModel->find($this->attributes['id']);
+
+        if ($recovPass == null) {
+            return false;
+        }
+        if ($recovPass['expiration_date'] < date('Y-m-d H:i:s')) {
+            $RecovPassModel->delete($this->attributes['id']);
+            return false;
+        }
+        
+        if (password_verify($token, $recovPass['token'])) {
+            return true;
+        }
+        return false;
+    }
 }

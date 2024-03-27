@@ -64,4 +64,8 @@ class UserModel extends Model
             return false;
         }
     }
+
+    public function getByEmail($email) {
+        return $this->where('email', $email)->first();
+    }
 }

@@ -22,7 +22,7 @@ class Authentication extends BaseController
         $data['view'] = 'login';
 
         return view('templates/header', $data)
-            . view('login')
+            . view('authentication/login')
             . view('templates/footer') 
             . view('templates/sidemenu');
     }
@@ -46,12 +46,83 @@ class Authentication extends BaseController
 
     public function getForgotpassword() {
         $data['title'] = 'Password Recovery';
-        $data['centerContent'] = true;
-        $data['error'] = false;
+        $data['pageMargin'] = false;
+        $data['view'] = 'forgotpassword';
+        $data['scripts'] = ['forms.js'];
 
         return view('templates/header', $data)
+        . view('authentication/forgotpassword')
         . view('templates/footer') 
         . view('templates/sidemenu');
+    }
+
+    public function postForgotpassword() {
+        $data['email'] = $this->request->getPost('email');
+
+        if (! $this->validateData($data, ['email' => 'max_length[254]|valid_email'])) {
+            $errors = $this->validator->getErrors();
+            $errors['email'] = str_replace('email','Email',$errors['email']);
+            $errors['ok'] = false;
+
+            return $this->setResponseFormat('json')->respond($errors, 200);
+        }
+        $userModel = model('UserModel');
+        $user = $userModel->getByEmail($data['email']);
+        if ($user != null) {
+            $user->sendPasswordRecovery();
+        }
+        return $this->setResponseFormat('json')->respond(['ok' => true],200);
+    }
+
+    public function getRecoverPassword() {
+        $data['title'] = 'Recover Password';
+        $data['pageMargin'] = false;
+        $data['view'] = 'recoverpassword';
+        $data['scripts'] = ['forms.js'];
+
+        $userModel = model('UserModel');
+        $user = $userModel->find($this->request->getGet('id'));
+        if ($user != null) {
+            if ($user->validatePasswordRecovery($this->request->getGet('token'))) {
+                return view('templates/header', $data)
+                . view('authentication/recoverpassword')
+                . view('templates/footer') 
+                . view('templates/sidemenu');
+            }
+        }
+        return redirect()->to('/authentication/forgotpassword');
+    }
+
+    public function postRecoverPassword() {
+        $data = $this->request->getPost(['token','id','password','confpassword']);
+        $rules = [        
+            'password' => 'required|max_length[255]|min_length[10]',
+            'confpassword' => 'required|max_length[255]|matches[password]',
+        ];
+        $paramAlias = [
+            'password' => 'Password',
+            'confpassword' => 'Confirmation Password',
+        ];
+
+
+        $userModel = model('UserModel');
+        $user = $userModel->find($data['id']);
+        if ($user != null) {
+            if (!$this->validateData($data, $rules)){
+                $errors = $this->validator->getErrors();
+                foreach ($errors as $key => $value) {
+                    $errors[$key] =  str_replace($key,$paramAlias[$key],$value);
+                }
+                $errors['ok'] = false;
+                $errors['hasErrors'] = true;
+                return $this->setResponseFormat('json')->respond($errors, 200);
+            }
+            if ($user->recoverPassword($data['token'], $data['password'])) {
+                return $this->setResponseFormat('json')->respond(['ok' => true],200);
+            }
+            return $this->setResponseFormat('json')->respond(['ok' => false],200);
+        }
+        return $this->setResponseFormat('json')->respond(['ok' => false],401);
     }
 
     public function getGithub() {
