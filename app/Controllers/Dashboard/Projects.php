@@ -15,7 +15,7 @@ class Projects extends BaseController
         return view('templates/header', $data)
             . view('templates/notificationMenu')
             . view('dashboard/header')
-            //. view('dashboard/projects')
+            . view('dashboard/projects')
             . view('templates/footer') 
             . view('templates/sidemenu');
     }

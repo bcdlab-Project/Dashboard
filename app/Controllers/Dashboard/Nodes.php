@@ -11,11 +11,12 @@ class Nodes extends BaseController
         $data['pageMargin'] = true;
         $data['view'] = 'nodes';
         $data['hasNotification'] = true;
+        $data['scripts'] = [];
 
         return view('templates/header', $data)
             . view('templates/notificationMenu')
             . view('dashboard/header')
-            //. view('dashboard/nodes')
+            . view('dashboard/nodes')
             . view('templates/footer') 
             . view('templates/sidemenu');
     }

@@ -13,9 +13,9 @@
         $theme = get_cookie('theme');
     }
 
-    if (!$session->has('language')) {
-        $session->set('language', $negotiate->language(['en','pt']));
-    }
+    // if (!$session->has('language')) {
+    //     $session->set('language', $negotiate->language(['en','pt']));
+    // }
 
     if (get_cookie('loggedIn') && !$session->get('loggedIn')) {
         if (get_cookie('loggedIn') == 'session') {

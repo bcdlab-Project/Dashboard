@@ -1,0 +1,28 @@
+<!-- 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<iframe src="http://192.168.22.30:3000/d-solo/fdh5xlq92zsaoc/new-dashboard?orgId=1&from=1711730095655&to=1711751695656&theme=light&panelId=1" class="w-1/2" frameborder="0"></iframe>
+
+
+
+    <iframe id="dashboard"></iframe>
+
+    <script type="text/javascript">
+  $.ajax(
+    {
+      type: 'GET',
+      url: 'http://192.168.22.30:3000/d-solo/fdh5xlq92zsaoc/new-dashboard?orgId=1&from=1711730095655&to=1711751695656&theme=light&panelId=1',
+      contentType: 'application/json',
+      beforeSend: function(xhr, settings) {
+        xhr.setRequestHeader(
+          'Authorization', 'Basic ' + window.btoa('viewer:viewer')
+        );
+      },
+      success: function(data) {
+        $('#dashboard').attr('src', 'http://192.168.22.30:3000/d-solo/fdh5xlq92zsaoc/new-dashboard?orgId=1&from=1711730095655&to=1711751695656&theme=light&panelId=1');
+        $('#dashboard').contents().find('html').html(data);
+      }
+    }
+  );
+</script> -->

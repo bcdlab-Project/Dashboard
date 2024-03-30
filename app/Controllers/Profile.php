@@ -22,16 +22,4 @@ class Profile extends BaseController
             . view('templates/footer') 
             . view('templates/sidemenu');
     }
-
-    public function getTest() {
-        // $gg = model('ParticipationFormModel');
-        // $gg->find(7)->initializeEmailConfirmation();
-        // $email = \Config\Services::email();
-
-        // $email->setTo('gabriel_silva_66@hotmail.com');
-        // $email->setSubject('This email is a test email');
-        // $email->setMessage('Testing the email service.');
-
-        // echo json_encode($email->send());
-    }
 }

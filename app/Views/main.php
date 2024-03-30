@@ -223,11 +223,11 @@
             <h4 class="text-lg font-medium xl:text-xl">Try our Email</h4>
             <p>We also have our email, if you prefer this method of contact.</p>
             <div class="flex flex-wrap items-center gap-1 text-sm font-medium text-bcdlab-d">
-              <a href="mailto:contact@bcdlab.xyz" class="flex items-center gap-1 text-sm font-medium duration-150 text-nowrap hover:opacity-75">
+              <a href="mailto:contact@mail.bcdlab.xyz" class="flex items-center gap-1 text-sm font-medium duration-150 text-nowrap hover:opacity-75">
                 Send us an Email
                 <i data-lucide="arrow-right"></i>
               </a>
-              <span>(contact@bcdlab.xyz)</span>
+              <span>(contact@mail.bcdlab.xyz)</span>
             </div>
           </li>
         </ul>

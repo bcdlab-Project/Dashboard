@@ -13,10 +13,10 @@ class Utilities extends BaseController
     //     return $this->setResponseFormat('json')->respond(['ok' => true, 'new_theme' => $this->session->get('theme')], 200);
     // }
 
-    public function getChangelanguage() {
-        $this->session->set('language', (($this->session->get('language') === 'en') ? 'pt' : 'en'));
-        return redirect()->to($_SERVER['HTTP_REFERER']);
-    }
+    // public function getChangelanguage() {
+    //     $this->session->set('language', (($this->session->get('language') === 'en') ? 'pt' : 'en'));
+    //     return redirect()->to($_SERVER['HTTP_REFERER']);
+    // }
 
     // public function getTest() {
     //     $participationFormModel = new \App\Models\ParticipationFormModel();
