@@ -95,3 +95,4 @@ function loadDisconnectModal(type) {
     document.getElementById('disconnect_modal_button').setAttribute('onclick', 'disconnect' + type + '()');
     document.getElementById('disconnect_modal').showModal();
 }
+

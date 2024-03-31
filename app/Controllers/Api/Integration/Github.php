@@ -111,7 +111,7 @@ class Github extends Controller
                 $user = $userModel->getByGithub($githubUserData['id']);
         
                 if ($user) { 
-                    $user->login();
+                    $user->loadUserLoggin();
                     $user->setGithubToken($tokenData);
                 }
 

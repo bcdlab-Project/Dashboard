@@ -137,7 +137,7 @@ class Authentication extends BaseController
         $this->session->remove('GitHubToken');
 
         if ($user) { 
-            $user->login();
+            $user->loadUserLoggin();
             $user->setGithubToken($tempToken);
             return redirect()->to('/dashboard');
         } else { return Authentication::getLogin(true); } //Can give error

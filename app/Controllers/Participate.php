@@ -9,7 +9,7 @@ class Participate extends BaseController
     use ResponseTrait;
 
     private $validationRules = [
-        'requested_username' => 'required|max_length[30]',
+        'requested_username' => 'required|max_length[25]',
         'requested_email'    => 'required|max_length[254]|valid_email',
         'requested_password' => 'required|max_length[255]|min_length[10]',
         'confpassword' => 'required|max_length[255]|matches[requested_password]',

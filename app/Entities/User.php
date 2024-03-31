@@ -42,12 +42,7 @@ class User extends Entity
 
     }
     
-    public function login() {
-        self::loadUserLoggin();
-    }
-
-
-    private function loadUserLoggin() {
+    public function loadUserLoggin() {
         $session = session();
         $userData = [
             'id' => $this->attributes['id'],

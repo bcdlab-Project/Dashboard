@@ -25,7 +25,7 @@
         $agent = $request->getUserAgent();
         $user = $userModel->getByCookie($agent->getAgentString());
         if ($user) { 
-            $user->login();
+            $user->loadUserLoggin();
         }
     }
 ?>

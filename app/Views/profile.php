@@ -4,11 +4,12 @@
 <div class="py-5 space-y-5">
     <div>
         <h1 class="text-4xl font-medium">Update Profile</h1>
-        <h3 class="text-2xl">Hii Nerexbcd, here is your Profile.</h3>
+        <h3 class="text-2xl">Hii <?=$session->get('user_data')['username']?>, here is your Profile.</h3>
     </div>
     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <!-- Username -->
-        <form id="updateUsernameForm" class="col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50" novalidate>
+        <form id="updateUsernameForm" class="relative col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50" novalidate>
+            <div class="absolute top-0 right-0 items-center justify-center hidden w-full h-full rounded-lg waiting-mask bg-overlay"><i class="animate-spin" data-lucide="loader-2" style="width: 40px; height: 40px;"></i></div>
             <h1 class="text-2xl font-medium">Update Username</h1>
             <div>
                 <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="text" name="username" id="username" required value="<?=$session->get('user_data')['username']?>">
@@ -19,7 +20,8 @@
             </div>
         </form>
         <!-- Email -->
-        <form id="updateEmailForm" class="col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50" novalidate>
+        <form id="updateEmailForm" class="relative col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50" novalidate>
+            <div class="absolute top-0 right-0 items-center justify-center hidden w-full h-full rounded-lg waiting-mask bg-overlay"><i class="animate-spin" data-lucide="loader-2" style="width: 40px; height: 40px;"></i></div>
             <h1 class="text-2xl font-medium">Update Email</h1>
             <div>
                 <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="email" name="email" id="email" required value="<?=$session->get('user_data')['email']?>">
@@ -30,7 +32,8 @@
             </div>
         </form>
         <!-- Password -->
-        <form id="updatePasswordForm" class="col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50" novalidate>
+        <form id="updatePasswordForm" class="relative col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50" novalidate>
+            <div class="absolute top-0 right-0 items-center justify-center hidden w-full h-full rounded-lg waiting-mask bg-overlay"><i class="animate-spin" data-lucide="loader-2" style="width: 40px; height: 40px;"></i></div>
             <h1 class="text-2xl font-medium">Update Password</h1>
             <div class="space-y-2">
                 <div>
@@ -129,4 +132,81 @@
 <script>
     var dataPass = {};
     dataPass["userId"]  = <?=$session->get('user_data')['id']?>;
+</script>
+
+<script>
+    document.getElementById('updateUsernameForm').addEventListener('submit', function(e) {
+        e.preventDefault();        
+        forms.startMultipleWaiting();
+        fetch('/profile/updateUsername', {
+            method: 'POST',
+            body: new FormData(document.getElementById("updateUsernameForm"))
+        })
+        .then(response => response.json())
+        .then(data => {
+            forms.stopMultipleWaiting();
+            if (data.ok) {
+                document.getElementById("username-error").innerHTML = " "
+                document.getElementById("username").classList.remove('form-error')
+                alert('Username Updated Successfully');
+            } else {
+                document.getElementById("username").classList.add('form-error')
+                document.getElementById('username-error').innerText = data.username;
+            }
+        });
+    });
+
+    document.getElementById('updateEmailForm').addEventListener('submit', function(e) {
+        e.preventDefault();        
+        forms.startMultipleWaiting();
+        fetch('/profile/updateEmail', {
+            method: 'POST',
+            body: new FormData(document.getElementById("updateEmailForm"))
+        })
+        .then(response => response.json())
+        .then(data => {
+            forms.stopMultipleWaiting();
+            if (data.ok) {
+                document.getElementById("email-error").innerHTML = " "
+                document.getElementById("email").classList.remove('form-error')
+                alert('Email Updated Successfully');
+            } else {
+                document.getElementById("email").classList.add('form-error')
+                document.getElementById('email-error').innerText = data.username;
+            }
+        });
+    });
+
+    document.getElementById('updatePasswordForm').addEventListener('submit', function(e) {
+        e.preventDefault();        
+        forms.startMultipleWaiting();
+        fetch('/profile/updatePassword', {
+            method: 'POST',
+            body: new FormData(document.getElementById("updatePasswordForm"))
+        })
+        .then(response => response.json())
+        .then(data => {
+            forms.stopMultipleWaiting();
+
+            document.getElementById("password").classList.remove('form-error');
+            document.getElementById('password-error').innerText = " ";
+            document.getElementById("confpassword").classList.remove('form-error');
+            document.getElementById('confpassword-error').innerText = " ";
+
+            if (data.ok) {
+                document.getElementById("password").value = "";
+                document.getElementById("confpassword").value = "";
+                alert('Password Updated Successfully');
+            } else {
+                if (data.password) {
+                    document.getElementById("password").classList.add('form-error');
+                    document.getElementById('password-error').innerText = data.password;
+                }
+                if (data.confpassword) {
+                    document.getElementById("confpassword").classList.add('form-error');
+                    document.getElementById('confpassword-error').innerText = data.confpassword;
+                }
+            }
+        });
+    });
 </script>
