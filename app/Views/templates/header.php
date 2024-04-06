@@ -34,16 +34,22 @@
 <head>
     <meta charset="UTF-8">
     <title><?=esc($title)?></title>
-    <!-- <meta name="description" content="The small framework with powerful features"> -->
+    <meta name="description" content="Community Hosting: A Collaborative Project by Tech Enthusiasts, for Tech Enthusiasts">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex">
+    <meta name="robots" content="nofollow, noarchive, notranslate, noimageindex">
+    <meta name="keywords" content="hosting, community, project, developers, tech enthusiasts, collaborative" />
     <meta name="google-site-verification" content="2LEKDXtQ04UFdiegGRymQBRk6PHqbNhDA98WhLdJb9g">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="<?=base_url()?>css/styles.css">
     <script src="<?=base_url()?>js/header.js"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body class="relative min-h-screen text-black bg-white dark:bg-zinc-800 dark:text-white">
+    <div itemscope itemtype="https://schema.org/WebSite">
+        <meta itemprop="url" content="https://bcdlab.xyz/"/>
+        <meta itemprop="name" content="bcdLab Project"/>
+        <meta itemprop="alternateName" content="bcdLab"/>
+    </div>    
     <header class="absolute top-0 z-10 flex items-center w-full p-2 px-2 text-white md:px-24 xl:px-40 bg-zinc-900">
         <a href="/" class="gap-0 px-1 btn btn-ghost"><span class="text-3xl text-bcdlab-b">b</span><span class="text-3xl">c</span><span class="text-3xl text-bcdlab-d">d</span><span class="text-3xl">lab</span><span> Project</span></a>
         <div class="flex items-center flex-1 ml-5">

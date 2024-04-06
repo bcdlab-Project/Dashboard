@@ -7,6 +7,12 @@ use App\Controllers\BaseController;
 class Form_approvals extends BaseController
 {
     public function getIndex() {
+        helper('permissions');
+
+        if (!admin_Permission()) {
+            return redirect()->to('/authentication/login');
+        }
+
         $data['title'] = 'Form Approvals';
         $data['pageMargin'] = true;
         $data['view'] = 'form_approvals';

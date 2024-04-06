@@ -16,6 +16,8 @@ class ParticipationForm extends Entity
             return false;
         }
 
+        echo json_encode($token);
+
         $EmailConfModel->insert(['participation_form' => $this->attributes['id'], 'token' => password_hash($token, PASSWORD_DEFAULT)]);
 
         $email = \Config\Services::email();
@@ -58,9 +60,10 @@ class ParticipationForm extends Entity
         
         if ($emailConf['expiration_date'] < date('Y-m-d H:i:s')) {
             return false;
+
         }
 
-        if (password_verify($token, $emailConf['token'])) {
+        if (!password_verify($token, $emailConf['token'])) {
             return false;
         }
 

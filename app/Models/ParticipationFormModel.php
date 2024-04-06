@@ -9,12 +9,12 @@ class ParticipationFormModel extends Model
     protected $table = 'ParticipationForms';
     protected $primaryKey = 'id';
 
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
 
     protected $returnType = \App\Entities\ParticipationForm::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['requested_username', 'requested_password', 'requested_email', 'why_participate', 'work_role','github_url'];
+    protected $allowedFields = ['id','requested_username', 'requested_password', 'requested_email', 'why_participate', 'work_role','github_url'];
 
     protected $useTimestamps = false;
 

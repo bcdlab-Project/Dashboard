@@ -29,6 +29,11 @@ class Participate extends BaseController
     ];
 
     public function getIndex() {
+        helper('permissions');
+        if (loggedIn_Permission()) {
+            return redirect()->to(site_url('dashboard'));
+        }
+
         $data['title'] = 'Participate';
         $data['pageMargin'] = false;
         $data['view'] = 'participate';
@@ -67,6 +72,11 @@ class Participate extends BaseController
     }
 
     public function postIndex() {
+        helper('permissions');
+        if (loggedIn_Permission()) {
+            return $this->setResponseFormat('json')->respond(['ok' => false], 401);
+        }
+
         $data = $this->request->getPost(['requested_username','requested_email','requested_password','confpassword','why_participate','work_role','github_profile']);
         $rules = $this->validationRules;
 
@@ -83,6 +93,11 @@ class Participate extends BaseController
         } else {
             $data["requested_password"] = password_hash($data['requested_password'], PASSWORD_DEFAULT);
 
+
+            $data['id'] = model('FormModel')->insert(['type' => 1],true);
+
+            echo $data['id'];
+
             $result = model('ParticipationFormModel')->insert($data);
             if ($result) {
                 model('ParticipationFormModel')->find($result)->initializeEmailConfirmation();
@@ -96,7 +111,7 @@ class Participate extends BaseController
 
     public function getConfirmEmail() {
         $inputs = $this->request->getGet(['id','token']);
-
+        
         $data['title'] = 'Confirm Email';
         $data['pageMargin'] = false;
         $data['view'] = 'confirmEmail';
@@ -129,5 +144,4 @@ class Participate extends BaseController
             . view('templates/footer') 
             . view('templates/sidemenu');
     }
-
 }

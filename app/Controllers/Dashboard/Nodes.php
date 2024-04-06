@@ -7,6 +7,12 @@ use App\Controllers\BaseController;
 class Nodes extends BaseController
 {
     public function getIndex() {
+        helper('permissions');
+
+        if (!admin_Permission()) {
+            return redirect()->to('/authentication/login');
+        }
+        
         $data['title'] = 'Nodes';
         $data['pageMargin'] = true;
         $data['view'] = 'nodes';

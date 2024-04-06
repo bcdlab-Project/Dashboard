@@ -26,3 +26,6 @@
     }
   );
 </script> -->
+
+<iframe src="https://gra.bc.dawg/d-solo/edhnkbg2lsdfkf/bcdlab-project?orgId=1&refresh=auto&theme=light&panelId=1" frameborder="0" class="w-1/2 pointer-events-none aspect-video"></iframe>
+  <iframe src="https://gra.bc.dawg/d-solo/edhnkbg2lsdfkf/bcdlab-project?orgId=1&refresh=auto&theme=light&panelId=1" frameborder="0" class="w-1/2 pointer-events-none aspect-video"></iframe>
