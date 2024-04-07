@@ -1,2 +1,2 @@
-# WebPage
-bcdlab-Project WebPage with control dashboard for users
+# Dashboard
+bcdlab-Project control dashboard
