@@ -23,5 +23,5 @@
     <h1 class="mb-2 text-3xl font-light">Recover Password</h1>
     <p id="message" class="text-xl font-semibold data-[ok=true]:text-green-400 text-red-400" data-ok=false>Your Password has been recoverd with success!</p>
     <p class="mt-4 underline underline-offset-2"><a href="/authentication/forgotpassword">If something Went Wrong, try again!</a></p>
-    <p class="mt-4 underline underline-offset-2"><a href="/authentication/login">Go to Login Page</a></p>
+    <p class="mt-4 underline underline-offset-2"><a href="/login">Go to Login Page</a></p>
 </div>

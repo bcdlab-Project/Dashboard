@@ -18,6 +18,8 @@ class Discord extends Controller
     private $redirect_url;
     private $apiURLBase;
 
+
+    
     public function __construct()
     {
         $config = config('DiscordIntegration');
@@ -54,8 +56,8 @@ class Discord extends Controller
 
         if (!loggedIn_Permission()) { return $this->fail("Error",401); } // give error
 
-        $UserDiscordModel = model('UserDiscordModel');
-        if ($UserDiscordModel->find($session->get('user_data')['id'])) { return $this->fail("Error",400); } // give error
+        $userModel = model('UserModel');
+        if ($userModel->find($session->get('user_data')['id'])->hasDiscord()) { return $this->fail("Error",400); } // give error
 
         return $this->setResponseFormat('json')->respond(['ok' => true, 'url' => $this->prepareURL("connect")],200);
     }
@@ -66,11 +68,12 @@ class Discord extends Controller
 
         if (!loggedIn_Permission()) { return $this->fail("Error",401); } // give error
 
-        $UserDiscordModel = model('UserDiscordModel');
-        if (!$UserDiscordModel->find($session->get('user_data')['id'])) { return $this->fail("Error",400); } // give error
-
         $userModel = model('UserModel');
         $user = $userModel->find($session->get('user_data')['id']);
+
+        if (!$user->hasDiscord()) { return $this->fail("Error",400); } // give error
+
+
         $user->unsetDiscord();
 
         return $this->setResponseFormat('json')->respond(['ok' => true],200);

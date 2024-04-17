@@ -52,27 +52,15 @@
         <!-- Github -->
         <div class="col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50">
             <h1 class="text-2xl font-medium">Connect Github</h1>
-            <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 gap-x-4">
+            <div>
                 <div class="relative px-3 py-2 mt-2 overflow-hidden border rounded-lg shadow-sm outline-none like-input">
-                    <p>ConnectionStatus <span class="text-green-400 font-bold data-[githubconnected='false']:hidden data-[githubconnected='NotActivated']:hidden" data-githubconnected=NotActivated>Connected</span><span class="text-red-400 font-bold data-[githubconnected='true']:hidden data-[githubconnected='NotActivated']:hidden" data-githubconnected=NotActivated>Disconnected</span></p>
+                    <p>Connection Status: <span class="text-green-400 font-bold data-[githubconnected='false']:hidden data-[githubconnected='NotActivated']:hidden" data-githubconnected=NotActivated>Connected</span><span class="text-red-400 font-bold data-[githubconnected='true']:hidden data-[githubconnected='NotActivated']:hidden" data-githubconnected=NotActivated>Disconnected</span></p>
                     <div class="px-3 absolute top-0 right-0 data-[githubconnected='NotActivated']:flex hidden justify-end items-center h-full w-full bg-overlay" data-githubconnected="NotActivated">
                         <i class="animate-spin" data-lucide="loader-2"></i>
                     </div>
                 </div>
-                <div class="relative px-3 py-2 mt-2 overflow-hidden border rounded-lg shadow-sm outline-none like-input">
+                <div class="relative px-3 py-2 mt-4 overflow-hidden border rounded-lg shadow-sm outline-none like-input">
                     <p>Username: <span id="github-username"></span></p>
-                    <div class="px-3 absolute top-0 right-0 data-[githubconnected='NotActivated']:flex hidden justify-end items-center h-full w-full bg-overlay" data-githubconnected="NotActivated">
-                        <i class="animate-spin" data-lucide="loader-2"></i>
-                    </div>
-                </div>
-                <div class="relative px-3 py-2 mt-2 overflow-hidden border rounded-lg shadow-sm outline-none like-input">
-                    <p>Last Used Login: <span id="github-last-login"></span></p>
-                    <div class="px-3 absolute top-0 right-0 data-[githubconnected='NotActivated']:flex hidden justify-end items-center h-full w-full bg-overlay" data-githubconnected="NotActivated">
-                        <i class="animate-spin" data-lucide="loader-2"></i>
-                    </div>
-                </div>
-                <div class="relative px-3 py-2 mt-2 overflow-hidden border rounded-lg shadow-sm outline-none like-input">
-                    <p>Connected At: <span id="github-connected-at"></span></p>
                     <div class="px-3 absolute top-0 right-0 data-[githubconnected='NotActivated']:flex hidden justify-end items-center h-full w-full bg-overlay" data-githubconnected="NotActivated">
                         <i class="animate-spin" data-lucide="loader-2"></i>
                     </div>
@@ -87,21 +75,15 @@
         <!-- Discord -->
         <div class="col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50">
             <h1 class="text-2xl font-medium">Connect Discord</h1>
-            <div class="grid grid-cols-1 gap-2 sm:grid-cols-2 gap-x-4">
+            <div>
                 <div class="relative px-3 py-2 mt-2 overflow-hidden border rounded-lg shadow-sm outline-none like-input">
                     <p>Connection Status: <span class="text-green-400 font-bold data-[discordconnected='false']:hidden data-[discordconnected='NotActivated']:hidden" data-discordconnected=NotActivated>Connected</span><span class="text-red-400 font-bold data-[discordconnected='true']:hidden data-[discordconnected='NotActivated']:hidden" data-discordconnected=NotActivated>Disconnected</span></p>
                     <div class="px-3 absolute top-0 right-0 data-[discordconnected='NotActivated']:flex hidden justify-end items-center h-full w-full bg-overlay" data-discordconnected="NotActivated">
                         <i class="animate-spin" data-lucide="loader-2"></i>
                     </div>
                 </div>
-                <div class="relative px-3 py-2 mt-2 overflow-hidden border rounded-lg shadow-sm outline-none like-input">
+                <div class="relative px-3 py-2 mt-4 overflow-hidden border rounded-lg shadow-sm outline-none like-input">
                     <p>Username: <span id="discord-username"></span></p>
-                    <div class="px-3 absolute top-0 right-0 data-[discordconnected='NotActivated']:flex hidden justify-end items-center h-full w-full bg-overlay" data-discordconnected="NotActivated">
-                        <i class="animate-spin" data-lucide="loader-2"></i>
-                    </div>
-                </div>
-                <div class="relative px-3 py-2 mt-2 overflow-hidden border rounded-lg shadow-sm outline-none like-input">
-                    <p>Connected At: <span id="discord-connected-at"></span></p>
                     <div class="px-3 absolute top-0 right-0 data-[discordconnected='NotActivated']:flex hidden justify-end items-center h-full w-full bg-overlay" data-discordconnected="NotActivated">
                         <i class="animate-spin" data-lucide="loader-2"></i>
                     </div>

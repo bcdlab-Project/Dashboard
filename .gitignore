@@ -21,6 +21,7 @@ app/Config/GithubIntegration.php
 app/Config/DiscordIntegration.php
 app/Config/Email.php
 app/Config/Database.php
+app/Config/KeyCloakIntegration.php
 
 node_modules
 

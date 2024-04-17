@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Controllers\Dashboard;
+namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
-class Form_approvals extends BaseController
+class Forms extends BaseController
 {
     public function getIndex() {
         helper('permissions');
 
         if (!admin_Permission()) {
-            return redirect()->to('/authentication/login');
+            return redirect()->to('/login');
         }
 
         $data['title'] = 'Form Approvals';
@@ -20,10 +20,10 @@ class Form_approvals extends BaseController
 
         return view('templates/header', $data)
             . view('templates/notificationMenu')
-            . view('dashboard/header')
+
             //. view('dashboard/form_approvals')
-            . view('templates/footer') 
-            . view('templates/sidemenu');
+            . view('templates/footer');
+            
     }
 
 }

@@ -61,17 +61,39 @@ class Github extends Controller
         return $this->setResponseFormat('json')->respond(['ok' => true, 'url' => $this->prepareURL("login")],200);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getConnect() {
         $session = session();
         helper('permissions');
 
         if (!loggedIn_Permission()) { return $this->fail("Error",401); } // give error
 
-        $UserGithubModel = model('UserGithubModel');
-        if ($UserGithubModel->find($session->get('user_data')['id'])) { return $this->fail("Error",400); } // give error
+        $UserModel = model('UserModel');
+        if ($UserModel->find($session->get('user_data')['id'])->hasGithub()) { return $this->fail("Error",400); } // give error
 
         return $this->setResponseFormat('json')->respond(['ok' => true, 'url' => $this->prepareURL("connect")],200);
     }
+
+
+
+
+
+
+
+
+    
 
     public function getDisconnect() {
         helper('permissions');
@@ -79,15 +101,22 @@ class Github extends Controller
 
         if (!loggedIn_Permission()) { return $this->fail("Error",401); } // give error
 
-        $UserGithubModel = model('UserGithubModel');
-        if (!$UserGithubModel->find($session->get('user_data')['id'])) { return $this->fail("Error",400); } // give error
+        $UserModel = model('UserModel');
+        $user = $UserModel->find($session->get('user_data')['id']);
 
-        $userModel = model('UserModel');
-        $user = $userModel->find($session->get('user_data')['id']);
+        if (!$user->hasGithub()) { return $this->fail("Error",400); } // give error
+
         $user->unsetGithub();
 
         return $this->setResponseFormat('json')->respond(['ok' => true],200);
     }
+
+
+
+
+
+
+
 
     public function getCallback() {
         $request = service('request');
@@ -122,7 +151,7 @@ class Github extends Controller
                 helper('permissions');
 
                 if (!loggedIn_Permission()) {
-                    return redirect()->to('/authentication/login'); //give error
+                    return redirect()->to('/login'); //give error
                 }
         
                 $userModel = model('UserModel');
@@ -137,7 +166,7 @@ class Github extends Controller
         
 
             default:
-                return redirect()->to('/profile'); //give error
+                return redirect()->to('/account'); //give error
                 break;
         }
     }
@@ -200,9 +229,5 @@ class Github extends Controller
         $jwt = JWT::encode($payload, $this->private_key, 'RS256');
 
         return $jwt;
-    }
-
-    public function getTest() {
-        echo $this->exchangeJwJ();
     }
 }

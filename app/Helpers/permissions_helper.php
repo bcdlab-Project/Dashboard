@@ -24,7 +24,7 @@ function admin_Permission()
 {
     $session = session();
     if ($session->has('user_data')) {
-        if ($session->get('user_data')['role'] == 1) {
+        if (in_array('administrator', $session->get('user_data')['roles'])) {
             return true;
         }
     }

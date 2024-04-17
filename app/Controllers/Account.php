@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\API\ResponseTrait;
 
-class Profile extends BaseController
+class Account extends BaseController
 {
 
     use ResponseTrait;
@@ -13,20 +13,19 @@ class Profile extends BaseController
         helper('permissions');
 
         if (!loggedIn_Permission()) {
-            return redirect()->to('/authentication/login'); //give error
+            return redirect()->to('/login'); //give error
         }
         
-        $data['title'] = 'Profile | bcdlab-Project';
+        $data['title'] = 'Account | bcdlab-Project';
         $data['pageMargin'] = true;
         $data['hasNotification'] = true;
-        $data['view'] = 'profile';
+        $data['view'] = 'account';
         $data['scripts'] = ['forms.js'];
 
         return view('templates/header', $data)
             . view('templates/notificationMenu')
-            . view('profile')
-            . view('templates/footer') 
-            . view('templates/sidemenu');
+            . view('account')
+            . view('templates/footer');       
     }
 
     public function postUpdateUsername() {
@@ -34,7 +33,7 @@ class Profile extends BaseController
         $session = session();
 
         if (!loggedIn_Permission() || !own_Permission($session->get('user_data')['id'])) {
-            return redirect()->to('/authentication/login'); //give error
+            return redirect()->to('/login'); //give error
         }
 
         $username = $this->request->getPost('username');
@@ -59,7 +58,7 @@ class Profile extends BaseController
         $session = session();
 
         if (!loggedIn_Permission() || !own_Permission($session->get('user_data')['id'])) {
-            return redirect()->to('/authentication/login'); //give error
+            return redirect()->to('/login'); //give error
         }
 
         $email = $this->request->getPost('email');
@@ -84,7 +83,7 @@ class Profile extends BaseController
         $session = session();
 
         if (!loggedIn_Permission() || !own_Permission($session->get('user_data')['id'])) {
-            return redirect()->to('/authentication/login'); //give error
+            return redirect()->to('/login'); //give error
         }
 
         $data = $this->request->getPost(['password','confpassword']);

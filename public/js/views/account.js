@@ -26,8 +26,6 @@ function loadGithubData() {
                 el.setAttribute('data-githubconnected', Boolean(data['id']))
             });
             document.getElementById('github-username').innerText = data['username'];
-            document.getElementById('github-last-login').innerText = data['last_loggedin'] == null ? 'Never' : data['last_loggedin'];
-            document.getElementById('github-connected-at').innerText = data['created_at'];
         }
     });
 }
@@ -41,7 +39,6 @@ function loadDiscordData() {
                 el.setAttribute('data-discordconnected', Boolean(data['id']))
             });
             document.getElementById('discord-username').innerText = data['username'];
-            document.getElementById('discord-connected-at').innerText = data['created_at'];
         }
     });
 }

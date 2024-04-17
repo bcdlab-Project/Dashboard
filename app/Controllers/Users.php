@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Dashboard;
+namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
@@ -10,7 +10,7 @@ class Users extends BaseController
         helper('permissions');
 
         if (!admin_Permission()) {
-            return redirect()->to('/authentication/login');
+            return redirect()->to('/login');
         }
 
         $data['title'] = 'Users';
@@ -20,10 +20,10 @@ class Users extends BaseController
 
         return view('templates/header', $data)
             . view('templates/notificationMenu')
-            . view('dashboard/header')
+
             . view('dashboard/users')
-            . view('templates/footer') 
-            . view('templates/sidemenu');
+            . view('templates/footer');
+            
     }
 
 }

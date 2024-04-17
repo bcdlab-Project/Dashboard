@@ -43,4 +43,14 @@ class Utilities extends BaseController
     //     unset($user);
 
     // }
+
+    public function getTest() {
+
+
+
+
+        $session = session();
+        return $this->setResponseFormat('json')->respond(json_encode($session->get('user_data')));
+
+    }
 }

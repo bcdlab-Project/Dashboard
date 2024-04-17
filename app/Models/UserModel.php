@@ -9,12 +9,12 @@ class UserModel extends Model
     protected $table = 'Users';
     protected $primaryKey = 'id';
 
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
 
     protected $returnType = \App\Entities\User::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['username', 'role', 'email', 'password', 'participation_form', 'banned', 'silenced', 'deleted'];
+    protected $allowedFields = ['id', 'oauth_id', 'banned', 'deleted'];
 
     protected $useTimestamps = false;
 

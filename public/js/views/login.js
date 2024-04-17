@@ -2,7 +2,7 @@ var form = document.getElementById("form");
 
 const submitting = async () => {
     let formData = new FormData(form);
-    let response = await fetch('/authentication/login', {
+    let response = await fetch('/login', {
         method: 'POST',
         body: formData
     });

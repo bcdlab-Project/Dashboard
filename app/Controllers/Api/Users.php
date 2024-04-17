@@ -25,12 +25,13 @@ class Users extends Controller
             $users = $usermodel->findAll();
             $data['users'] = [];
             foreach ($users as $user) {
+                $keycloakData = $user->keycloakData();
                 $data['users'][] = [
                     'id' => $user->id,
-                    'username' => $user->username,
-                    'role' => getRoleInfo($user->role),
-                    'email' => $user->email,
-                    'participation_form' => $user->participation_form,
+                    'username' => $keycloakData['username'],
+                    'role' =>  "some", //getRoleInfo($user->role),
+                    'email' => $keycloakData['email'],
+                    // 'participation_form' => $user->participation_form,
                     'created_at' => $user->created_at,
                     'last_updated' => $user->last_updated,
                     'banned' => $user->banned,
@@ -75,9 +76,7 @@ class Users extends Controller
                 if (!$data) {
                     $data = [
                         'id' => false,
-                        'username' => '-- N/A --',
-                        'last_loggedin' => '-- N/A --',
-                        'created_at' => '-- N/A --',
+                        'username' => '-- N/A --'
                     ];
                 }
                 return $this->setResponseFormat('json')->respond(array_merge($data,['ok'=>true]), 200);

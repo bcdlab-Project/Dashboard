@@ -23,8 +23,7 @@ class Authentication extends BaseController
 
         return view('templates/header', $data)
             . view('authentication/login')
-            . view('templates/footer') 
-            . view('templates/sidemenu');
+            . view('templates/footer');
     }
 
     public function postLogin() {
@@ -52,8 +51,8 @@ class Authentication extends BaseController
 
         return view('templates/header', $data)
         . view('authentication/forgotpassword')
-        . view('templates/footer') 
-        . view('templates/sidemenu');
+        . view('templates/footer');
+        
     }
 
     public function postForgotpassword() {
@@ -86,8 +85,8 @@ class Authentication extends BaseController
             if ($user->validatePasswordRecovery($this->request->getGet('token'))) {
                 return view('templates/header', $data)
                 . view('authentication/recoverpassword')
-                . view('templates/footer') 
-                . view('templates/sidemenu');
+                . view('templates/footer');
+                
             }
         }
         return redirect()->to('/authentication/forgotpassword');
@@ -126,7 +125,7 @@ class Authentication extends BaseController
     }
 
     public function getGithub() {
-        if ($this->session->get('GitHubCheck') != $this->request->getGet('key')) { return redirect()->to('/authentication/login'); } //can also give error
+        if ($this->session->get('GitHubCheck') != $this->request->getGet('key')) { return redirect()->to('/login'); } //can also give error
 
         $userModel = model('UserModel');
         $user = $userModel->getByGithub($this->session->get('GitHubUserId'));
@@ -144,11 +143,6 @@ class Authentication extends BaseController
     }
 
     public function getLogout() {
-        if ($this->session->get('loggedIn')) {
-            $user = model('UserModel')->find($this->session->get('user_data')['id']);
-            $user->logout();
-            return $this->setResponseFormat('json')->respond(['ok' => true],200);
-        }
-        return $this->setResponseFormat('json')->respond(['ok' => false],401);
+
     }
 }

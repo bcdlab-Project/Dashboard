@@ -51,18 +51,14 @@
         <meta itemprop="alternateName" content="bcdLab"/>
     </div>    
     <header class="absolute top-0 z-10 flex items-center w-full p-2 px-2 text-white md:px-24 xl:px-40 bg-zinc-900">
-        <a href="/" class="gap-0 px-1 btn btn-ghost"><span class="text-3xl text-bcdlab-b">b</span><span class="text-3xl">c</span><span class="text-3xl text-bcdlab-d">d</span><span class="text-3xl">lab</span><span> Project</span></a>
+        <a href="https://bcdlab.xyz" class="gap-0 px-1 btn btn-ghost"><span class="text-3xl text-bcdlab-b">b</span><span class="text-3xl">c</span><span class="text-3xl text-bcdlab-d">d</span><span class="text-3xl">lab</span><span> Project</span></a>
         <div class="flex items-center flex-1 ml-5">
-            <ul class="items-center justify-center hidden space-x-6 md:flex">
-                <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a class="block" href="/">Home</a></li>
-                <!-- <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a href="javascript:void(0)" class="block" rel="nofollow">Customers</a></li> -->
-                <?php if ($session->get('loggedIn')) { ?>
-                    <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a class="block" href="/dashboard">Dashboard</a></li>
-                <?php } else { ?>
-                    <li class=" dark:hover:text-slate-400 hover:text-slate-600"><a class="block" href="/Participate">Participate</a></li>
-                <?php } ?>
-                
-
+            <ul class="items-center justify-center hidden space-x-6 xl:flex">
+                <li class="dark:hover:text-slate-400 hover:text-slate-600"><a class="flex items-center gap-x-2" href="/"><i data-lucide="layout-template"></i>Overview</a></li>
+                <li class="dark:hover:text-slate-400 hover:text-slate-600"><a class="flex items-center gap-x-2" href="/projects"><i data-lucide="folder-kanban"></i>Projects</a></li>
+                <li class="dark:hover:text-slate-400 hover:text-slate-600"><a class="flex items-center gap-x-2" href="/nodes"><i data-lucide="hard-drive"></i>Nodes</a></li>
+                <li class="dark:hover:text-slate-400 hover:text-slate-600"><a class="flex items-center gap-x-2" href="/forms"><i data-lucide="check-circle"></i>Forms Evaluations</a></li>
+                <li class="dark:hover:text-slate-400 hover:text-slate-600"><a class="flex items-center gap-x-2" href="/users"><i data-lucide="users"></i>Users</a></li>
             </ul>
             <div class="flex items-center justify-end flex-1">
                 <button onclick="changeTheme()" class="btn btn-ghost btn-circle" href="/utilities/changetheme"><i id="changeTheme-icon-sun" class="<?=($theme === 'dark') ? '' : 'hidden'?>" data-lucide="sun"></i><i id="changeTheme-icon-moon" class="<?=($theme === 'dark') ? 'hidden' : ''?>" data-lucide="moon"></i></button>
@@ -73,21 +69,19 @@
                             <span class="absolute w-4 h-4 border-2 rounded-full border-zinc-900 bg-bcdlab-d -right-1 -top-2 dark:border-gray-800"></span>
                         </div>
                     </button>
+                <?php } 
+                if(session()->has('user_data') && session()->get('loggedIn')) { ?>
+                    <button class="btn btn-ghost btn-circle xl:hidden" onclick="openSidemenu()"><i data-lucide="menu"></i></button>
                 <?php } ?>
-                <button class="btn btn-ghost btn-circle md:hidden" onclick="openSidemenu()"><i data-lucide="menu"></i></button>
-                <div class="hidden md:block">
-                    <?php if ($session->get('loggedIn')) { ?>
-                        <div class="w-full dropdown">
-                            <div role="button" tabindex="0" class="btn btn-ghost btn-circle"><i data-lucide="circle-user-round"></i></div>
-                            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box bg-zinc-300 dark:bg-zinc-950">
-                                <li><a class="text-nowrap" href="/profile">Update Profile</a></li>
-                                <li class="bg-black dark:bg-white"></li>
-                                <li><button class="text-nowrap" type="button" onclick="logout_modal.showModal()">Logout</button></li>
-                            </ul>
-                        </div>
-                    <?php } else { ?>
-                        <a class="px-1 text-base btn btn-ghost" href="/authentication/login">Login</a>
-                    <?php } ?>
+                <div class="hidden xl:block">
+                    <div class="w-full dropdown">
+                        <div role="button" tabindex="0" class="btn btn-ghost btn-circle"><i data-lucide="circle-user-round"></i></div>
+                        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box bg-zinc-300 dark:bg-zinc-950">
+                            <li><a class="text-nowrap" href="/account">Account</a></li>
+                            <li class="bg-black dark:bg-white"></li>
+                            <li><button class="text-nowrap" type="button" onclick="logout_modal.showModal()">Logout</button></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
