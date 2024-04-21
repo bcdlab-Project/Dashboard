@@ -2,68 +2,66 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\API\ResponseTrait;
+
 class Login extends BaseController
 {
-    public function getIndex() {
-        $session = session();
+    use ResponseTrait;
 
-        $data['title'] = 'Login';
-        $data['pageMargin'] = false;
+    public function getIndex() {
+        return "<!doctype html><html><body><script src='/js/keycloak.min.js' type='text/javascript'></script><script src=/js/auth/login.js></script></body></html>";
+    }
+    
+    public function postAuto() {
+
+        if ($this->request->getPost('token') == null) {
+            return $this->fail("Error",400);
+        }
+
+        $session = session();
 
         $provider = new \League\OAuth2\Client\Provider\GenericProvider([
             'clientId'                => 'dashboard',
-            'clientSecret'            => 'qeuw115GcKnk7iKOOgNJHsyVqaTn6C0s',
-            'redirectUri'             => 'http://192.168.22.48/login',
+            'redirectUri'             => 'https://dash.bcdlab.xyz/login',
             'urlAuthorize'            => 'https://auth.bcdlab.xyz/realms/bcdlab/protocol/openid-connect/auth',
             'urlAccessToken'          => 'https://auth.bcdlab.xyz/realms/bcdlab/protocol/openid-connect/token',
             'urlResourceOwnerDetails' => 'https://auth.bcdlab.xyz/realms/bcdlab/protocol/openid-connect/userinfo',
             'scopes' => 'openid profile email offline_access',
         ]);
-        
-        if (!isset($_GET['code'])) {
-            $authorizationUrl = $provider->getAuthorizationUrl();
-        
-            $session->set('oauth2state', $provider->getState());
-        
-            return redirect()->to($authorizationUrl);
 
-        } elseif (empty($_GET['state']) || empty($session->get('oauth2state')) || $_GET['state'] !== $session->get('oauth2state')) {
-            if ($session->has('oauth2state')) {
-                $session->remove('oauth2state');
-            }
-        
-            return view('templates/header', $data)
-            . view('login')
-            . view('templates/footer');
-        
-        } else {
-            try {
-                $accessToken = $provider->getAccessToken('authorization_code', ['code' => $_GET['code']]);
+        $accessToken = new \League\OAuth2\Client\Token\AccessToken(['access_token' => $this->request->getPost('token')]);
 
-                $user = $provider->getResourceOwner($accessToken)->toArray();
-            
-                $userData = [
-                    'id' => $user['user_id'],
-                    'oauth_id' => $user['sub'],
-                    'username' => $user['preferred_username'],
-                    'roles' => $user['dashboard']['roles'],
-                    'email' => $user['email']
-                ];
-
-                $session->set('loggedIn',true);
-                $session->set('user_data',$userData);
-
-                return redirect()->to('/'); // give success
-
-            } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
-        
-                // Failed to get the access token or user details.
-                // exit($e->getMessage());
-
-                return view('templates/header', $data)
-                . view('login')
-                . view('templates/footer');
-            }
+        try {
+            $user = $provider->getResourceOwner($accessToken)->toArray();
+        } catch (\UnexpectedValueException $e) {
+            return $this->fail($e->getMessage(),403);
         }
+
+        $userData = [
+            'id' => $user['user_id'],
+            'oauth_id' => $user['sub'],
+            'username' => $user['preferred_username'],
+            'roles' => $user['roles'],
+            'email' => $user['email']
+        ];
+
+        $session->set('loggedIn',true);
+        $session->set('user_data',$userData);
+    }
+
+    public function getSilentCheck() {
+        return "<!doctype html><html><body><script src='/js/auth/silentCheck.js'></script></body></html>";
+    }
+
+    public function getUnauthorized() {
+        session()->destroy();
+    }
+
+    public function getLogout() {
+        if ($this->session->get('loggedIn')) {
+            $this->session->destroy();
+            return $this->setResponseFormat('json')->respond(['ok' => true],200);
+        }
+        return $this->fail("Error",403);
     }
 }

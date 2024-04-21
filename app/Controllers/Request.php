@@ -4,21 +4,19 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
-class Main extends BaseController
+class Request extends BaseController
 {
     public function getIndex() {
         helper('permissions');
         if (!loggedIn_Permission()) { return redirect()->to('/login'); }
-
-        $data['title'] = 'Dashboard';
-        $data['pageMargin'] = true;
-        $data['view'] = 'dashboard';
+        
+        $data['title'] = 'Make a Request';
+        $data['pageMargin'] = false;
+        $data['view'] = 'request';
         $data['hasNotification'] = true;
 
         return view('templates/header', $data)
-            . view('templates/notificationMenu')
-            . view('dashboard/Administrator')
+            . view('request/main')
             . view('templates/footer');
     }
-
 }

@@ -26,12 +26,12 @@ class Users extends Controller
             $data['users'] = [];
             foreach ($users as $user) {
                 $keycloakData = $user->keycloakData();
+
                 $data['users'][] = [
                     'id' => $user->id,
                     'username' => $keycloakData['username'],
-                    'role' =>  "some", //getRoleInfo($user->role),
+                    'roles' =>  $user->getRoles(),
                     'email' => $keycloakData['email'],
-                    // 'participation_form' => $user->participation_form,
                     'created_at' => $user->created_at,
                     'last_updated' => $user->last_updated,
                     'banned' => $user->banned,
@@ -70,7 +70,12 @@ class Users extends Controller
         // }
 
         if ($id && $action == 'github') {
+            if ($id == 'me') {
+                $id = session()->get('user_data')['id'];
+            }
+
             $user = $usermodel->where('id', $id)->first();
+
             if ($user) {
                 $data = $user->getGithub();
                 if (!$data) {
@@ -85,6 +90,10 @@ class Users extends Controller
         }
 
         if ($id && $action == 'discord') {
+            if ($id == 'me') {
+                $id = session()->get('user_data')['id'];
+            }
+            
             $user = $usermodel->where('id', $id)->first();
             if ($user) {
                 $data = $user->getDiscord();

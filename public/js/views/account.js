@@ -1,5 +1,5 @@
-loadGithubData()
-loadDiscordData()
+loadGithubData();
+loadDiscordData();
 
 // Update Page when back from Github or Discord
 window.addEventListener('storage', function(event) {
@@ -18,7 +18,7 @@ window.addEventListener('storage', function(event) {
 });
 
 function loadGithubData() {
-    fetch('/api/users/' + dataPass["userId"] + '/github')
+    fetch('/api/users/me/github')
     .then(response => response.json())
     .then(data => {
         if (data['ok']) {
@@ -31,7 +31,7 @@ function loadGithubData() {
 }
 
 function loadDiscordData() {
-    fetch('/api/users/' + dataPass["userId"] + '/discord')
+    fetch('/api/users/me/discord')
     .then(response => response.json())
     .then(data => {
         if (data['ok']) {
@@ -92,4 +92,79 @@ function loadDisconnectModal(type) {
     document.getElementById('disconnect_modal_button').setAttribute('onclick', 'disconnect' + type + '()');
     document.getElementById('disconnect_modal').showModal();
 }
+
+document.getElementById('updateUsernameForm').addEventListener('submit', function(e) {
+    e.preventDefault();        
+    forms.startMultipleWaiting();
+    fetch('/profile/updateUsername', {
+        method: 'POST',
+        body: new FormData(document.getElementById("updateUsernameForm"))
+    })
+    .then(response => response.json())
+    .then(data => {
+        forms.stopMultipleWaiting();
+        if (data.ok) {
+            document.getElementById("username-error").innerHTML = " "
+            document.getElementById("username").classList.remove('form-error')
+            alert('Username Updated Successfully');
+        } else {
+            document.getElementById("username").classList.add('form-error')
+            document.getElementById('username-error').innerText = data.username;
+        }
+    });
+});
+
+document.getElementById('updateEmailForm').addEventListener('submit', function(e) {
+    e.preventDefault();        
+    forms.startMultipleWaiting();
+    fetch('/profile/updateEmail', {
+        method: 'POST',
+        body: new FormData(document.getElementById("updateEmailForm"))
+    })
+    .then(response => response.json())
+    .then(data => {
+        forms.stopMultipleWaiting();
+        if (data.ok) {
+            document.getElementById("email-error").innerHTML = " "
+            document.getElementById("email").classList.remove('form-error')
+            alert('Email Updated Successfully');
+        } else {
+            document.getElementById("email").classList.add('form-error')
+            document.getElementById('email-error').innerText = data.username;
+        }
+    });
+});
+
+document.getElementById('updatePasswordForm').addEventListener('submit', function(e) {
+    e.preventDefault();        
+    forms.startMultipleWaiting();
+    fetch('/profile/updatePassword', {
+        method: 'POST',
+        body: new FormData(document.getElementById("updatePasswordForm"))
+    })
+    .then(response => response.json())
+    .then(data => {
+        forms.stopMultipleWaiting();
+
+        document.getElementById("password").classList.remove('form-error');
+        document.getElementById('password-error').innerText = " ";
+        document.getElementById("confpassword").classList.remove('form-error');
+        document.getElementById('confpassword-error').innerText = " ";
+
+        if (data.ok) {
+            document.getElementById("password").value = "";
+            document.getElementById("confpassword").value = "";
+            alert('Password Updated Successfully');
+        } else {
+            if (data.password) {
+                document.getElementById("password").classList.add('form-error');
+                document.getElementById('password-error').innerText = data.password;
+            }
+            if (data.confpassword) {
+                document.getElementById("confpassword").classList.add('form-error');
+                document.getElementById('confpassword-error').innerText = data.confpassword;
+            }
+        }
+    });
+});
 

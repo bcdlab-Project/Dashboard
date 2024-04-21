@@ -8,10 +8,7 @@ class Projects extends BaseController
 {
     public function getIndex() {
         helper('permissions');
-
-        if (!admin_Permission()) {
-            return redirect()->to('/login');
-        }
+        if (!loggedIn_Permission()) { return redirect()->to('/login'); }
         
         $data['title'] = 'Projects';
         $data['pageMargin'] = true;
@@ -22,8 +19,6 @@ class Projects extends BaseController
             . view('templates/notificationMenu')
 
             . view('dashboard/projects')
-            . view('templates/footer') ;
-            
+            . view('templates/footer') ;    
     }
-
 }

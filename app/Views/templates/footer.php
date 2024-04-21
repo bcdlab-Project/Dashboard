@@ -29,7 +29,8 @@
                     <li><a class="justify-start w-full text-lg btn btn-ghost" href="/projects"><i data-lucide="folder-kanban"></i>Projects</a></li>
                     <li><a class="justify-start w-full text-lg btn btn-ghost" href="/nodes"><i data-lucide="hard-drive"></i>Nodes</a></li>
                     <li><a class="justify-start w-full text-lg btn btn-ghost" href="/forms"><i data-lucide="check-circle"></i>Forms Evaluations</a></li>
-                    <li><a class="justify-start w-full text-lg btn btn-ghost" href="/users"><i data-lucide="users"></i>Users</a></li>   
+                    <li><a class="justify-start w-full text-lg btn btn-ghost" href="/users"><i data-lucide="users"></i>Users</a></li>
+                    <li><a class="justify-start w-full text-lg btn btn-ghost" href="/request"><i data-lucide="pencil-line"></i>Make a Request</a></li>
                 </ul>
                 <div>
                     <div class="px-4 py-4 border-t border-black dark:border-white">
@@ -64,7 +65,6 @@
     </div>
     </dialog>
 
-    <script src="<?=base_url()?>js/sidemenu.js"></script>
     <script src="<?=base_url()?>js/scrollLock.js"></script>
     <script>lucide.createIcons();</script>
 

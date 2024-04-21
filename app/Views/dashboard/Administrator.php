@@ -30,4 +30,4 @@
 <!-- <iframe src="https://gra.bc.dawg/d-solo/edhnkbg2lsdfkf/bcdlab-project?orgId=1&refresh=auto&theme=light&panelId=1" frameborder="0" class="w-1/2 pointer-events-none aspect-video"></iframe>
   <iframe src="https://gra.bc.dawg/d-solo/edhnkbg2lsdfkf/bcdlab-project?orgId=1&refresh=auto&theme=light&panelId=1" frameborder="0" class="w-1/2 pointer-events-none aspect-video"></iframe> -->
 
-    <iframe src="https://grafana.bcdlab.xyz/d-solo/adisslppfirr4c/new-dashboard?orgId=1&panelId=1" frameborder="0" class="w-1/2 pointer-events-none aspect-video"></iframe>
+    <iframe src="https://grafana.bcdlab.xyz/d-solo/adj0l3f4g8934f/public-dashboard?orgId=1&theme=light&panelId=2" frameborder="0" class="w-1/2 pointer-events-none aspect-video" allowtransparency="true" style="background-color: transparent;"></iframe>

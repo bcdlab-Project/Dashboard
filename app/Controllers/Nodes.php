@@ -8,10 +8,7 @@ class Nodes extends BaseController
 {
     public function getIndex() {
         helper('permissions');
-
-        if (!admin_Permission()) {
-            return redirect()->to('/login');
-        }
+        if (!(admin_Permission() || collaborator_Permission())) { return redirect()->to('/'); }
         
         $data['title'] = 'Nodes';
         $data['pageMargin'] = true;
@@ -23,8 +20,6 @@ class Nodes extends BaseController
             . view('templates/notificationMenu')
 
             . view('dashboard/nodes')
-            . view('templates/footer');
-            
+            . view('templates/footer');    
     }
-
 }

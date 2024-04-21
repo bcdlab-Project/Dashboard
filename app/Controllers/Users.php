@@ -8,10 +8,7 @@ class Users extends BaseController
 {
     public function getIndex() {
         helper('permissions');
-
-        if (!admin_Permission()) {
-            return redirect()->to('/login');
-        }
+        if (!admin_Permission()) { return redirect()->to('/'); }
 
         $data['title'] = 'Users';
         $data['pageMargin'] = true;
@@ -25,5 +22,4 @@ class Users extends BaseController
             . view('templates/footer');
             
     }
-
 }
