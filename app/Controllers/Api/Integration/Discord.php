@@ -9,113 +9,109 @@ class Discord extends Controller
 {
     use ResponseTrait;
 
+    // ------------------------ Prepare Configs ------------------------ //
+
+    // ------------ Prepare Variables ------------ //
     private $authorizeURL;
     private $tokenURL;
-
     private $client_id;
     private $client_secret;
-
     private $redirect_url;
     private $apiURLBase;
 
-
-    
-    public function __construct()
-    {
+    // ------------ Set Variables ------------ //
+    public function __construct() {
         $config = config('DiscordIntegration');
         $this->authorizeURL = $config->authorizeURL;
         $this->tokenURL = $config->tokenURL;
-
         $this->client_id = $config->client_id;
         $this->client_secret = $config->client_secret;
-
         $this->redirect_url = $config->redirect_url;
         $this->apiURLBase = $config->apiURLBase;
     }
 
-    private function prepareURL($mode) {
+    // ------------------------ Default ------------------------ //
+    public function getIndex() { return $this->fail("Error",400); }
+
+    // ------------------------ Connect Discord ------------------------ //
+    public function getConnect() {
         $session = session();
+        helper('permissions');
+
+        $UserId = $session->get('user_data')['id'];
+
+        if (!loggedIn_Permission() || !own_Permission($UserId)) { return $this->fail("Error",401); } // give error
+
+        $userModel = model('UserModel');
+        if ($userModel->find($UserId)->hasDiscord()) { return $this->fail("Error",400); } // give error
 
         $check = hash('sha256', microtime(TRUE) . rand() . $_SERVER['REMOTE_ADDR']);
 
         $session->set('DiscordCheck',$check);
 
-        return $this->authorizeURL . '?' . http_build_query([ 
+        $authorizationURL = $this->authorizeURL . '?' . http_build_query([ 
             'response_type'=> 'code',
             'client_id' => $this->client_id,
             'scope' => 'identify',
-            'state' => $mode . '|' . $check,
+            'state' => $check,
             'redirect_uri' => $this->redirect_url, 
             'prompt' => 'consent', 
         ]);
+
+        return $this->setResponseFormat('json')->respond(['ok' => true, 'url' => $authorizationURL],200);
     }
 
-    public function getConnect() {
-        $session = session();
-        helper('permissions');
-
-        if (!loggedIn_Permission()) { return $this->fail("Error",401); } // give error
-
-        $userModel = model('UserModel');
-        if ($userModel->find($session->get('user_data')['id'])->hasDiscord()) { return $this->fail("Error",400); } // give error
-
-        return $this->setResponseFormat('json')->respond(['ok' => true, 'url' => $this->prepareURL("connect")],200);
-    }
-
+    // ------------------------ Disconnect Discord ------------------------ //
     public function getDisconnect() {
         helper('permissions');
         $session = session();
 
-        if (!loggedIn_Permission()) { return $this->fail("Error",401); } // give error
+        $UserId = $session->get('user_data')['id'];
+
+        if (!loggedIn_Permission() || !own_Permission($UserId)) { return $this->fail("Error",401); } // give error
 
         $userModel = model('UserModel');
-        $user = $userModel->find($session->get('user_data')['id']);
+        $user = $userModel->find($UserId);
 
         if (!$user->hasDiscord()) { return $this->fail("Error",400); } // give error
-
 
         $user->unsetDiscord();
 
         return $this->setResponseFormat('json')->respond(['ok' => true],200);
     }
 
+    // ------------------------ Callback ------------------------ //
     public function getCallback() {
+        helper('permissions');
+        if (!loggedIn_Permission()) { return $this->fail("Error",401); } //give error
+
         $request = service('request');
         $session = session();
+        $userModel = model('UserModel');
 
         $code = $request->getGet('code');
-        $state = explode('|',strval($request->getGet('state')));
 
         if (empty($code)) { return $this->fail("Error",400); } // give error
-        if ($session->get('DiscordCheck') != $state[1]) { return $this->fail("Error",400); } // give error
+        if ($session->get('DiscordCheck') != strval($request->getGet('state'))) { return $this->fail("Error",400); } // give error
 
-        $tokenData = $this->extchangeToken($code);
-        
-        $DiscordUserData = $this->extchangeUserdata($tokenData['access_token']);
+        $access_token = $this->extchangeAccessToken($code);
 
-        switch ($state[0]) {
-            case 'connect':
-                helper('permissions');
+        if (!$access_token) { return $this->fail("Error",400); } //give error
+        
+        $DiscordUserData = $this->extchangeUserdata($access_token);
 
-                if (!loggedIn_Permission()) {
-                    return $this->fail("Error",401); //give error
-                }
-        
-                $userModel = model('UserModel');
-                $user = $userModel->find($session->get('user_data')['id']);
-                $user->setDiscord($DiscordUserData);
-         
-                $session->remove('DiscordCheck');
-        
-                return "<script>localStorage.setItem('externalDiscordPageDone', 'true'); window.close()</script>";
-                break;
-            default:
-                return $this->fail("Error",400); //give error
-                break;
-        }
+        $user = $userModel->find($session->get('user_data')['id']);
+        $user->setDiscord($DiscordUserData);
+    
+        $session->remove('DiscordCheck');
+
+        return "<script src='/js/integration/discord_callback.js'></script>";
     }
 
-    private function extchangeToken($code) {
+    // ------------------------ Private Functions ------------------------ //
+
+    // ------------ Exchange Access Token ------------ //
+    private function extchangeAccessToken($code) {
         $client = \Config\Services::curlrequest();
 
         $response = $client->request('POST', $this->tokenURL, [
@@ -133,16 +129,15 @@ class Discord extends Controller
             ]
         ]);
 
-        $resp = $response->getBody(); 
         $http_code = $response->getStatusCode();
-
-        $resp = json_decode($resp,true);
+        $resp = json_decode($response->getBody(),true);
 
         if ($http_code != 200 || isset($resp['error'])) { return false; } //can also give error
 
-        return $resp;
+        return $resp['access_token'];
     }
 
+    // ------------ Exchange User Data ------------ //
     private function extchangeUserdata($token) {
         $apiURL = $this->apiURLBase . '/users/@me'; 
 
@@ -154,10 +149,8 @@ class Discord extends Controller
             ],
         ]);
     
-        $resp = $response->getBody(); 
         $http_code = $response->getStatusCode();          
-        
-        $resp = json_decode($resp,true);
+        $resp = json_decode($response->getBody(),true);
 
         if ($http_code != 200 || isset($resp['error'])) { return false; }
         return $resp;

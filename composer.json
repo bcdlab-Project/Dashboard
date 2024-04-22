@@ -15,7 +15,6 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "codeigniter4/translations": "^4.4",
-        "firebase/php-jwt": "^6.10",
         "laminas/laminas-escaper": "^2.9",
         "league/oauth2-client": "^2.7",
         "mohammad-waleed/keycloak-admin-client": "^0.38.0",

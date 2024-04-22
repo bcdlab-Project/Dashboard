@@ -1,0 +1,1 @@
+localStorage.setItem('externalDiscordPageDone', 'true'); window.close()

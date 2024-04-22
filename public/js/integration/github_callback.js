@@ -1,0 +1,1 @@
+localStorage.setItem('externalGithubPageDone', 'true'); window.close()
