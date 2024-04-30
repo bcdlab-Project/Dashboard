@@ -13,10 +13,8 @@ class Projects extends BaseController
         $data['title'] = 'Projects';
         $data['pageMargin'] = true;
         $data['view'] = 'projects';
-        $data['hasNotification'] = true;
 
         return view('templates/header', $data)
-            . view('templates/notificationMenu')
 
             . view('dashboard/projects')
             . view('templates/footer') ;    

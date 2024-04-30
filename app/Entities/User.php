@@ -6,7 +6,17 @@ use CodeIgniter\Entity\Entity;
 
 class User extends Entity
 {
-    // -------------------------------------- Get User Data -------------------------------------- //
+    // -------------------------------------- User Data -------------------------------------- //
+
+    // ------------------- Set User Data ------------------- //
+
+    // Set Username
+    public function setEmail(string $email) {
+        helper('keycloak');
+        return boolval(!isset(initKeycloak()->updateUser(['id' => $this->attributes['oauth_id'],'email' => $email])['errorMessage']));
+    }
+
+    // ------------------- Get User Data ------------------- //
 
     // Get Keycloak Data
     public function keycloakData() {
@@ -30,6 +40,16 @@ class User extends Entity
         }
 
         return $realRoles;
+    }
+
+    // -------------------------------------- Other Functions -------------------------------------- //
+
+    // Verify Email Address
+    public function verifyEmail() {
+        helper('keycloak');
+        $keycloak = initKeycloak();
+        if (!isset($keycloak->updateUser(['id' => $this->attributes['oauth_id'],'emailVerified' => false])['errorMessage'])) { return false; }
+        return boolval(!isset($keycloak->sendVerifyEmail(['id' => $this->attributes['oauth_id']])['errorMessage']));
     }
 
     // -------------------------------------- User Connection -------------------------------------- //

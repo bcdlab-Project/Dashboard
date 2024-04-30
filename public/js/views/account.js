@@ -1,6 +1,7 @@
 loadGithubData();
 loadDiscordData();
 
+// ------------------------ Update Page ------------------------ //
 // Update Page when back from Github or Discord
 window.addEventListener('storage', function(event) {
     if (event.key === 'externalGithubPageDone' && event.newValue === 'true') {
@@ -17,6 +18,9 @@ window.addEventListener('storage', function(event) {
     }
 });
 
+// ------------------------ Load Connections Data ------------------------ //
+
+// ------------ Load GitHub Data ------------ //
 function loadGithubData() {
     fetch('/api/users/me/github')
     .then(response => response.json())
@@ -30,6 +34,7 @@ function loadGithubData() {
     });
 }
 
+// ------------ Load Discord Data ------------ //
 function loadDiscordData() {
     fetch('/api/users/me/discord')
     .then(response => response.json())
@@ -43,18 +48,10 @@ function loadDiscordData() {
     });
 }
 
-function disconnectGithub() {
-    fetch('/api/integration/github/disconnect')
-    .then(response => response.json())
-    .then(data => {
-        if (data['ok']) {
-            loadGithubData();
-            document.getElementById('disconnect_modal').close();
-        }
-    });
-}
+// ------------------------ Connect Connections ------------------------ //
 
-function connectGithub() {
+// ------------ Connect GitHub ------------ //
+document.getElementById('connectGithub').addEventListener('click', function() {
     fetch('/api/integration/github/connect')
     .then(response => response.json())
     .then(data => {
@@ -63,20 +60,10 @@ function connectGithub() {
             window.open(data['url'], '_blank');
         }
     });
-}
+});
 
-function disconnectDiscord() {
-    fetch('/api/integration/discord/disconnect')
-    .then(response => response.json())
-    .then(data => {
-        if (data['ok']) {
-            loadDiscordData();
-            document.getElementById('disconnect_modal').close();
-        }
-    });
-}
-
-function connectDiscord() {
+// ------------ Connect Discord ------------ //
+document.getElementById('connectDiscord').addEventListener('click', function() {
     fetch('/api/integration/discord/connect')
     .then(response => response.json())
     .then(data => {
@@ -85,39 +72,52 @@ function connectDiscord() {
             window.open(data['url'], '_blank');
         }
     });
-}
+});
 
+// ------------------------ Disconnect Connections ------------------------ //
+
+// ------------ Init Disconnect Modal ------------ //
 function loadDisconnectModal(type) {
     document.getElementById('disconnect_modal_name').innerHTML = "Disconnect " + type + "?";
-    document.getElementById('disconnect_modal_button').setAttribute('onclick', 'disconnect' + type + '()');
+    localStorage.setItem('disconnectType', type);
     document.getElementById('disconnect_modal').showModal();
 }
 
-document.getElementById('updateUsernameForm').addEventListener('submit', function(e) {
-    e.preventDefault();        
-    forms.startMultipleWaiting();
-    fetch('/profile/updateUsername', {
-        method: 'POST',
-        body: new FormData(document.getElementById("updateUsernameForm"))
-    })
+// ------------ Disconnect GitHub ------------ //
+document.getElementById('disconnectGithub').addEventListener('click', function() { loadDisconnectModal('Github') });
+
+// ------------ Disconnect Discord ------------ //
+document.getElementById('disconnectDiscord').addEventListener('click', function() { loadDisconnectModal('Discord') });
+
+// ------------ Disconnect Modal ------------ //
+document.getElementById('disconnect_modal_button').addEventListener('click', function() {
+    var type = localStorage.getItem('disconnectType');
+    localStorage.removeItem('disconnectType');
+
+    fetch('/api/integration/'+type+'/disconnect')
     .then(response => response.json())
     .then(data => {
-        forms.stopMultipleWaiting();
-        if (data.ok) {
-            document.getElementById("username-error").innerHTML = " "
-            document.getElementById("username").classList.remove('form-error')
-            alert('Username Updated Successfully');
-        } else {
-            document.getElementById("username").classList.add('form-error')
-            document.getElementById('username-error').innerText = data.username;
+        if (data['ok']) {
+            switch (type) {
+                case 'Github':
+                    loadGithubData();
+                    break;
+                case 'Discord':
+                    loadDiscordData();
+                    break;
+            }
+            document.getElementById('disconnect_modal').close();
         }
     });
 });
 
+// ------------------------ Update Account ------------------------ //
+
+// ------------ Update Username ------------ //
 document.getElementById('updateEmailForm').addEventListener('submit', function(e) {
     e.preventDefault();        
     forms.startMultipleWaiting();
-    fetch('/profile/updateEmail', {
+    fetch('/api/users/me/email', {
         method: 'POST',
         body: new FormData(document.getElementById("updateEmailForm"))
     })
@@ -130,41 +130,20 @@ document.getElementById('updateEmailForm').addEventListener('submit', function(e
             alert('Email Updated Successfully');
         } else {
             document.getElementById("email").classList.add('form-error')
-            document.getElementById('email-error').innerText = data.username;
+            document.getElementById('email-error').innerText = data.messages.error;
         }
     });
 });
 
-document.getElementById('updatePasswordForm').addEventListener('submit', function(e) {
-    e.preventDefault();        
-    forms.startMultipleWaiting();
-    fetch('/profile/updatePassword', {
-        method: 'POST',
-        body: new FormData(document.getElementById("updatePasswordForm"))
-    })
+// ------------ Update Password ------------ //
+document.getElementById('updatePassword').addEventListener('click', function() {
+    fetch('/api/users/me/password', { method: 'POST' })
     .then(response => response.json())
     .then(data => {
-        forms.stopMultipleWaiting();
-
-        document.getElementById("password").classList.remove('form-error');
-        document.getElementById('password-error').innerText = " ";
-        document.getElementById("confpassword").classList.remove('form-error');
-        document.getElementById('confpassword-error').innerText = " ";
-
         if (data.ok) {
-            document.getElementById("password").value = "";
-            document.getElementById("confpassword").value = "";
-            alert('Password Updated Successfully');
+            alert('An Email has been sent to You to change Your Password.');
         } else {
-            if (data.password) {
-                document.getElementById("password").classList.add('form-error');
-                document.getElementById('password-error').innerText = data.password;
-            }
-            if (data.confpassword) {
-                document.getElementById("confpassword").classList.add('form-error');
-                document.getElementById('confpassword-error').innerText = data.confpassword;
-            }
+            alert('An Error has occurred, please try again later.');
         }
     });
 });
-

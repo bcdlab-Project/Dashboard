@@ -10,7 +10,7 @@ class Main extends Controller
     use ResponseTrait;
     
     public function getIndex() {
-        return $this->fail("Error",401);
+        return $this->failForbidden();
     }
 
 }

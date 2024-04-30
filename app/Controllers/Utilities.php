@@ -8,7 +8,4 @@ class Utilities extends BaseController
 {
     use ResponseTrait;
 
-
-
-
 }

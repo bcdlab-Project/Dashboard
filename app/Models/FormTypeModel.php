@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ParticipationFormModel extends Model
+class FormTypeModel extends Model
 {
-    protected $table = 'ParticipationForms';
+    protected $table = 'FormTypes';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = false;
 
-    protected $returnType = \App\Entities\ParticipationForm::class;
+    // protected $returnType = \App\Entities\ParticipationForm::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['id','requested_username', 'requested_password', 'requested_email', 'email_verified', 'why_participate', 'work_role','github_url'];
+    protected $allowedFields = [];
 
     protected $useTimestamps = false;
 

@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="<?=base_url()?>css/styles.css">
     <script src="<?=base_url()?>js/header.js"></script>
     <script src="<?=base_url()?>/js/keycloak.min.js"></script>
+    <script src="<?=base_url()?>/js/utils.js"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body class="relative min-h-screen text-black bg-white dark:bg-zinc-800 dark:text-white">
@@ -52,14 +53,6 @@
             </ul>
             <div class="flex items-center justify-end flex-1">
                 <button onclick="changeTheme()" class="btn btn-ghost btn-circle" href="/utilities/changetheme"><i id="changeTheme-icon-sun" class="<?=($theme === 'dark') ? '' : 'hidden'?>" data-lucide="sun"></i><i id="changeTheme-icon-moon" class="<?=($theme === 'dark') ? 'hidden' : ''?>" data-lucide="moon"></i></button>
-                <?php if (isset($hasNotification) && esc($hasNotification)) {?>
-                    <button class="btn btn-ghost btn-circle" onclick="toggleNotificationmenu()">
-                        <div class="relative">
-                            <i data-lucide="bell"></i>
-                            <span class="absolute w-4 h-4 border-2 rounded-full border-zinc-900 bg-bcdlab-d -right-1 -top-2 dark:border-gray-800"></span>
-                        </div>
-                    </button>
-                <?php } ?>
                 <button class="btn btn-ghost btn-circle xl:hidden" onclick="openSidemenu()"><i data-lucide="menu"></i></button>
                 <div class="hidden xl:block">
                     <div class="w-full dropdown">

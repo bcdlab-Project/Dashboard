@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class NodeForm extends Model
 {
-    protected $table = 'Nodes';
+    protected $table = 'NodeForms';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = false;
@@ -14,7 +14,7 @@ class NodeForm extends Model
     protected $returnType = \App\Entities\NodeForm::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['owner', 'secret', 'tunnel_UUID','tunnel_Credentials','alias'];
+    protected $allowedFields = ['id','owner','alias','description'];
 
     protected $useTimestamps = false;
 

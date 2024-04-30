@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ParticipationFormEmailConfirmationModel extends Model
+class FormEvaluationModel extends Model
 {
-    protected $table = 'ParticipationFormEmailConfirmation';
-    protected $primaryKey = 'participation_form';
+    protected $table = 'FormEvaluations';
+    protected $primaryKey = 'form';
 
     protected $useAutoIncrement = false;
 
-    // protected $returnType = \App\Entities\Node::class;
+    // protected $returnType = \App\Entities\ParticipationForm::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['participation_form', 'token'];
+    protected $allowedFields = ['approved','evaluated_by'];
 
     protected $useTimestamps = false;
 

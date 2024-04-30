@@ -10,7 +10,6 @@ class Main extends Controller
     use ResponseTrait;
     
     public function getIndex() {
-        return $this->setResponseFormat('json')->respond(['ok'=>false],400);
+        return $this->failForbidden();
     }
-
 }

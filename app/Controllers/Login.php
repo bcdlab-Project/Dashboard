@@ -14,7 +14,7 @@ class Login extends BaseController
     
     public function postAuto() {
 
-        if ($this->request->getPost('token') == null) {
+        if ($this->request->getPost('token') == null){
             return $this->fail("Error",400);
         }
 
@@ -30,6 +30,7 @@ class Login extends BaseController
         ]);
 
         $accessToken = new \League\OAuth2\Client\Token\AccessToken(['access_token' => $this->request->getPost('token')]);
+
 
         try {
             $user = $provider->getResourceOwner($accessToken)->toArray();

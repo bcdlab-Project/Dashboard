@@ -3,20 +3,20 @@
 ?>
 <div class="py-5 space-y-5">
     <div>
-        <h1 class="text-4xl font-medium">Update Profile</h1>
-        <h3 class="text-2xl">Hii <?=$session->get('user_data')['username']?>, here is your Profile.</h3>
+        <h1 class="text-4xl font-medium">Update Account</h1>
+        <h3 class="mt-2 text-2xl">Hii <?=$session->get('user_data')['username']?>, here is your Account Data.</h3>
     </div>
     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <!-- Username -->
         <form id="updateUsernameForm" class="relative col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50" novalidate>
             <div class="absolute top-0 right-0 items-center justify-center hidden w-full h-full rounded-lg waiting-mask bg-overlay"><i class="animate-spin" data-lucide="loader-2" style="width: 40px; height: 40px;"></i></div>
-            <h1 class="text-2xl font-medium">Update Username</h1>
+            <h1 class="text-2xl font-medium">Username</h1>
             <div>
-                <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="text" name="username" id="username" required value="<?=$session->get('user_data')['username']?>">
-                <span class="text-red-500" id="username-error"></span>
+                <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="text" name="username" id="username" required value="<?=$session->get('user_data')['username']?>" disabled>
+                <p class="px-2 pt-2 text-center">The Username cannot be Updated or Changed. If changing is needed, please contact Us.</p>
             </div>
             <div class="flex items-center justify-end mt-5">
-                <button class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Update</button>
+                <!-- <button class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700" disabled>Update</button> -->
             </div>
         </form>
         <!-- Email -->
@@ -26,24 +26,6 @@
             <div>
                 <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="email" name="email" id="email" required value="<?=$session->get('user_data')['email']?>">
                 <span class="text-red-500" id="email-error"></span>
-            </div>
-            <div class="flex items-center justify-end mt-5">
-                <button class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Update</button>
-            </div>
-        </form>
-        <!-- Password -->
-        <form id="updatePasswordForm" class="relative col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50" novalidate>
-            <div class="absolute top-0 right-0 items-center justify-center hidden w-full h-full rounded-lg waiting-mask bg-overlay"><i class="animate-spin" data-lucide="loader-2" style="width: 40px; height: 40px;"></i></div>
-            <h1 class="text-2xl font-medium">Update Password</h1>
-            <div class="space-y-2">
-                <div>
-                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="password" name="password" id="password" required placeholder="Password">
-                    <span class="text-red-500" id="password-error"></span>
-                </div>
-                <div>
-                    <input class="w-full px-3 py-2 mt-2 border rounded-lg shadow-sm outline-none" type="password" name="confpassword" id="confpassword" required placeholder="Password (again)">
-                    <span class="text-red-500" id="confpassword-error"></span>
-                </div>
             </div>
             <div class="flex items-center justify-end mt-5">
                 <button class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Update</button>
@@ -68,8 +50,8 @@
             </div>
             <div class="flex items-center justify-end mt-5">
                 <div class="bg-blue-700 text-white font-bold py-2 px-4 hidden rounded data-[githubconnected='NotActivated']:block" data-githubconnected=NotActivated><i class="animate-spin" data-lucide="loader-2"></i></div>
-                <button onclick="connectGithub()" class="bg-github hover:bg-neutral-800 text-white border border-stone-400 font-bold py-2 px-4 rounded data-[githubconnected='true']:hidden data-[githubconnected='NotActivated']:hidden" data-githubconnected=NotActivated>Connect Github</button>
-                <button onclick="loadDisconnectModal('Github')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded data-[githubconnected='false']:hidden data-[githubconnected='NotActivated']:hidden" data-githubconnected=NotActivated>Disconnect</button>
+                <button id="connectGithub" class="bg-github hover:bg-neutral-800 text-white border border-stone-400 font-bold py-2 px-4 rounded data-[githubconnected='true']:hidden data-[githubconnected='NotActivated']:hidden" data-githubconnected=NotActivated>Connect Github</button>
+                <button id="disconnectGithub" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded data-[githubconnected='false']:hidden data-[githubconnected='NotActivated']:hidden" data-githubconnected=NotActivated>Disconnect</button>
             </div>
         </div>
         <!-- Discord -->
@@ -91,8 +73,26 @@
             </div>
             <div class="flex items-center justify-end mt-5">
                 <div class="bg-blue-700 text-white font-bold py-2 px-4 hidden rounded data-[discordconnected='NotActivated']:block" data-discordconnected=NotActivated><i class="animate-spin" data-lucide="loader-2"></i></div>
-                <button onclick="connectDiscord()"  class="bg-discord hover:bg-blue-800 text-white font-bold py-2 px-4 rounded data-[discordconnected='true']:hidden data-[discordconnected='NotActivated']:hidden" data-discordconnected=NotActivated>Connect Discord</button>
-                <button onclick="loadDisconnectModal('Discord')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded data-[discordconnected='false']:hidden data-[discordconnected='NotActivated']:hidden" data-discordconnected=NotActivated>Disconnect</button>
+                <button id="connectDiscord" class="bg-discord hover:bg-blue-800 text-white font-bold py-2 px-4 rounded data-[discordconnected='true']:hidden data-[discordconnected='NotActivated']:hidden" data-discordconnected=NotActivated>Connect Discord</button>
+                <button id="disconnectDiscord" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded data-[discordconnected='false']:hidden data-[discordconnected='NotActivated']:hidden" data-discordconnected=NotActivated>Disconnect</button>
+            </div>
+        </div>
+        <!-- Password -->
+        <div class="relative col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50">
+            <div class="absolute top-0 right-0 items-center justify-center hidden w-full h-full rounded-lg waiting-mask bg-overlay"><i class="animate-spin" data-lucide="loader-2" style="width: 40px; height: 40px;"></i></div>
+            <h1 class="text-2xl font-medium">Update Password</h1>
+            <p>To change or reset Your Password an Email will be sent to You to do it.</p>
+            <div class="flex items-center justify-end mt-5">
+                <button id="updatePassword" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Send Email</button>
+            </div>
+        </div>
+        <!-- Delete Account -->
+        <div class="relative col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50">
+            <div class="absolute top-0 right-0 items-center justify-center hidden w-full h-full rounded-lg waiting-mask bg-overlay"><i class="animate-spin" data-lucide="loader-2" style="width: 40px; height: 40px;"></i></div>
+            <h1 class="text-2xl font-medium">Delete Account</h1>
+            <p>To delete Your Account You can make a deletion request, and we will contact You to confirm the Deletion.</p>
+            <div class="flex items-center justify-end mt-5">
+                <button class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700">Request Deletion</button>
             </div>
         </div>
     </div>

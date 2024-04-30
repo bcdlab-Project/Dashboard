@@ -14,7 +14,7 @@ class NodeModel extends Model
     protected $returnType = \App\Entities\Node::class;
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['id','owner', 'secret', 'tunnel_UUID','tunnel_Credentials','alias'];
+    protected $allowedFields = ['id', 'secret', 'tunnel_UUID','tunnel_Credentials'];
 
     protected $useTimestamps = false;
 

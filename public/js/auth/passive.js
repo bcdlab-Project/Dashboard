@@ -1,12 +1,12 @@
 const keycloak = new Keycloak({
     url: 'https://auth.bcdlab.xyz',
     realm: 'bcdlab',
-    clientId: 'dashboard'
+    clientId: 'dashboard',
 });
 
 
 keycloak.init({onLoad: 'check-sso',silentCheckSsoRedirectUri: `https://dash.bcdlab.xyz/login/silentCheck`}).then(authenticated => {
-    if (authenticated) {
+    if (authenticated) {        
         fetch('https://dash.bcdlab.xyz/login/auto', {
             method: 'POST',
             headers: {

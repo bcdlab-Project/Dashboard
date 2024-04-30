@@ -12,14 +12,25 @@ class Nodes extends BaseController
         
         $data['title'] = 'Nodes';
         $data['pageMargin'] = true;
-        $data['view'] = 'nodes';
-        $data['hasNotification'] = true;
+        $data['view'] = 'nodes/main';
         $data['scripts'] = [];
 
         return view('templates/header', $data)
-            . view('templates/notificationMenu')
+            . view('nodes/main')
+            . view('templates/footer');
+    }
 
-            . view('dashboard/nodes')
-            . view('templates/footer');    
+    public function getDetails($nodeId) {
+        helper('permissions');
+        if (!(admin_Permission() || collaborator_Permission())) { return redirect()->to('/'); }
+        if (model('NodeModel')->find($nodeId) == null) { return redirect()->to('/nodes'); } // give error
+
+        $data['title'] = 'Node ' . $nodeId;
+        $data['pageMargin'] = true;
+        $data['view'] = 'nodes/details';
+
+        return view('templates/header', $data)
+            . view('nodes/details')
+            . view('templates/footer');
     }
 }

@@ -13,7 +13,6 @@ class Request extends BaseController
         $data['title'] = 'Make a Request';
         $data['pageMargin'] = false;
         $data['view'] = 'request';
-        $data['hasNotification'] = true;
 
         return view('templates/header', $data)
             . view('request/main')

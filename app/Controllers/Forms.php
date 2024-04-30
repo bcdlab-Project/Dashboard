@@ -12,11 +12,9 @@ class Forms extends BaseController
 
         $data['title'] = 'Forms Evaluations';
         $data['pageMargin'] = true;
-        $data['view'] = 'overview';
-        $data['hasNotification'] = true;
+        $data['view'] = 'forms/overview';
 
         return view('templates/header', $data)
-            . view('templates/notificationMenu')
             . view('forms/header')
             . view('forms/overview')
             . view('templates/footer');
@@ -28,11 +26,9 @@ class Forms extends BaseController
 
         $data['title'] = 'Participations Forms';
         $data['pageMargin'] = true;
-        $data['view'] = 'participation';
-        $data['hasNotification'] = true;
+        $data['view'] = 'forms/participation';
 
         return view('templates/header', $data)
-            . view('templates/notificationMenu')
             . view('forms/header')
             . view('forms/participation')
             . view('templates/footer');
@@ -44,11 +40,9 @@ class Forms extends BaseController
 
         $data['title'] = 'Projects Forms';
         $data['pageMargin'] = true;
-        $data['view'] = 'project';
-        $data['hasNotification'] = true;
+        $data['view'] = 'forms/project';
 
         return view('templates/header', $data)
-            . view('templates/notificationMenu')
             . view('forms/header')
             . view('forms/project')
             . view('templates/footer');
@@ -60,11 +54,9 @@ class Forms extends BaseController
 
         $data['title'] = 'Collaboration Forms';
         $data['pageMargin'] = true;
-        $data['view'] = 'collaboration';
-        $data['hasNotification'] = true;
+        $data['view'] = 'forms/collaboration';
 
         return view('templates/header', $data)
-            . view('templates/notificationMenu')
             . view('forms/header')
             . view('forms/collaboration')
             . view('templates/footer');
@@ -76,13 +68,25 @@ class Forms extends BaseController
         
         $data['title'] = 'Other Forms';
         $data['pageMargin'] = true;
-        $data['view'] = 'other';
-        $data['hasNotification'] = true;
+        $data['view'] = 'forms/other';
 
         return view('templates/header', $data)
-            . view('templates/notificationMenu')
             . view('forms/header')
             . view('forms/other')
+            . view('templates/footer');
+    }
+
+    public function getEvaluate($id) {
+        helper('permissions');
+        if (!admin_Permission()) { return redirect()->to('/'); }
+
+        $data['title'] = 'Evaluate Form';
+        $data['pageMargin'] = true;
+        $data['view'] = 'forms/evaluate';
+
+        return view('templates/header', $data)
+            . view('forms/header')
+            . view('forms/evaluate')
             . view('templates/footer');
     }
 }

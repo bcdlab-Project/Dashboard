@@ -40,7 +40,7 @@ class Discord extends Controller
 
         $UserId = $session->get('user_data')['id'];
 
-        if (!loggedIn_Permission() || !own_Permission($UserId)) { return $this->fail("Error",401); } // give error
+        if (!loggedIn_Permission() || !own_Permission($UserId)) { return $this->failUnauthorized(); } // give error
 
         $userModel = model('UserModel');
         if ($userModel->find($UserId)->hasDiscord()) { return $this->fail("Error",400); } // give error
@@ -68,7 +68,7 @@ class Discord extends Controller
 
         $UserId = $session->get('user_data')['id'];
 
-        if (!loggedIn_Permission() || !own_Permission($UserId)) { return $this->fail("Error",401); } // give error
+        if (!loggedIn_Permission() || !own_Permission($UserId)) { return $this->failUnauthorized(); } // give error
 
         $userModel = model('UserModel');
         $user = $userModel->find($UserId);
@@ -83,7 +83,7 @@ class Discord extends Controller
     // ------------------------ Callback ------------------------ //
     public function getCallback() {
         helper('permissions');
-        if (!loggedIn_Permission()) { return $this->fail("Error",401); } //give error
+        if (!loggedIn_Permission()) { return $this->failUnauthorized(); } //give error
 
         $request = service('request');
         $session = session();

@@ -42,11 +42,11 @@ class Github extends Controller
 
         $UserId = $session->get('user_data')['id'];
 
-        if (!loggedIn_Permission() || !own_Permission($UserId)) { return $this->fail("Error",401); } // give error
+        if (!loggedIn_Permission() || !own_Permission($UserId)) { return $this->failUnauthorized(); } // give error
 
         $UserModel = model('UserModel');
 
-        if ($UserModel->find($UserId)->hasGithub()) { return $this->fail("Error",403); } // give error
+        if ($UserModel->find($UserId)->hasGithub()) { return $this->failForbidden('User Already has GitHub'); } // give error
 
         $check = hash('sha256', microtime(TRUE) . rand() . $_SERVER['REMOTE_ADDR']);
 
@@ -69,12 +69,12 @@ class Github extends Controller
 
         $UserId = $session->get('user_data')['id'];
 
-        if (!loggedIn_Permission() || !own_Permission($UserId)) { return $this->fail("Error",401); } // give error
+        if (!loggedIn_Permission() || !own_Permission($UserId)) { return $this->failUnauthorized(); } // give error
 
         $UserModel = model('UserModel');
         $user = $UserModel->find($UserId);
 
-        if (!$user->hasGithub()) { return $this->fail("Error",400); } // give error
+        if (!$user->hasGithub()) { return $this->failForbidden('User does not have GitHub'); } // give error
 
         $user->unsetGithub();
 
