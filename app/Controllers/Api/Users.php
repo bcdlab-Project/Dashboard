@@ -20,20 +20,21 @@ class Users extends Controller
             $users = model('UserModel')->findAll();
             $data['users'] = [];
             foreach ($users as $user) {
-                $keycloakData = $user->keycloakData();
+                // $keycloakData = $user->keycloakData();
 
                 $data['users'][] = [
                     'id' => $user->id,
-                    'oauth_id' => $user->oauth_id,
-                    'username' => $keycloakData['username'],
-                    'roles' =>  $user->getRoles(),
-                    'email' => $keycloakData['email'],
-                    'created_at' => $user->created_at,
-                    'last_updated' => $user->last_updated,
-                    'banned' => $user->banned,
-                    'deleted' => $user->deleted,
-                    'has_github' => $user->hasGithub(),
-                    'has_discord' => $user->hasDiscord()
+                    'full_info' => 'https://dash.bcdlab.xyz/api/users/'.$user->id,
+                    // 'oauth_id' => $user->oauth_id,
+                    // 'username' => $keycloakData['username'],
+                    // 'roles' =>  $user->getRoles(),
+                    // 'email' => $keycloakData['email'],
+                    // 'created_at' => $user->created_at,
+                    // 'last_updated' => $user->last_updated,
+                    // 'banned' => $user->banned,
+                    // 'deleted' => $user->deleted,
+                    // 'has_github' => $user->hasGithub(),
+                    // 'has_discord' => $user->hasDiscord()
                 ];
             }
             return $this->setResponseFormat('json')->respond(array_merge($data,['ok'=>true]), 200);

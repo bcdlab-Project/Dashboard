@@ -116,14 +116,14 @@ document.getElementById('disconnect_modal_button').addEventListener('click', fun
 // ------------ Update Username ------------ //
 document.getElementById('updateEmailForm').addEventListener('submit', function(e) {
     e.preventDefault();        
-    forms.startMultipleWaiting();
+    utils.startMultipleWaiting();
     fetch('/api/users/me/email', {
         method: 'POST',
         body: new FormData(document.getElementById("updateEmailForm"))
     })
     .then(response => response.json())
     .then(data => {
-        forms.stopMultipleWaiting();
+        utils.stopMultipleWaiting();
         if (data.ok) {
             document.getElementById("email-error").innerHTML = " "
             document.getElementById("email").classList.remove('form-error')

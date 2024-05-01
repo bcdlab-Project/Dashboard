@@ -53,6 +53,52 @@ class Forms extends Controller
 
     }
 
+    public function getParticipation($id = false, $action = false) {
+        helper('permissions');
+        $request = \Config\Services::request();
+
+        if (!admin_Permission()) { return $this->failUnauthorized(); }
+
+        $count = $request->getGet("count") == null ? 50 : $request->getGet("count");
+        $start = $request->getGet("start") == null ? 0 : $request->getGet("start");
+
+        if (!$id && !$action) {
+            $status = $request->getGet("status") == null ? false : $request->getGet("status");
+
+            $query = model('FormModel')->where('type', 1)->join('ParticipationForms','Forms.id = ParticipationForms.id')->join('FormEvaluations', 'Forms.id = FormEvaluations.form','left')->orderBy('created_at','DESC');
+
+            if ($status) {
+                if ($status == 'pending') {
+                    $query->where('approved', null);
+                } else if ($status == 'approved') {
+                    $query->where('approved', 1);
+                } else if ($status == 'rejected') {
+                    $query->where('approved', 0);
+                }
+            }
+
+            $total = $query->countAllResults(false);
+            $submissions = $query->findAll($count,$start);
+
+            $output = [];
+
+            foreach ($submissions as $submission) {
+                $output[] = [
+                    'id'=>$submission['id'],
+                    'username'=>$submission['requested_username'],
+                    'email'=>$submission['requested_email'],
+                    'email_verified'=>$submission['email_verified'] == 1,
+                    'created_at'=>$submission['created_at'],
+                    'status'=>$submission['approved'] == null ? 'pending' : ($submission['approved'] == 1 ? 'approved' : 'rejected'),
+                    'approved'=>$submission['approved'] == 1,
+                    'more_info'=>'https://dash.bcdlab.xyz/api/forms/participation/' . $submission['id']
+                ];
+            }
+
+            return $this->setResponseFormat('json')->respond(['ok'=>true,'forms'=>$output,'total'=>$total,'message'=>'Showing ' . $count . ' starting on ' . $start], 200);
+        }
+    }
+
     public function getLog() {
         helper('permissions');
         if (!admin_Permission()) { return $this->failUnauthorized(); }

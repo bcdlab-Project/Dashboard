@@ -19,7 +19,6 @@ class Account extends BaseController
         $data['title'] = 'Account | bcdlab-Project';
         $data['pageMargin'] = true;
         $data['view'] = 'account';
-        $data['scripts'] = ['forms.js'];
 
         return view('templates/header', $data)
             . view('account')

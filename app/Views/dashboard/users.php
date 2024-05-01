@@ -1,4 +1,4 @@
-<table class="w-full text-sm text-left table-auto">
+<table class="w-full text-sm text-left border table-auto border-zinc-200 dark:border-zinc-600">
     <thead class="font-medium text-gray-600 border-b dark:text-white dark:bg-zinc-900 dark:bg-opacity-50 bg-zinc-200">
         <tr>
             <th class="px-2 py-3 sm:px-4">Id</th>
