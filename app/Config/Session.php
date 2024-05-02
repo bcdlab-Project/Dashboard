@@ -19,7 +19,7 @@ class Session extends BaseConfig
      * - `CodeIgniter\Session\Handlers\MemcachedHandler`
      * - `CodeIgniter\Session\Handlers\RedisHandler`
      *
-     * @phpstan-var class-string<BaseHandler>
+     * @var class-string<BaseHandler>
      */
     public string $driver = FileHandler::class;
 
@@ -30,7 +30,7 @@ class Session extends BaseConfig
      *
      * The session cookie name, must contain only [0-9a-z_-] characters
      */
-    public string $cookieName = 'ci_session';
+    public string $cookieName = 'bcdlab_session';
 
     /**
      * --------------------------------------------------------------------------

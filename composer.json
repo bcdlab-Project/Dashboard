@@ -1,19 +1,18 @@
 {
-    "name": "codeigniter4/framework",
-    "description": "The CodeIgniter framework v4",
+    "name": "bcdlab/dashboard",
+    "description": "bcdlab Project | Dashboard",
     "license": "MIT",
     "type": "project",
-    "homepage": "https://codeigniter.com",
+    "homepage": "https://bcdlab.xyz",
     "support": {
-        "forum": "https://forum.codeigniter.com/",
-        "source": "https://github.com/codeigniter4/CodeIgniter4",
-        "slack": "https://codeigniterchat.slack.com"
+        "source": "https://github.com/bcdlab-Project/Dashboard"
     },
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-intl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
+        "codeigniter4/framework": "^4.4",
         "codeigniter4/translations": "^4.4",
         "laminas/laminas-escaper": "^2.9",
         "league/oauth2-client": "^2.7",
@@ -21,9 +20,9 @@
         "psr/log": "^1.1"
     },
     "require-dev": {
-        "codeigniter/coding-standard": "^1.5",
+        "codeigniter/coding-standard": "^1.7",
         "fakerphp/faker": "^1.9",
-        "friendsofphp/php-cs-fixer": "3.13.0",
+        "friendsofphp/php-cs-fixer": "^3.47.1",
         "kint-php/kint": "^5.0.4",
         "mikey179/vfsstream": "^1.6",
         "nexusphp/cs-config": "^3.6",
@@ -46,6 +45,7 @@
         "ext-readline": "Improves CLI::input() usability",
         "ext-redis": "If you use Cache class RedisHandler",
         "ext-simplexml": "If you format XML",
+        "ext-sodium": "If you use Encryption SodiumHandler",
         "ext-sqlite3": "If you use SQLite3",
         "ext-sqlsrv": "If you use SQL Server",
         "ext-xdebug": "If you use CIUnitTestCase::assertHeaderEmitted()"
