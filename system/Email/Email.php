@@ -71,7 +71,7 @@ class Email
     public $protocol = 'mail';
 
     /**
-     * STMP Server host
+     * STMP Server Hostname
      *
      * @var string
      */
@@ -296,7 +296,7 @@ class Email
     /**
      * Raw debug messages
      *
-     * @var string[]
+     * @var list<string>
      */
     private array $debugMessageRaw = [];
 
@@ -352,8 +352,7 @@ class Email
      * Character sets valid for 7-bit encoding,
      * excluding language suffix.
      *
-     * @var array<int, string>
-     * @phpstan-var list<string>
+     * @var list<string>
      */
     protected $baseCharsets = [
         'us-ascii',
@@ -706,10 +705,20 @@ class Email
     public function setAttachmentCID($filename)
     {
         foreach ($this->attachments as $i => $attachment) {
+            // For file path.
             if ($attachment['name'][0] === $filename) {
                 $this->attachments[$i]['multipart'] = 'related';
 
                 $this->attachments[$i]['cid'] = uniqid(basename($attachment['name'][0]) . '@', true);
+
+                return $this->attachments[$i]['cid'];
+            }
+
+            // For buffer string.
+            if ($attachment['name'][1] === $filename) {
+                $this->attachments[$i]['multipart'] = 'related';
+
+                $this->attachments[$i]['cid'] = uniqid(basename($attachment['name'][1]) . '@', true);
 
                 return $this->attachments[$i]['cid'];
             }
@@ -732,7 +741,7 @@ class Email
     }
 
     /**
-     * @param string $email
+     * @param array|string $email
      *
      * @return array
      */
@@ -1237,13 +1246,13 @@ class Email
                     . $this->prepQuotedPrintable($this->body) . $this->newline . $this->newline
                     . '--' . $altBoundary . '--' . $this->newline . $this->newline;
 
-                if (! empty($relBoundary)) {
+                if (isset($relBoundary)) {
                     $body .= $this->newline . $this->newline;
                     $this->appendAttachments($body, $relBoundary, 'related');
                 }
 
                 // multipart/mixed attachments
-                if (! empty($atcBoundary)) {
+                if (isset($atcBoundary)) {
                     $body .= $this->newline . $this->newline;
                     $this->appendAttachments($body, $atcBoundary, 'mixed');
                 }
@@ -1656,7 +1665,9 @@ class Email
     /**
      * Strip line-breaks via callback
      *
-     * @param string $matches
+     * @used-by unwrapSpecials()
+     *
+     * @param list<string> $matches
      *
      * @return string
      */
@@ -1906,14 +1917,11 @@ class Email
             $crypto = stream_socket_enable_crypto(
                 $this->SMTPConnect,
                 true,
-                STREAM_CRYPTO_METHOD_TLS_CLIENT
-                //STREAM_CRYPTO_METHOD_TLSv1_0_CLIENT
-                //| STREAM_CRYPTO_METHOD_TLSv1_1_CLIENT
-                //| STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT
-                //| STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT
+                STREAM_CRYPTO_METHOD_TLSv1_0_CLIENT
+                | STREAM_CRYPTO_METHOD_TLSv1_1_CLIENT
+                | STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT
+                | STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT
             );
-
-
 
             if ($crypto !== true) {
                 $this->setErrorMessage(lang('Email.SMTPError', [$this->getSMTPData()]));
@@ -2015,7 +2023,7 @@ class Email
             return false;
         }
 
-        $this->sendData('AUTH PLAIN'); // AUTH LOGIN
+        $this->sendData('AUTH LOGIN');
         $reply = $this->getSMTPData();
 
         if (strpos($reply, '503') === 0) {    // Already authenticated
@@ -2028,23 +2036,23 @@ class Email
             return false;
         }
 
-        $this->sendData(base64_encode("\0" . $this->SMTPUser . "\0" . $this->SMTPPass)); // base64_encode($this->SMTPUser)
+        $this->sendData(base64_encode($this->SMTPUser));
         $reply = $this->getSMTPData();
 
-        if (strpos($reply, '235') !== 0) { // strpos($reply, '334') !== 0
+        if (strpos($reply, '334') !== 0) {
             $this->setErrorMessage(lang('Email.SMTPAuthUsername', [$reply]));
 
             return false;
         }
 
-        // $this->sendData(base64_encode());
-        // $reply = $this->getSMTPData();
+        $this->sendData(base64_encode($this->SMTPPass));
+        $reply = $this->getSMTPData();
 
-        // if (strpos($reply, '235') !== 0) {
-        //     $this->setErrorMessage(lang('Email.SMTPAuthPassword', [$reply]));
+        if (strpos($reply, '235') !== 0) {
+            $this->setErrorMessage(lang('Email.SMTPAuthPassword', [$reply]));
 
-        //     return false;
-        // }
+            return false;
+        }
 
         if ($this->SMTPKeepAlive) {
             $this->SMTPAuth = false;
