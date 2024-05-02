@@ -9,57 +9,15 @@ class Forms extends Controller
 {
     use ResponseTrait;
     
-    public function getIndex($id = false,$action = false) {
-        helper('permissions');
-        if (!admin_Permission()) { return $this->failUnauthorized(); }
-
-
-        if (!$id && !$action) {
-            $nodes = model('NodeModel')->findAll();
-
-    
-            if ($nodes) {
-                foreach ($nodes as $node) {
-                    $details = $node->getDetails();
-                    unset($node->secret);
-                    unset($node->tunnel_Credentials);
-                    $node->owner = $details->owner;
-                    $node->status = $node->getstatus();
-                    $node->owner_name = model('UserModel')->where('id', $details->owner)->first()->keycloakData()['username'];
-                    $node->alias = $details->alias;
-                    $node->description = $details->description;
-                }
-            }
-    
-            return $this->setResponseFormat('json')->respond(['ok'=>true,'nodes'=>$nodes], 200);
-        }
-
-        if ($id && !$action) {
-            $node = model('NodeModel')->find($id);
-            if (!$node) {
-                return $this->fail('Not Found',404);
-            }
-            $details = $node->getDetails();
-            $data['id'] = $node->id;
-            $data['tunnel_UUID'] = $node->tunnel_UUID;
-            $data['last_updated'] = $node->last_updated;
-            $data['owner'] = $details->owner;
-            $data['status'] = $node->getstatus();
-            $data['owner_name'] = model('UserModel')->where('id', $details->owner)->first()->keycloakData()['username'];
-            $data['alias'] = $details->alias;
-            $data['description'] = $details->description;
-            return $this->setResponseFormat('json')->respond(array_merge($data,['ok'=>true]), 200);
-        }
-
-    }
+    public function getIndex() { return $this->failUnauthorized(); }
 
     public function getParticipation($id = false, $action = false) {
         helper('permissions');
-        $request = \Config\Services::request();
+        $request = service('request');
 
         if (!admin_Permission()) { return $this->failUnauthorized(); }
 
-        $count = $request->getGet("count") == null ? 50 : $request->getGet("count");
+        $show = $request->getGet("show") == null ? 50 : $request->getGet("show");
         $start = $request->getGet("start") == null ? 0 : $request->getGet("start");
 
         if (!$id && !$action) {
@@ -78,7 +36,7 @@ class Forms extends Controller
             }
 
             $total = $query->countAllResults(false);
-            $submissions = $query->findAll($count,$start);
+            $submissions = $query->findAll($show,$start);
 
             $output = [];
 
@@ -95,13 +53,18 @@ class Forms extends Controller
                 ];
             }
 
-            return $this->setResponseFormat('json')->respond(['ok'=>true,'forms'=>$output,'total'=>$total,'message'=>'Showing ' . $count . ' starting on ' . $start], 200);
+            return $this->setResponseFormat('json')->respond(['ok'=>true,'forms'=>$output,'total'=>$total,'message'=>'Showing ' . $show . ' starting on ' . $start], 200);
         }
     }
 
     public function getLog() {
         helper('permissions');
+        $request = service('request');
+
         if (!admin_Permission()) { return $this->failUnauthorized(); }
+
+        $show = $request->getGet("show") == null ? 50 : $request->getGet("show");
+        $start = $request->getGet("start") == null ? 0 : $request->getGet("start");
 
         $submissions = model('FormModel')->orderBy('created_at','DESC')->findAll();
         $evaluations = model('FormEvaluationModel')->orderBy('evaluated_at','DESC')->findAll();
@@ -143,9 +106,9 @@ class Forms extends Controller
             $this->fail('Failed to sort data',500);
         }
 
-        array_splice($log, 50);
+        $log = array_slice($log, $start, $show);
 
-        return $this->setResponseFormat('json')->respond(['ok'=>true,'log'=>$log,'message'=>'Showing Only 50 first'], 200);
+        return $this->setResponseFormat('json')->respond(['ok'=>true,'log'=>$log,'message'=>'Showing ' . $show . ' starting on ' . $start], 200);
     }
 
 

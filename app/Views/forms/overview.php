@@ -15,7 +15,8 @@
         </div>
     </div>
 
-    <div class="w-2/3 text-center border border-zinc-200 dark:border-zinc-600">
+    <div class="relative w-2/3 text-center border border-zinc-200 dark:border-zinc-600">
+    <div id="waiting-mask" class="absolute flex items-center justify-center w-full h-full bg-overlay"><span class="animate-bounce"><i class="animate-spin" data-lucide="loader-2" style="width: 50px; height: 50px;"></i></span></div>
         <table class="w-full text-sm text-left table-auto">
             <thead class="font-medium text-gray-600 border-b dark:text-white dark:bg-zinc-900 dark:bg-opacity-50 bg-zinc-200">
                 <tr>
@@ -26,6 +27,12 @@
                 </tr>
             </thead>
             <tbody id="logTable" class="text-gray-600 divide-y dark:text-zinc-300">
+                <!-- <tr class="hover:bg-gray-50 dark:hover:bg-zinc-900">
+                    <td class="px-2 py-3">1</td>
+                    <td class="px-2 py-3">Form Type</td>
+                    <td class="px-2 py-3">Action</td>
+                    <td class="px-2 py-3">Date/Time</td>
+                </tr> -->
             </tbody>
         </table>
     </div>

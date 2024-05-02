@@ -1,6 +1,7 @@
 loadUsersData()
 
 function loadUsersData() {
+    utils.startWaiting();
     fetch('/api/users/')
     .then(response => response.json())
     .then(data => {
@@ -21,6 +22,7 @@ function loadUsersData() {
                 document.getElementById('userTable').appendChild(row);
                 lucide.createIcons();
             });
+            utils.stopWaiting();
 
             data['users'].forEach(user => {
                 fetch('/api/users/' + user.id)
@@ -35,6 +37,8 @@ function loadUsersData() {
                     }
                 });
             });
+            
         }
     });
+    
 }

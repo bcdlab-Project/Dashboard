@@ -52,6 +52,9 @@ class Users extends Controller
             case 'discord':
                 return $this->discord($id);
                 break;
+            case '2fa':
+                return $this->get2fa($id);
+                break;
             default:
                 return $this->fail('Invalid Action', 400);
         }
@@ -103,6 +106,15 @@ class Users extends Controller
         return $this->fail('Not Found',404);
     }
 
+    // ------------ Get 2FA Data ------------ //
+    private function get2fa($id) {
+        $user = model('UserModel')->where('id', $id)->first();
+        if ($user) {
+            return $this->setResponseFormat('json')->respond(['ok'=>true, 'enabled' => $user->has2fa()], 200);
+        }
+        return $this->fail('Not Found',404);
+    }
+
 
     // ------------------------ Set Data ------------------------ //
     public function postIndex($id = false, $action = false) {
@@ -118,6 +130,9 @@ class Users extends Controller
                 break;
             case 'password':
                 return $this->updatePassword($id);
+                break;
+            case '2fa':
+                return $this->set2fa($id);
                 break;
             default:
                 return $this->fail('Invalid Action', 400);
@@ -143,11 +158,16 @@ class Users extends Controller
     private function updatePassword($id) {
         $user = model('UserModel')->find($id);
         if ($user) {
-            helper('keycloak');
-            $keycloak = initKeycloak();
-            $keycloak->executeActionsEmail(['id' => $user->oauth_id, 'actions' => ['UPDATE_PASSWORD']]);
+            return $this->setResponseFormat('json')->respond(['ok'=>$user->setPassword()], 200);
+        }
+        return $this->fail('Not Found',404);
+    }
 
-            return $this->setResponseFormat('json')->respond(['ok'=>true], 200);
+    // ------------ Set 2FA ------------ //
+    private function set2fa($id) {
+        $user = model('UserModel')->find($id);
+        if ($user) {
+            return $this->setResponseFormat('json')->respond(['ok'=>$user->set2FA()], 200);
         }
         return $this->fail('Not Found',404);
     }

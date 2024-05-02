@@ -16,6 +16,18 @@ class User extends Entity
         return boolval(!isset(initKeycloak()->updateUser(['id' => $this->attributes['oauth_id'],'email' => $email])['errorMessage']));
     }
 
+    // Set Password
+    public function setPassword() {
+        helper('keycloak');
+        return boolval(!isset(initKeycloak()->executeActionsEmail(['id' => $this->attributes['oauth_id'], 'actions' => ['UPDATE_PASSWORD']])['errorMessage']));
+    }
+
+    // Set 2FA
+    public function set2FA() {
+        helper('keycloak');
+        return boolval(!isset(initKeycloak()->executeActionsEmail(['id' => $this->attributes['oauth_id'], 'actions' => ['CONFIGURE_TOTP']])['errorMessage']));
+    }
+
     // ------------------- Get User Data ------------------- //
 
     // Get Keycloak Data
@@ -40,6 +52,13 @@ class User extends Entity
         }
 
         return $realRoles;
+    }
+
+    // Get 2FA
+    public function has2FA() {
+        helper('keycloak');
+        $keycloak = initKeycloak();
+        return boolval($keycloak->getUser(['id' => $this->attributes['oauth_id']])['totp']);
     }
 
     // -------------------------------------- Other Functions -------------------------------------- //
