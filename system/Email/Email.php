@@ -2023,7 +2023,7 @@ class Email
             return false;
         }
 
-        $this->sendData('AUTH LOGIN');
+        $this->sendData('AUTH PLAIN'); // AUTH LOGIN
         $reply = $this->getSMTPData();
 
         if (strpos($reply, '503') === 0) {    // Already authenticated
@@ -2036,23 +2036,23 @@ class Email
             return false;
         }
 
-        $this->sendData(base64_encode($this->SMTPUser));
+        $this->sendData(base64_encode("\0" . $this->SMTPUser . "\0" . $this->SMTPPass)); // base64_encode($this->SMTPUser)
         $reply = $this->getSMTPData();
 
-        if (strpos($reply, '334') !== 0) {
+        if (strpos($reply, '235') !== 0) { // strpos($reply, '334') !== 0
             $this->setErrorMessage(lang('Email.SMTPAuthUsername', [$reply]));
 
             return false;
         }
 
-        $this->sendData(base64_encode($this->SMTPPass));
-        $reply = $this->getSMTPData();
+        // $this->sendData(base64_encode($this->SMTPPass));
+        // $reply = $this->getSMTPData();
 
-        if (strpos($reply, '235') !== 0) {
-            $this->setErrorMessage(lang('Email.SMTPAuthPassword', [$reply]));
+        // if (strpos($reply, '235') !== 0) {
+        //     $this->setErrorMessage(lang('Email.SMTPAuthPassword', [$reply]));
 
-            return false;
-        }
+        //     return false;
+        // }
 
         if ($this->SMTPKeepAlive) {
             $this->SMTPAuth = false;
