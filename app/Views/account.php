@@ -81,7 +81,7 @@
         <div class="relative col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50">
             <div class="absolute top-0 right-0 items-center justify-center hidden w-full h-full rounded-lg waiting-mask bg-overlay"><i class="animate-spin" data-lucide="loader-2" style="width: 40px; height: 40px;"></i></div>
             <h1 class="text-2xl font-medium">Update Password</h1>
-            <p>To change or reset Your Password an Email will be sent to You to do it.</p>
+            <p>To change or reset Your Password an Email with the instructions will be sent to You.</p>
             <div class="flex items-center justify-end mt-5">
                 <button id="updatePassword" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Send Email</button>
             </div>
@@ -90,9 +90,9 @@
         <div class="relative col-span-1 p-4 rounded-2xl bg-zinc-300/50 dark:bg-zinc-950/50">
             <div class="absolute top-0 right-0 items-center justify-center hidden w-full h-full rounded-lg waiting-mask bg-overlay"><i class="animate-spin" data-lucide="loader-2" style="width: 40px; height: 40px;"></i></div>
             <h1 class="text-2xl font-medium">2FA</h1>
-            <p>To delete Your Account You can make a deletion request, and we will contact You to confirm the Deletion.</p>
+            <p>To activate 2FA an Email with the instructions will be sent to You.</p>
             <div class="flex items-center justify-end mt-5">
-                <button id="set2FA" class="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700">Set 2FA</button>
+                <button id="set2FA" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">Set 2FA</button>
             </div>
         </div>
     </div>

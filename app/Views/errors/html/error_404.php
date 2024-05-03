@@ -3,10 +3,10 @@
     $data['pageMargin'] = false;
     echo view('templates/header', $data);
 ?>
-    <div class="w-4/5 text-center mx-auto h-fit self-center p-8 bg-opacity-50 bg-red-300 rounded-lg">
-        <h1 class="text-5xl font-light mb-1"><?=lang('Errors.pageNotFound')?></h1>
+    <div class="self-center w-4/5 p-8 mx-auto text-center bg-red-300 bg-opacity-50 rounded-lg h-fit">
+        <h1 class="mb-1 text-5xl font-light"><?=lang('Errors.pageNotFound')?></h1>
 
-        <p>
+        <p class="mt-4 text-xl font-light">
             <?php if (ENVIRONMENT !== 'production') : ?>
                 <?= nl2br(esc($message)) ?>
             <?php else : ?>

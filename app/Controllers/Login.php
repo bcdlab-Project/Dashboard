@@ -9,7 +9,8 @@ class Login extends BaseController
     use ResponseTrait;
 
     public function getIndex() {
-        return "<!doctype html><html><body><script src='/js/keycloak.min.js' type='text/javascript'></script><script src=/js/auth/login.js></script></body></html>";
+        return view('login')
+            . view('templates/footer');
     }
     
     public function postAuto() {

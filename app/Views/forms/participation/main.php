@@ -18,7 +18,7 @@
 
     <div class="w-1/6 border border-zinc-200 dark:border-zinc-600">
         <div class="p-4 border-b border-zinc-200 dark:border-zinc-600">
-            <h1 id="countSubmission" class="text-2xl font-semibold text-bcdlab-d">Filter</h1>
+            <h1 class="text-2xl font-semibold text-bcdlab-d">Filter</h1>
             <p class="text-lg text-bcdlab-d">Submissions</p>
         </div>
         <div class="py-4 border-b border-zinc-200 dark:border-zinc-600">

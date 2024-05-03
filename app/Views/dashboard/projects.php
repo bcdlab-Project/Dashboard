@@ -1,3 +1,4 @@
+<?=view('templates/dev');?>
 <table class="w-full text-sm text-left table-auto">
     <thead class="font-medium text-gray-600 border-b dark:text-white dark:bg-zinc-900 dark:bg-opacity-50 bg-zinc-200">
         <tr>

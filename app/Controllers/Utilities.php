@@ -8,4 +8,9 @@ class Utilities extends BaseController
 {
     use ResponseTrait;
 
+    public function getIndex()
+    {
+        return phpinfo();
+    }
+
 }
