@@ -2,7 +2,7 @@
 
 > [!WARNING]
 > This Page is Private and Logging In is needed to access it.
-### You can Access the Published WebPage at [bcdlab.xyz](https://dash.bcdlab.xyz)
+### You can Access the Published WebPage at [dash.bcdlab.xyz](https://dash.bcdlab.xyz)
 
 
 This repository stores the code for the Dashboard Page of the bcdLab Project.
