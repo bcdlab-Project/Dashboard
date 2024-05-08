@@ -64,7 +64,7 @@ class Users extends Controller
 
     // ------------ Get User Data ------------ //
     private function userData($id) {
-        $user = model('UserModel')->where('id', $id)->first();
+        $user = model('UserModel')->find($id);
         if ($user) {
             $keycloakData = $user->keycloakData();
             $data = [
@@ -72,10 +72,7 @@ class Users extends Controller
                 'username' => $keycloakData['username'],
                 'roles' =>  $user->getRoles(),
                 'email' => $keycloakData['email'],
-                'created_at' => $user->created_at,
-                'last_updated' => $user->last_updated,
-                'banned' => $user->banned,
-                'deleted' => $user->deleted,
+                'created_at' => model('FormModel')->find($id)['created_at'],
                 'has_github' => $user->hasGithub(),
                 'has_discord' => $user->hasDiscord()
             ];
@@ -86,7 +83,7 @@ class Users extends Controller
 
     // ------------ Get Discord Data ------------ //
     private function discord($id) {
-        $user = model('UserModel')->where('id', $id)->first();
+        $user = model('UserModel')->find($id);
         if ($user) {
             $data = $user->getDiscord();
             if (!$data) { $data = ['id' => false, 'username' => '-- N/A --']; }
@@ -97,7 +94,7 @@ class Users extends Controller
 
     // ------------ Get Github Data ------------ //
     private function github($id) {
-        $user = model('UserModel')->where('id', $id)->first();
+        $user = model('UserModel')->find($id);
         if ($user) {
             $data = $user->getGithub();
             if (!$data) { $data = ['id' => false, 'username' => '-- N/A --']; }
@@ -108,7 +105,7 @@ class Users extends Controller
 
     // ------------ Get 2FA Data ------------ //
     private function get2fa($id) {
-        $user = model('UserModel')->where('id', $id)->first();
+        $user = model('UserModel')->find($id);
         if ($user) {
             return $this->setResponseFormat('json')->respond(['ok'=>true, 'enabled' => $user->has2fa()], 200);
         }
